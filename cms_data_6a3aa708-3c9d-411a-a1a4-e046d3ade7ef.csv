@@ -1,0 +1,1001 @@
+Case_ID,Hosp_Name,Hosp_Address,City,State,Action,Date_of_Action
+1,Arkansas Heart Hospital,1701 South Shackleford Road,Little Rock,AR,Warning Notice,2021-05-18
+1,Arkansas Heart Hospital,1701 South Shackleford Road,Little Rock,AR,CAP Request,2021-10-27
+1,Arkansas Heart Hospital,1701 South Shackleford Road,Little Rock,AR,Closure Notice,2022-05-25
+2,Westchester Medical Center,100 Woods Rd,Valhalla,NY,Warning Notice,2021-05-18
+2,Westchester Medical Center,100 Woods Rd,Valhalla,NY,CAP Request,2021-10-27
+2,Westchester Medical Center,100 Woods Rd,Valhalla,NY,Closure Notice,2022-01-11
+3,Mount Sinai Hospital,1 Gustave L Levy Pl,New York,NY,Warning Notice,2021-04-19
+3,Mount Sinai Hospital,1 Gustave L Levy Pl,New York,NY,CAP Request,2021-09-30
+3,Mount Sinai Hospital,1 Gustave L Levy Pl,New York,NY,Closure Notice,2023-02-14
+4,Freedom Behavioral Hospital of Monroe,4402 Sterlington Road,Monroe,LA,Warning Notice,2023-06-27
+4,Freedom Behavioral Hospital of Monroe,4402 Sterlington Road,Monroe,LA,CAP Request,2023-10-03
+4,Freedom Behavioral Hospital of Monroe,4402 Sterlington Road,Monroe,LA,Closure Notice,2024-03-18
+5,Izard Regional Hospital,61 Grasse Street,Calico Rock,AR,Warning Notice,2022-07-27
+5,Izard Regional Hospital,61 Grasse Street,Calico Rock,AR,CAP Request,2022-11-08
+5,Izard Regional Hospital,61 Grasse Street,Calico Rock,AR,Closure Notice,2023-11-22
+6,Holland Hospital,602 Michigan Ave,Holland,MI,Warning Notice,2022-07-27
+6,Holland Hospital,602 Michigan Ave,Holland,MI,Closure Notice,2022-11-16
+7,Houston Methodist Sugar Land Hospital,16655 Southwest Freeway,Sugar Land,TX,CAP Request,2023-06-12
+7,Houston Methodist Sugar Land Hospital,16655 Southwest Freeway,Sugar Land,TX,Closure Notice,2023-07-21
+8,Memorial Hermann Greater Heights Hospital,1635 North Loop West,Houston,TX,Warning Notice,2022-07-27
+8,Memorial Hermann Greater Heights Hospital,1635 North Loop West,Houston,TX,Closure Notice,2022-11-04
+9,UAMS Medical Center,4301 West Markham Street,Little Rock,AR,Warning Notice,2024-02-09
+9,UAMS Medical Center,4301 West Markham Street,Little Rock,AR,Closure Notice,2024-05-14
+10,Bethesda Hospital East,2815 S Seacrest Blvd,Boynton Beach,FL,Warning Notice,2024-01-31
+10,Bethesda Hospital East,2815 S Seacrest Blvd,Boynton Beach,FL,Closure Notice,2024-04-04
+11,Billings Clinic Hospital,2800 10th Ave N,Billings,MT,Met Requirements,2023-05-04
+12,Alta Vista Regional Hospital,104 Legion Drive,Las Vegas,NM,Warning Notice,2022-07-27
+12,Alta Vista Regional Hospital,104 Legion Drive,Las Vegas,NM,CAP Request,2023-04-19
+12,Alta Vista Regional Hospital,104 Legion Drive,Las Vegas,NM,Closure Notice,2023-11-13
+13,Inova Fairfax Hospital,3300 Gallows Road,Falls Church,VA,Warning Notice,2021-05-18
+13,Inova Fairfax Hospital,3300 Gallows Road,Falls Church,VA,CAP Request,2021-10-27
+13,Inova Fairfax Hospital,3300 Gallows Road,Falls Church,VA,Closure Notice,2022-01-11
+14,Sharp Grossmont Hospital,5555 Grossmont Center Drive,La Mesa,CA,Warning Notice,2023-05-26
+14,Sharp Grossmont Hospital,5555 Grossmont Center Drive,La Mesa,CA,Closure Notice,2023-09-08
+15,University Of Utah Health,50 North Medical Drive,Salt Lake City,UT,Warning Notice,2022-07-27
+15,University Of Utah Health,50 North Medical Drive,Salt Lake City,UT,CAP Request,2022-12-21
+15,University Of Utah Health,50 North Medical Drive,Salt Lake City,UT,Closure Notice,2023-04-06
+16,Parkview Regional Medical Center,11109 Parkview Plaza Drive,Fort Wayne,IN,Warning Notice,2023-06-23
+16,Parkview Regional Medical Center,11109 Parkview Plaza Drive,Fort Wayne,IN,Closure Notice,2023-10-12
+17,Beloit Memorial Hospital,1969 W Hart Rd,Beloit,WI,Warning Notice,2022-06-29
+17,Beloit Memorial Hospital,1969 W Hart Rd,Beloit,WI,CAP Request,2022-10-24
+17,Beloit Memorial Hospital,1969 W Hart Rd,Beloit,WI,Closure Notice,2022-11-14
+18,Santa Rosa Behavioral Healthcare Hospital,1287 Fulton Road,Santa Rosa,CA,Warning Notice,2022-07-27
+18,Santa Rosa Behavioral Healthcare Hospital,1287 Fulton Road,Santa Rosa,CA,CAP Request,2022-11-08
+18,Santa Rosa Behavioral Healthcare Hospital,1287 Fulton Road,Santa Rosa,CA,Closure Notice,2023-04-28
+19,UMC Children's Hospital,800 Hope Place,Las Vegas,NV,Warning Notice,2022-06-29
+19,UMC Children's Hospital,800 Hope Place,Las Vegas,NV,Closure Notice,2023-07-04
+20,Good Samaritan Hospital,375 Dixmyth Avenue,Cincinnati,OH,Warning Notice,2024-02-06
+20,Good Samaritan Hospital,375 Dixmyth Avenue,Cincinnati,OH,CAP Request,2024-05-09
+20,Good Samaritan Hospital,375 Dixmyth Avenue,Cincinnati,OH,Closure Notice,2024-07-08
+21,Houston Methodist Hospital,6565 Fannin Street,Houston,TX,Met Requirements,2023-06-26
+22,Bethesda Hospital West,9655  Boynton Beach Blvd,Boynton Beach,FL,Warning Notice,2024-02-01
+22,Bethesda Hospital West,9655  Boynton Beach Blvd,Boynton Beach,FL,Closure Notice,2024-04-04
+23,Nocona General Hospital,100 Park Road,Nocona,TX,Warning Notice,2022-07-27
+23,Nocona General Hospital,100 Park Road,Nocona,TX,CAP Request,2022-11-09
+23,Nocona General Hospital,100 Park Road,Nocona,TX,Closure Notice,2022-12-13
+24,Lamb Healthcare Center,1500 South Sunset Avenue,Littlefield,TX,Warning Notice,2022-07-27
+24,Lamb Healthcare Center,1500 South Sunset Avenue,Littlefield,TX,CAP Request,2022-11-08
+24,Lamb Healthcare Center,1500 South Sunset Avenue,Littlefield,TX,Closure Notice,2023-06-06
+25,Kell West Regional Hospital,5420 Kell Boulevard West,Wichita Falls,TX,Warning Notice,2022-07-27
+25,Kell West Regional Hospital,5420 Kell Boulevard West,Wichita Falls,TX,CAP Request,2022-11-07
+25,Kell West Regional Hospital,5420 Kell Boulevard West,Wichita Falls,TX,CMP Notice,2023-04-19
+25,Kell West Regional Hospital,5420 Kell Boulevard West,Wichita Falls,TX,Closure Notice,2023-05-04
+25,Kell West Regional Hospital,5420 Kell Boulevard West,Wichita Falls,TX,Appealed,2023-05-18
+26,Knapp Medical Center,1401 East 8th Street,Weslaco,TX,Met Requirements,2024-02-14
+27,Kaiser Permanente San Diego Medical Center,9455 Clairemont Mesa Blvd,San Diego,CA,Warning Notice,2024-02-05
+27,Kaiser Permanente San Diego Medical Center,9455 Clairemont Mesa Blvd,San Diego,CA,Closure Notice,2024-05-10
+28,Morehouse General Hospital,323 W Walnut Ave,Bastrop,LA,Met Requirements,2022-07-08
+29,Southern Tennessee Regional Health System Lawrenceburg,1607 S Locust Avenue,Lawrenceburg,TN,Warning Notice,2023-05-02
+29,Southern Tennessee Regional Health System Lawrenceburg,1607 S Locust Avenue,Lawrenceburg,TN,Closure Notice,2023-08-16
+30,Beacon Behavioral Hospital Northshore,"64026 Hwy 434, Ste 300",Lacombe,LA,CAP Request,2024-02-16
+30,Beacon Behavioral Hospital Northshore,"64026 Hwy 434, Ste 300",Lacombe,LA,Closure Notice,2024-06-06
+31,Natividad Medical Center,1441 Constitution Boulevard,Salinas,CA,Warning Notice,2023-04-24
+31,Natividad Medical Center,1441 Constitution Boulevard,Salinas,CA,Closure Notice,2023-08-23
+32,Wayne Memorial Hospital,601 Park Street,Honesdale,PA,Warning Notice,2023-03-03
+32,Wayne Memorial Hospital,601 Park Street,Honesdale,PA,CAP Request,2023-06-15
+32,Wayne Memorial Hospital,601 Park Street,Honesdale,PA,Closure Notice,2023-11-29
+33,Carolina Dunes Behavioral Health,2050 Mercantile Drive,Leland,NC,Warning Notice,2023-01-20
+33,Carolina Dunes Behavioral Health,2050 Mercantile Drive,Leland,NC,CAP Request,2023-05-17
+33,Carolina Dunes Behavioral Health,2050 Mercantile Drive,Leland,NC,Closure Notice,2023-09-25
+34,Dartmouth Hitchcock Medical Center,One Medical Center Dr,Lebanon,NH,Warning Notice,2021-05-18
+34,Dartmouth Hitchcock Medical Center,One Medical Center Dr,Lebanon,NH,Closure Notice,2021-10-27
+35,UNC Medical Center,101 Manning Dr,Chapel Hill,NC,Warning Notice,2021-05-18
+35,UNC Medical Center,101 Manning Dr,Chapel Hill,NC,Closure Notice,2021-12-01
+36,AMG Specialty Hospital - Las Vegas,4015 McLeod Drive,Las Vegas,NV,Warning Notice,2022-11-29
+36,AMG Specialty Hospital - Las Vegas,4015 McLeod Drive,Las Vegas,NV,CAP Request,2023-03-10
+36,AMG Specialty Hospital - Las Vegas,4015 McLeod Drive,Las Vegas,NV,Closure Notice,2023-04-21
+37,Alleghany Health,233 Doctors Street,Sparta,NC,Warning Notice,2022-11-29
+37,Alleghany Health,233 Doctors Street,Sparta,NC,CAP Request,2023-03-15
+37,Alleghany Health,233 Doctors Street,Sparta,NC,Closure Notice,2023-04-14
+38,Kindred Hospital Greensboro,2401 Southside Blvd,Greensboro,NC,Warning Notice,2022-09-29
+38,Kindred Hospital Greensboro,2401 Southside Blvd,Greensboro,NC,CAP Request,2023-03-23
+38,Kindred Hospital Greensboro,2401 Southside Blvd,Greensboro,NC,Closure Notice,2023-08-09
+39,Lifebrite Community Hospital of Stokes,1570 NC 8 & 89 HWY North,Danbury,NC,Warning Notice,2023-04-06
+39,Lifebrite Community Hospital of Stokes,1570 NC 8 & 89 HWY North,Danbury,NC,CAP Request,2023-07-21
+39,Lifebrite Community Hospital of Stokes,1570 NC 8 & 89 HWY North,Danbury,NC,Closure Notice,2023-08-18
+40,Triangle Springs,10901 World Trade Boulevard,Raleigh,NC,CAP Request,2023-05-18
+40,Triangle Springs,10901 World Trade Boulevard,Raleigh,NC,Closure Notice,2024-03-28
+41,Washington Regional Medical Center,958 US Highway 64 East,Plymouth,NC,Warning Notice,2023-08-31
+41,Washington Regional Medical Center,958 US Highway 64 East,Plymouth,NC,CAP Request,2023-12-19
+41,Washington Regional Medical Center,958 US Highway 64 East,Plymouth,NC,CAP Request,2024-04-26
+41,Washington Regional Medical Center,958 US Highway 64 East,Plymouth,NC,CAP Request,2024-07-09
+41,Washington Regional Medical Center,958 US Highway 64 East,Plymouth,NC,Closure Notice,2024-10-08
+42,Northside Hospital Atlanta,1000 Johnson Ferry Road Ne,Atlanta,GA,Warning Notice,2021-04-19
+42,Northside Hospital Atlanta,1000 Johnson Ferry Road Ne,Atlanta,GA,CAP Request,2021-09-30
+42,Northside Hospital Atlanta,1000 Johnson Ferry Road Ne,Atlanta,GA,CMP Notice,2022-06-07
+42,Northside Hospital Atlanta,1000 Johnson Ferry Road Ne,Atlanta,GA,Closure Notice,2022-08-01
+43,Atrium Health University City,8800 North Tryon Street,Charlotte,NC,Warning Notice,2021-05-18
+43,Atrium Health University City,8800 North Tryon Street,Charlotte,NC,CAP Request,2021-10-27
+43,Atrium Health University City,8800 North Tryon Street,Charlotte,NC,Closure Notice,2021-12-02
+44,Saint Elizabeths Hospital,1100 Alabama Avenue SE,Washington,DC,Administrative Closure,2023-09-11
+45,Delaware Psychiatric Center,1901 North Dupont Highway,New Castle,DE,Warning Notice,2023-03-24
+45,Delaware Psychiatric Center,1901 North Dupont Highway,New Castle,DE,CAP Request,2023-07-31
+45,Delaware Psychiatric Center,1901 North Dupont Highway,New Castle,DE,Closure Notice,2024-06-07
+46,Ogden Regional Medical Center,5475 South 500 East,Ogden,UT,Warning Notice,2023-06-27
+46,Ogden Regional Medical Center,5475 South 500 East,Ogden,UT,Closure Notice,2023-10-04
+47,Sentara Virginia Beach General Hospital,1060 First Colonial Road,Virginia Beach,VA,Warning Notice,2021-12-01
+47,Sentara Virginia Beach General Hospital,1060 First Colonial Road,Virginia Beach,VA,Closure Notice,2023-02-22
+48,Baylor Scott & White Medical Center - College Station,700 Scott & White Drive,College Station,TX,Warning Notice,2022-05-04
+48,Baylor Scott & White Medical Center - College Station,700 Scott & White Drive,College Station,TX,CAP Request,2022-09-29
+48,Baylor Scott & White Medical Center - College Station,700 Scott & White Drive,College Station,TX,Closure Notice,2022-11-16
+49,Baylor Scott & White Medical Center - Round Rock,300 University Boulevard,Round Rock,TX,Warning Notice,2022-05-04
+49,Baylor Scott & White Medical Center - Round Rock,300 University Boulevard,Round Rock,TX,CAP Request,2022-09-29
+49,Baylor Scott & White Medical Center - Round Rock,300 University Boulevard,Round Rock,TX,Closure Notice,2022-11-17
+50,Baylor Scott & White Medical Center Taylor,305 Mallard Lane,Taylor,TX,Warning Notice,2022-05-04
+50,Baylor Scott & White Medical Center Taylor,305 Mallard Lane,Taylor,TX,CAP Request,2022-09-29
+50,Baylor Scott & White Medical Center Taylor,305 Mallard Lane,Taylor,TX,Closure Notice,2022-11-17
+51,Stonewall Memorial Hospital,821 North Broadway Street,Aspermont,TX,Warning Notice,2022-05-04
+51,Stonewall Memorial Hospital,821 North Broadway Street,Aspermont,TX,CAP Request,2022-09-29
+51,Stonewall Memorial Hospital,821 North Broadway Street,Aspermont,TX,Closure Notice,2023-04-04
+52,Cochran Memorial Hospital,201 East Grant Avenue,Morton,TX,Warning Notice,2022-05-04
+52,Cochran Memorial Hospital,201 East Grant Avenue,Morton,TX,CAP Request,2022-09-29
+52,Cochran Memorial Hospital,201 East Grant Avenue,Morton,TX,Closure Notice,2023-03-02
+53,Townsen Memorial Hospital,1475 Fm 1960 Bypass Rd East,Humble,TX,Warning Notice,2022-05-04
+53,Townsen Memorial Hospital,1475 Fm 1960 Bypass Rd East,Humble,TX,CAP Request,2022-10-27
+53,Townsen Memorial Hospital,1475 Fm 1960 Bypass Rd East,Humble,TX,Closure Notice,2024-04-18
+54,Trusted Medical Centers - Mansfield,1710 Hwy 287 N Suite 300,Mansfield,TX,Administrative Closure,2022-10-13
+55,W.J. Mangold Memorial Hospital,320 North Main Street,Lockney,TX,Warning Notice,2023-08-16
+55,W.J. Mangold Memorial Hospital,320 North Main Street,Lockney,TX,Closure Notice,2023-12-07
+56,Foundation Surgical Hospital Of El Paso,1416 George Dieter,El Paso,TX,Administrative Closure,2023-05-11
+57,Memorial Sloan-Kettering Cancer Center,1275 York Avenue,New York,NY,Warning Notice,2021-05-18
+57,Memorial Sloan-Kettering Cancer Center,1275 York Avenue,New York,NY,CAP Request,2021-10-27
+57,Memorial Sloan-Kettering Cancer Center,1275 York Avenue,New York,NY,Closure Notice,2022-03-23
+58,Providence Alaska Medical Center,3200 Providence Drive,Anchorage,AK,Warning Notice,2021-08-25
+58,Providence Alaska Medical Center,3200 Providence Drive,Anchorage,AK,CAP Request,2022-11-29
+58,Providence Alaska Medical Center,3200 Providence Drive,Anchorage,AK,Closure Notice,2023-03-23
+59,Ascension Seton Medical Center Austin,1201 West 38th Street,Austin,TX,Met Requirements,2021-01-07
+60,Adventist Health Glendale,1509 Wilson Terrace,Glendale,CA,Warning Notice,2021-04-19
+60,Adventist Health Glendale,1509 Wilson Terrace,Glendale,CA,CAP Request,2021-09-30
+60,Adventist Health Glendale,1509 Wilson Terrace,Glendale,CA,Closure Notice,2022-03-10
+61,Maine Medical Center,22 Bramhall Street,Portland,ME,Warning Notice,2021-05-18
+61,Maine Medical Center,22 Bramhall Street,Portland,ME,CAP Request,2021-10-27
+61,Maine Medical Center,22 Bramhall Street,Portland,ME,Closure Notice,2022-01-05
+62,Atlanticare Regional Medical Center - Atlantic City Campus,1925 Pacific Avenue,Atlantic City,NJ,Warning Notice,2021-04-19
+62,Atlanticare Regional Medical Center - Atlantic City Campus,1925 Pacific Avenue,Atlantic City,NJ,CAP Request,2021-09-30
+62,Atlanticare Regional Medical Center - Atlantic City Campus,1925 Pacific Avenue,Atlantic City,NJ,Closure Notice,2023-10-19
+63,Cooperman Barnabas Medical Center,94 Old Short Hills Road,Livingston,NJ,Warning Notice,2021-04-19
+63,Cooperman Barnabas Medical Center,94 Old Short Hills Road,Livingston,NJ,CAP Request,2021-09-30
+63,Cooperman Barnabas Medical Center,94 Old Short Hills Road,Livingston,NJ,Closure Notice,2022-07-18
+64,Valley Baptist Medical Center - Harlingen,2101 Pease Street,Harlingen,TX,Warning Notice,2021-05-18
+64,Valley Baptist Medical Center - Harlingen,2101 Pease Street,Harlingen,TX,Closure Notice,2021-10-27
+65,Aurora St Lukes Medical Center,2900 W Oklahoma Ave,Milwaukee,WI,Warning Notice,2021-05-18
+65,Aurora St Lukes Medical Center,2900 W Oklahoma Ave,Milwaukee,WI,Closure Notice,2021-10-27
+66,Uf Health Jacksonville,655 W 8th St,Jacksonville,FL,Warning Notice,2021-06-23
+66,Uf Health Jacksonville,655 W 8th St,Jacksonville,FL,CAP Request,2021-12-01
+66,Uf Health Jacksonville,655 W 8th St,Jacksonville,FL,Closure Notice,2022-02-23
+67,New York Presbyterian Hospital - New York Weill Cornell Center,525 East 68th Street,New York,NY,Warning Notice,2021-04-19
+67,New York Presbyterian Hospital - New York Weill Cornell Center,525 East 68th Street,New York,NY,Closure Notice,2022-11-07
+68,Wellstar Kennestone Regional Medical Center,677 Church Street NE,Marietta,GA,Warning Notice,2021-04-19
+68,Wellstar Kennestone Regional Medical Center,677 Church Street NE,Marietta,GA,CAP Request,2021-09-30
+68,Wellstar Kennestone Regional Medical Center,677 Church Street NE,Marietta,GA,Closure Notice,2022-03-08
+69,Robert Wood Johnson University Hospital,1 Robert Wood Johnson Place,New Brunswick,NJ,Warning Notice,2021-04-19
+69,Robert Wood Johnson University Hospital,1 Robert Wood Johnson Place,New Brunswick,NJ,CAP Request,2021-09-30
+69,Robert Wood Johnson University Hospital,1 Robert Wood Johnson Place,New Brunswick,NJ,Closure Notice,2022-02-11
+70,Hendrick Medical Center,1900 Pine Street,Abilene,TX,Warning Notice,2021-04-19
+70,Hendrick Medical Center,1900 Pine Street,Abilene,TX,CAP Request,2021-09-30
+70,Hendrick Medical Center,1900 Pine Street,Abilene,TX,Closure Notice,2022-01-11
+71,Mount Sinai Beth Israel,First Ave At 16th Street,New York,NY,Warning Notice,2021-04-19
+71,Mount Sinai Beth Israel,First Ave At 16th Street,New York,NY,CAP Request,2021-09-30
+71,Mount Sinai Beth Israel,First Ave At 16th Street,New York,NY,Closure Notice,2022-08-19
+72,Stony Brook University Hospital,101 Nicolls Rd,Stony Brook,NY,Warning Notice,2021-04-19
+72,Stony Brook University Hospital,101 Nicolls Rd,Stony Brook,NY,CAP Request,2021-09-30
+72,Stony Brook University Hospital,101 Nicolls Rd,Stony Brook,NY,Closure Notice,2022-03-10
+73,Bergen Regional Medical Center,230 East Ridgewood Avenue,Paramus,NJ,Warning Notice,2021-04-19
+73,Bergen Regional Medical Center,230 East Ridgewood Avenue,Paramus,NJ,CAP Request,2021-09-30
+73,Bergen Regional Medical Center,230 East Ridgewood Avenue,Paramus,NJ,Closure Notice,2022-02-02
+74,NYC Health + Hospitals / Kings County,451 Clarkson Ave,Brooklyn,NY,Warning Notice,2021-04-19
+74,NYC Health + Hospitals / Kings County,451 Clarkson Ave,Brooklyn,NY,CAP Request,2021-09-30
+74,NYC Health + Hospitals / Kings County,451 Clarkson Ave,Brooklyn,NY,Closure Notice,2021-12-20
+75,Northeast Georgia Medical Center Gainesville,743 Spring Street,Gainesville,GA,Warning Notice,2021-04-19
+75,Northeast Georgia Medical Center Gainesville,743 Spring Street,Gainesville,GA,CAP Request,2021-09-30
+75,Northeast Georgia Medical Center Gainesville,743 Spring Street,Gainesville,GA,Closure Notice,2022-01-11
+76,Baystate Medical Center,759 Chestnut Street,Springfield,MA,Warning Notice,2021-04-19
+76,Baystate Medical Center,759 Chestnut Street,Springfield,MA,CAP Request,2021-09-30
+76,Baystate Medical Center,759 Chestnut Street,Springfield,MA,Closure Notice,2022-01-05
+77,Barnes-Jewish Hospital - North,One Parkview Place,St. Louis,MO,Warning Notice,2021-05-18
+77,Barnes-Jewish Hospital - North,One Parkview Place,St. Louis,MO,Closure Notice,2022-03-09
+78,UPMC Shadyside,5230 Centre Ave,Pittsburgh,PA,Warning Notice,2021-04-19
+78,UPMC Shadyside,5230 Centre Ave,Pittsburgh,PA,CAP Request,2021-09-30
+78,UPMC Shadyside,5230 Centre Ave,Pittsburgh,PA,Closure Notice,2022-03-16
+79,Holmes Regional Medical Center,1350 S Hickory St,Melbourne,FL,Warning Notice,2021-04-19
+79,Holmes Regional Medical Center,1350 S Hickory St,Melbourne,FL,CAP Request,2021-09-30
+79,Holmes Regional Medical Center,1350 S Hickory St,Melbourne,FL,Closure Notice,2022-01-06
+80,Newark Beth Israel Medical Center,201 Lyons Avenue,Newark,NJ,Warning Notice,2021-05-18
+80,Newark Beth Israel Medical Center,201 Lyons Avenue,Newark,NJ,CAP Request,2021-10-27
+80,Newark Beth Israel Medical Center,201 Lyons Avenue,Newark,NJ,Closure Notice,2022-07-18
+81,Maimonides Medical Center,4802 10th Ave,Brooklyn,NY,Warning Notice,2021-04-19
+81,Maimonides Medical Center,4802 10th Ave,Brooklyn,NY,CAP Request,2021-09-30
+81,Maimonides Medical Center,4802 10th Ave,Brooklyn,NY,Closure Notice,2022-02-02
+82,Community Medical Center,99 State Highway 37 West,Toms River,NJ,Warning Notice,2021-04-19
+82,Community Medical Center,99 State Highway 37 West,Toms River,NJ,CAP Request,2021-09-30
+82,Community Medical Center,99 State Highway 37 West,Toms River,NJ,Closure Notice,2022-02-11
+83,Alvarado Hospital Medical Center,6655 Alvarado Road,San Diego,CA,Warning Notice,2021-04-21
+83,Alvarado Hospital Medical Center,6655 Alvarado Road,San Diego,CA,Closure Notice,2021-07-20
+84,Tufts Medical Center,800 Washington Street,Boston,MA,Warning Notice,2021-05-18
+84,Tufts Medical Center,800 Washington Street,Boston,MA,CAP Request,2021-10-27
+84,Tufts Medical Center,800 Washington Street,Boston,MA,Closure Notice,2022-01-18
+85,Kansas Medical Center ,1124 West 21st Street,Andover,KS,Warning Notice,2021-05-18
+85,Kansas Medical Center ,1124 West 21st Street,Andover,KS,CAP Request,2021-10-27
+85,Kansas Medical Center ,1124 West 21st Street,Andover,KS,Closure Notice,2023-05-26
+86,Lake Huron Medical Center,2601 Electric Avenue,Port Huron,MI,Warning Notice,2021-05-18
+86,Lake Huron Medical Center,2601 Electric Avenue,Port Huron,MI,Closure Notice,2021-07-20
+87,Houston Methodist The Woodlands Hospital,17201 Interstate 45 South,The Woodlands,TX,Warning Notice,2021-05-18
+87,Houston Methodist The Woodlands Hospital,17201 Interstate 45 South,The Woodlands,TX,CAP Request,2021-10-27
+87,Houston Methodist The Woodlands Hospital,17201 Interstate 45 South,The Woodlands,TX,Closure Notice,2023-05-24
+88,Larkin Hospital Palm Springs,1475 W 49th St,Hialeah,FL,Warning Notice,2021-04-19
+88,Larkin Hospital Palm Springs,1475 W 49th St,Hialeah,FL,CAP Request,2021-09-30
+88,Larkin Hospital Palm Springs,1475 W 49th St,Hialeah,FL,Closure Notice,2022-07-20
+89,Community First Medical Center,5645 W Addison St.,Chicago,IL,Warning Notice,2021-10-27
+89,Community First Medical Center,5645 W Addison St.,Chicago,IL,CAP Request,2022-07-27
+89,Community First Medical Center,5645 W Addison St.,Chicago,IL,CMP Notice,2023-07-24
+89,Community First Medical Center,5645 W Addison St.,Chicago,IL,Closure Notice,2023-08-14
+89,Community First Medical Center,5645 W Addison,Chicago,IL,Appealed,2023-08-23
+90,Providence Medical Center,8929 Parallel Parkway,Kansas City,KS,Warning Notice,2021-04-19
+90,Providence Medical Center,8929 Parallel Parkway,Kansas City,KS,Closure Notice,2021-07-20
+91,Saint Charles Bend Medical Center,2500 Northeast Neff Road,Bend,OR,Warning Notice,2023-01-05
+91,Saint Charles Bend Medical Center,2500 Northeast Neff Road,Bend,OR,Closure Notice,2023-04-27
+92,Bear Valley Community Hospital,41870 Garstin Drive,Big Bear Lake,CA,Warning Notice,2023-02-06
+92,Bear Valley Community Hospital,41870 Garstin Drive,Big Bear Lake,CA,CAP Request,2023-05-10
+92,Bear Valley Community Hospital,41870 Garstin Drive,Big Bear Lake,CA,Closure Notice,2023-08-10
+93,Marian Regional Medical Center,1400 East Church Street,Santa Maria,CA,Met Requirements,2024-02-01
+94,Freeman Hospital West,1102 West 32nd Street,Joplin,MO,Warning Notice,2023-01-18
+94,Freeman Hospital West,1102 West 32nd Street,Joplin,MO,Closure Notice,2023-05-12
+95,Touro Infirmary,1401 Foucher St,New Orleans,LA,Warning Notice,2021-05-18
+95,Touro Infirmary,1401 Foucher St,New Orleans,LA,CAP Request,2021-10-27
+95,Touro Infirmary,1401 Foucher St,New Orleans,LA,Closure Notice,2022-01-05
+96,Concord Hospital,250 Pleasant Street,Concord,NH,Warning Notice,2021-05-18
+96,Concord Hospital,250 Pleasant Street,Concord,NH,CAP Request,2021-10-27
+96,Concord Hospital,250 Pleasant Street,Concord,NH,Closure Notice,2022-01-11
+97,Wheeling Hospital,1 Medical Park,Wheeling,WV,Warning Notice,2021-05-18
+97,Wheeling Hospital,1 Medical Park,Wheeling,WV,CAP Request,2021-10-27
+97,Wheeling Hospital,1 Medical Park,Wheeling,WV,Closure Notice,2022-02-07
+98,Aspirus Wausau Hospital,333 Pine Ridge Blvd,Wausau,WI,Warning Notice,2021-05-18
+98,Aspirus Wausau Hospital,333 Pine Ridge Blvd,Wausau,WI,CAP Request,2021-10-27
+98,Aspirus Wausau Hospital,333 Pine Ridge Blvd,Wausau,WI,Closure Notice,2022-02-08
+99,Northside Hospital - Cherokee,450 Northside Cherokee Blvd,Canton,GA,Warning Notice,2021-05-18
+99,Northside Hospital - Cherokee,450 Northside Cherokee Blvd,Canton,GA,CAP Request,2021-10-27
+99,Northside Hospital - Cherokee,450 Northside Cherokee Blvd,Canton,GA,CMP Notice,2022-06-07
+99,Northside Hospital - Cherokee,450 Northside Cherokee Blvd,Canton,GA,Closure Notice,2022-08-01
+100,Lehigh Valley Hospital - Cedar Crest,1200 South Cedar Crest Blvd,Allentown,PA,Warning Notice,2021-05-18
+100,Lehigh Valley Hospital - Cedar Crest,1200 South Cedar Crest Blvd,Allentown,PA,CAP Request,2021-10-27
+101,Novant Health Prespyterian Medical Center,200 Hawthorne Lane,Charlotte,NC,Warning Notice,2021-05-18
+101,Novant Health Prespyterian Medical Center,200 Hawthorne Lane,Charlotte,NC,Closure Notice,2021-10-27
+102,CHRISTUS Southeast Texas - Saint Elizabeth,2830 Calder Avenue,Beaumont,TX,Warning Notice,2021-05-18
+102,CHRISTUS Southeast Texas - Saint Elizabeth,2830 Calder Avenue,Beaumont,TX,CAP Request,2021-10-27
+102,CHRISTUS Southeast Texas - Saint Elizabeth,2830 Calder Avenue,Beaumont,TX,Closure Notice,2022-01-25
+103,Centra Specialty Hospital,"3300 Rivermont Avenue, Krise 3",Lynchburg,VA,Warning Notice,2021-05-18
+103,Centra Specialty Hospital,"3300 Rivermont Avenue, Krise 3",Lynchburg,VA,CAP Request,2021-10-27
+103,Centra Specialty Hospital,"3300 Rivermont Avenue, Krise 3",Lynchburg,VA,Closure Notice,2022-09-27
+104,Monmouth Medical Center,300 2nd Avenue,Long Branch,NJ,Warning Notice,2021-05-18
+104,Monmouth Medical Center,300 2nd Avenue,Long Branch,NJ,CAP Request,2021-10-27
+104,Monmouth Medical Center,300 2nd Avenue,Long Branch,NJ,Closure Notice,2022-07-20
+105,Dch Regional Medical Center,809 University Boulevard East,Tuscaloosa,AL,Warning Notice,2021-05-18
+105,Dch Regional Medical Center,809 University Boulevard East,Tuscaloosa,AL,CAP Request,2021-10-27
+105,Dch Regional Medical Center,809 University Boulevard East,Tuscaloosa,AL,Closure Notice,2022-01-13
+106,St. David's Surgical Hospital,1201 W Louis Henna Blvd,Austin,TX,Warning Notice,2021-05-18
+106,St. David's Surgical Hospital,1201 W Louis Henna Blvd,Austin,TX,CAP Request,2021-10-27
+106,St. David's Surgical Hospital,1201 W Louis Henna Blvd,Austin,TX,Closure Notice,2023-07-31
+107,Anna Jaques Hospital,25 Highland Avenue,Newburyport,MA,Warning Notice,2021-05-18
+107,Anna Jaques Hospital,25 Highland Avenue,Newburyport,MA,CAP Request,2021-10-27
+107,Anna Jaques Hospital,25 Highland Avenue,Newburyport,MA,Closure Notice,2022-02-24
+108,Palomar Medical Center Escondido,2185 Citracado Parkway,Escondido,CA,Warning Notice,2021-05-18
+108,Palomar Medical Center Escondido,2185 Citracado Parkway,Escondido,CA,CAP Request,2021-10-27
+108,Palomar Medical Center Escondido,2185 Citracado Parkway,Escondido,CA,Closure Notice,2022-02-23
+109,Christus Good Shepherd Medical Center - Longview,700 East Marshall Avenue,Longview,TX,Warning Notice,2021-05-18
+109,Christus Good Shepherd Medical Center - Longview,700 East Marshall Avenue,Longview,TX,CAP Request,2021-10-27
+109,Christus Good Shepherd Medical Center - Longview,700 East Marshall Avenue,Longview,TX,Closure Notice,2022-02-01
+110,Christus St Michael Hospital - Atlanta,1007 South William Street,Atlanta,TX,Warning Notice,2021-05-18
+110,Christus St Michael Hospital - Atlanta,1007 South William Street,Atlanta,TX,CAP Request,2021-10-27
+110,Christus St Michael Hospital - Atlanta,1007 South William Street,Atlanta,TX,Closure Notice,2022-02-01
+111,Gerald Champion Regional Medical Center,2669 North Scenic Drive,Alamogordo,NM,Warning Notice,2021-05-18
+111,Gerald Champion Regional Medical Center,2669 North Scenic Drive,Alamogordo,NM,CAP Request,2021-10-27
+111,Gerald Champion Regional Medical Center,2669 North Scenic Drive,Alamogordo,NM,Closure Notice,2022-07-01
+112,Inova Loudoun Hospital,44045 Riverside Parkway,Leesburg,VA,Warning Notice,2021-05-18
+112,Inova Loudoun Hospital,44045 Riverside Parkway,Leesburg,VA,CAP Request,2021-10-27
+112,Inova Loudoun Hospital,44045 Riverside Parkway,Leesburg,VA,Closure Notice,2022-01-11
+113,Halifax Health Medical Center of Daytona Beach,303 N Clyde Morris Blvd,Daytona Beach,FL,Warning Notice,2021-05-18
+113,Halifax Health Medical Center of Daytona Beach,303 N Clyde Morris Blvd,Daytona Beach,FL,CAP Request,2021-10-27
+113,Halifax Health Medical Center of Daytona Beach,303 N Clyde Morris Blvd,Daytona Beach,FL,Closure Notice,2022-04-07
+114,Tri-City Medical Center,4002 Vista Way,Oceanside,CA,Warning Notice,2021-05-18
+114,Tri-City Medical Center,4002 Vista Way,Oceanside,CA,CAP Request,2021-10-27
+114,Tri-City Medical Center,4002 Vista Way,Oceanside,CA,Closure Notice,2022-11-07
+115,Avera Mckennan Hospital & University Health Center,1325 S Cliff Ave,Sioux Falls,SD,Warning Notice,2021-05-18
+115,Avera Mckennan Hospital & University Health Center,1325 S Cliff Ave,Sioux Falls,SD,CAP Request,2021-10-27
+115,Avera Mckennan Hospital & University Health Center,1325 S Cliff Ave,Sioux Falls,SD,Closure Notice,2021-12-20
+116,Wellstar Atlanta Medical Center,303 Parkway Drive Ne,Atlanta,GA,Warning Notice,2021-04-19
+116,Wellstar Atlanta Medical Center,303 Parkway Drive Ne,Atlanta,GA,CAP Request,2021-09-30
+116,Wellstar Atlanta Medical Center,303 Parkway Drive Ne,Atlanta,GA,Closure Notice,2022-02-24
+117,Tift Regional Medical Center,901 East 18th Street,Tifton,GA,Warning Notice,2023-03-01
+117,Tift Regional Medical Center,901 East 18th Street,Tifton,GA,CAP Request,2023-06-06
+117,Tift Regional Medical Center,901 East 18th Street,Tifton,GA,Closure Notice,2023-09-28
+118,WakeMed Raleigh Campus,3000 New Bern Avenue,Raleigh,NC,Warning Notice,2021-04-19
+118,WakeMed Raleigh Campus,3000 New Bern Avenue,Raleigh,NC,Closure Notice,2021-09-29
+119,Good Samaritan Hospital,2425 Samaritan Drive,San Jose,CA,Warning Notice,2021-05-18
+119,Good Samaritan Hospital,2425 Samaritan Drive,San Jose,CA,CAP Request,2021-10-27
+119,Good Samaritan Hospital,2425 Samaritan Drive,San Jose,CA,Closure Notice,2023-07-31
+120,Fort Sanders Regional Medical Center,1901 Clinch Avenue,Knoxville,TN,Warning Notice,2021-06-23
+120,Fort Sanders Regional Medical Center,1901 Clinch Avenue,Knoxville,TN,Closure Notice,2021-12-01
+121,Christus St. Michael Health System,2600 Saint Michael Drive,Texarkana,TX,Warning Notice,2021-05-18
+121,Christus St. Michael Health System,2600 Saint Michael Drive,Texarkana,TX,CAP Request,2021-10-27
+121,Christus St. Michael Health System,2600 Saint Michael Drive,Texarkana,TX,Closure Notice,2022-02-01
+122,"Baptist Health Extended Care Hospital-Little Rock, Inc.",9601 Baptist Health Drive,Little Rock,AR,Warning Notice,2021-05-18
+122,"Baptist Health Extended Care Hospital-Little Rock, Inc.",9601 Baptist Health Drive,Little Rock,AR,CAP Request,2021-10-27
+122,"Baptist Health Extended Care Hospital-Little Rock, Inc.",9601 Baptist Health Drive,Little Rock,AR,Closure Notice,2022-02-07
+123,Rapides Regional Medical Center,211 4th St,Alexandria,LA,Warning Notice,2021-05-18
+123,Rapides Regional Medical Center,211 4th St,Alexandria,LA,CAP Request,2021-10-27
+123,Rapides Regional Medical Center,211 4th St,Alexandria,LA,Closure Notice,2023-07-20
+124,University Hospital - University of Missouri Health Care,1 Hospital Drive,Columbia,MO,Warning Notice,2021-04-19
+124,University Hospital - University of Missouri Health Care,1 Hospital Drive,Columbia,MO,Closure Notice,2021-09-29
+125,Tristar Centennial Medical Center,2300 Patterson Street,Nashville,TN,Warning Notice,2023-07-11
+125,Tristar Centennial Medical Center,2300 Patterson Street,Nashville,TN,Closure Notice,2023-10-19
+126,The University Of Vermont Medical Center,111 Colchester Ave,Burlington,VT,Met Requirements,2023-03-27
+127,Flowers Hospital,4370 West Main Street,Dothan,AL,Warning Notice,2023-01-13
+127,Flowers Hospital,4370 West Main Street,Dothan,AL,Closure Notice,2023-04-19
+128,Los Angeles General Medical Center,2051 Marengo St,Los Angeles,CA,Met Requirements,2021-01-22
+129,MercyOne West Des Moines Medical Center,1755 59th Place,West Des Moines,IA,Warning Notice,2021-04-19
+129,MercyOne West Des Moines Medical Center,1755 59th Place,West Des Moines,IA,CAP Request,2021-09-30
+129,MercyOne West Des Moines Medical Center,1755 59th Place,West Des Moines,IA,Closure Notice,2022-03-10
+130,Orlando Health Orlando Regional Medical Center,52 W Underwood St,Orlando,FL,Warning Notice,2021-08-19
+130,Orlando Health Orlando Regional Medical Center,52 W Underwood St,Orlando,FL,CAP Request,2021-09-30
+130,Orlando Health Orlando Regional Medical Center,52 W Underwood St,Orlando,FL,Closure Notice,2022-01-21
+131,Memorial Regional Hospital,3501 Johnson St,Hollywood,FL,Warning Notice,2021-04-19
+131,Memorial Regional Hospital,3501 Johnson St,Hollywood,FL,Closure Notice,2021-09-29
+132,CHI St. Vincent Infirmary,Two St. Vincent Circle,Little Rock,AR,Warning Notice,2021-05-18
+132,CHI St. Vincent Infirmary,Two St. Vincent Circle,Little Rock,AR,CAP Request,2021-10-27
+132,CHI St. Vincent Infirmary,Two St. Vincent Circle,Little Rock,AR,Closure Notice,2022-03-07
+133,Presbyterian-St. Luke's Medical Center,1719 E 19th Ave,Denver,CO,Warning Notice,2023-07-07
+133,Presbyterian-St. Luke's Medical Center,1719 E 19th Ave,Denver,CO,Closure Notice,2023-11-15
+134,Banner Thunderbird Medical Center,5555 W. Thunderbird Rd.,Glendale,AZ,Warning Notice,2023-05-26
+134,Banner Thunderbird Medical Center,5555 W. Thunderbird Rd.,Glendale,AZ,Closure Notice,2023-09-13
+135,CHRISTUS Spohn Hospital Corpus Christi -Shoreline,600 Elizabeth Street,Corpus Christi,TX,Warning Notice,2021-05-18
+135,CHRISTUS Spohn Hospital Corpus Christi -Shoreline,600 Elizabeth Street,Corpus Christi,TX,CAP Request,2021-10-27
+135,CHRISTUS Spohn Hospital Corpus Christi -Shoreline,600 Elizabeth Street,Corpus Christi,TX,Closure Notice,2022-01-25
+136,Piedmont Columbus Regional Midtown,"710 Center St, Box 951",Columbus,GA,Warning Notice,2021-04-19
+136,Piedmont Columbus Regional Midtown,"710 Center St, Box 951",Columbus,GA,CAP Request,2021-09-30
+136,Piedmont Columbus Regional Midtown,"710 Center St, Box 951",Columbus,GA,Closure Notice,2022-02-28
+137,Stanford Hospital,300 Pasteur Drive,Palo Alto,CA,Warning Notice,2021-04-19
+137,Stanford Hospital,300 Pasteur Drive,Palo Alto,CA,CAP Request,2021-09-30
+137,Stanford Hospital,300 Pasteur Drive,Palo Alto,CA,Closure Notice,2022-01-19
+138,Methodist Hospitals - Northlake Campus,600 Grant St,Gary,IN,Warning Notice,2021-04-19
+138,Methodist Hospitals - Northlake Campus,600 Grant St,Gary,IN,CAP Request,2021-09-30
+138,Methodist Hospitals - Northlake Campus,600 Grant St,Gary,IN,Closure Notice,2022-03-18
+139,Our Lady Of The Lake Regional Medical Center,5000 Hennessy Blvd,Baton Rouge,LA,Warning Notice,2021-04-19
+139,Our Lady Of The Lake Regional Medical Center,5000 Hennessy Blvd,Baton Rouge,LA,CAP Request,2021-09-30
+139,Our Lady Of The Lake Regional Medical Center,5000 Hennessy Blvd,Baton Rouge,LA,Closure Notice,2022-01-18
+140,Saint Joseph's Hospital and Medical Center,350 W. Thomas Road,Phoenix,AZ,Warning Notice,2021-04-19
+140,Saint Joseph's Hospital and Medical Center,350 W. Thomas Road,Phoenix,AZ,CAP Request,2021-09-30
+140,Saint Joseph's Hospital and Medical Center,350 W. Thomas Road,Phoenix,AZ,Closure Notice,2022-03-01
+141,Mobile Infirmary Medical Center,5 Mobile Infirmary Center,Mobile,AL,Warning Notice,2021-04-19
+141,Mobile Infirmary Medical Center,5 Mobile Infirmary Center,Mobile,AL,CAP Request,2021-09-30
+141,Mobile Infirmary Medical Center,5 Mobile Infirmary Center,Mobile,AL,Closure Notice,2021-12-08
+142,Elmhurst Hospital Center,79-01 Broadway,Elmhurst,NY,Warning Notice,2021-08-19
+142,Elmhurst Hospital Center,79-01 Broadway,Elmhurst,NY,CAP Request,2021-09-30
+142,Elmhurst Hospital Center,79-01 Broadway,Elmhurst,NY,Closure Notice,2022-01-05
+143,Lakeland Regional Health Medical Center,1324 Lakeland Hills Blvd,Lakeland,FL,Warning Notice,2021-04-19
+143,Lakeland Regional Health Medical Center,1324 Lakeland Hills Blvd,Lakeland,FL,CAP Request,2021-09-30
+143,Lakeland Regional Health Medical Center,1324 Lakeland Hills Blvd,Lakeland,FL,Closure Notice,2022-01-19
+144,OU Medical Center,700 Ne 13th Street,Oklahoma City,OK,Warning Notice,2021-04-19
+144,OU Medical Center,700 Ne 13th Street,Oklahoma City,OK,CAP Request,2021-09-30
+144,OU Medical Center,700 Ne 13th Street,Oklahoma City,OK,Closure Notice,2022-01-11
+145,Scripps Mercy Hospital,4077 Fifth Avenue,San Diego,CA,Warning Notice,2021-05-18
+145,Scripps Mercy Hospital,4077 Fifth Avenue,San Diego,CA,CAP Request,2021-10-27
+145,Scripps Mercy Hospital,4077 Fifth Avenue,San Diego,CA,Closure Notice,2022-01-28
+146,University Of Iowa Hospitals & Clinics,200 Hawkins Drive,Iowa City,IA,Warning Notice,2021-08-25
+146,University Of Iowa Hospitals & Clinics,200 Hawkins Drive,Iowa City,IA,Closure Notice,2022-12-02
+147,Promedica Flower Hospital,5200 Harroun Road,Sylvania,OH,Warning Notice,2021-04-19
+147,Promedica Flower Hospital,5200 Harroun Road,Sylvania,OH,CAP Request,2021-09-30
+147,Promedica Flower Hospital,5200 Harroun Road,Sylvania,OH,Closure Notice,2022-02-11
+148,Hackensack University Medical Center,30 Prospect Avenue,Hackensack,NJ,Warning Notice,2021-05-18
+148,Hackensack University Medical Center,30 Prospect Avenue,Hackensack,NJ,CAP Request,2021-10-27
+148,Hackensack University Medical Center,30 Prospect Avenue,Hackensack,NJ,Closure Notice,2022-10-06
+149,Aspen Valley Hospital,401 Castle Creek Road,Aspen,CO,Warning Notice,2021-05-18
+149,Aspen Valley Hospital,401 Castle Creek Road,Aspen,CO,CAP Request,2021-10-27
+149,Aspen Valley Hospital,401 Castle Creek Road,Aspen,CO,Closure Notice,2022-01-05
+150,Chi St Lukes Health - Memorial Livingston,1717 U.s. 59 Loop North,Livingston,TX,Warning Notice,2021-05-18
+150,Chi St Lukes Health - Memorial Livingston,1717 U.s. 59 Loop North,Livingston,TX,CAP Request,2021-10-27
+150,Chi St Lukes Health - Memorial Livingston,1717 U.s. 59 Loop North,Livingston,TX,Closure Notice,2022-03-07
+151,Kaiser Fnd Hosp - Orange County - Anaheim,3440 E La Palma Ave,Anaheim,CA,Met Requirements,2021-03-18
+152,Norton Healthcare Pavilion (Triage to Norton Hospital: ID 4571),315 East Broadway,Louisville,KY,Warning Notice,2021-06-23
+152,Norton Healthcare Pavilion (Triage to Norton Hospital: ID 4571),315 East Broadway,Louisville,KY,Closure Notice,2021-12-01
+153,SSM Health St Marys Hospital - St Louis,6420 Clayton Road,Saint Louis,MO,Warning Notice,2021-06-23
+153,SSM Health St Marys Hospital - St Louis,6420 Clayton Road,Saint Louis,MO,Closure Notice,2021-12-01
+154,Holy Cross Hospital,2701 W 68th Street,Chicago,IL,Warning Notice,2021-05-18
+154,Holy Cross Hospital,2701 W 68th Street,Chicago,IL,CAP Request,2021-10-27
+154,Holy Cross Hospital,2701 W 68th Street,Chicago,IL,Closure Notice,2023-05-26
+155,Methodist Hospital For Surgery,17101 N. Dallas Parkway,Addison,TX,Warning Notice,2021-05-18
+155,Methodist Hospital For Surgery,17101 N. Dallas Parkway,Addison,TX,CAP Request,2021-10-27
+155,Methodist Hospital For Surgery,17101 N. Dallas Parkway,Addison,TX,Closure Notice,2022-03-02
+156,Suburban Community Hospital,2701 Dekalb Pike,Norristown,PA,Warning Notice,2021-06-23
+156,Suburban Community Hospital,2701 Dekalb Pike,Norristown,PA,Closure Notice,2021-12-01
+157,Benefis Health Care (West Campus),500 15th Ave S,Great Falls,MT,Warning Notice,2021-05-18
+157,Benefis Health Care (West Campus),500 15th Ave S,Great Falls,MT,CAP Request,2021-10-27
+157,Benefis Health Care (West Campus),500 15th Ave S,Great Falls,MT,Closure Notice,2023-03-17
+158,North Vista Hospital,1409 East Lake Mead Boulevard,North Las Vegas,NV,Warning Notice,2021-06-23
+158,North Vista Hospital,1409 East Lake Mead Boulevard,North Las Vegas,NV,CAP Request,2021-12-01
+158,North Vista Hospital,1409 East Lake Mead Boulevard,North Las Vegas,NV,Closure Notice,2022-01-26
+159,Beth Israel Deaconess Hospital - Needham,148 Chestnut Street,Needham,MA,Warning Notice,2021-05-18
+159,Beth Israel Deaconess Hospital - Needham,148 Chestnut Street,Needham,MA,CAP Request,2021-10-27
+159,Beth Israel Deaconess Hospital - Needham,148 Chestnut Street,Needham,MA,Closure Notice,2022-02-09
+160,Prairieville Family Hospital,37358 Market Place Drive,Prairieville,LA,Warning Notice,2021-06-23
+160,Prairieville Family Hospital,37358 Market Place Drive,Prairieville,LA,CAP Request,2021-12-01
+160,Prairieville Family Hospital,37358 Market Place Drive,Prairieville,LA,Closure Notice,2022-05-12
+161,Citizens Memorial Hospital,1500 North Oakland Ave,Bolivar,MO,Warning Notice,2021-06-23
+161,Citizens Memorial Hospital,1500 North Oakland Ave,Bolivar,MO,CAP Request,2021-12-01
+161,Citizens Memorial Hospital,1500 North Oakland Ave,Bolivar,MO,Closure Notice,2023-03-02
+162,Northeast Alabama Regional Medical Center,400 East Tenth Street,Anniston,AL,Warning Notice,2021-06-23
+162,Northeast Alabama Regional Medical Center,400 East Tenth Street,Anniston,AL,Closure Notice,2021-12-01
+163,Emory Johns Creek Hospital,6325 Hospital Parkway,Johns Creek,GA,Warning Notice,2021-06-23
+163,Emory Johns Creek Hospital,6325 Hospital Parkway,Johns Creek,GA,Closure Notice,2021-12-01
+164,UW Medical Center - Montlake,1959 NE Pacific St.,Seattle,WA,Warning Notice,2022-01-12
+164,UW Medical Center - Montlake,1959 NE Pacific St.,Seattle,WA,CAP Request,2022-12-15
+164,UW Medical Center - Montlake,1959 NE Pacific St.,Seattle,WA,Closure Notice,2023-03-17
+165,Hudson Regional Hospital,55 Meadowlands Parkway,Secaucus,NJ,Warning Notice,2021-06-23
+165,Hudson Regional Hospital,55 Meadowlands Parkway,Secaucus,NJ,CAP Request,2021-12-01
+165,Hudson Regional Hospital,55 Meadowlands Parkway,Secaucus,NJ,Closure Notice,2022-10-04
+166,Trumbull Memorial Hospital,1350 East Market Street,Warren,OH,Warning Notice,2021-06-23
+166,Trumbull Memorial Hospital,1350 East Market Street,Warren,OH,Closure Notice,2021-12-01
+167,Sharon Regional Medical Center,740 East State Street,Sharon,PA,Warning Notice,2021-06-23
+167,Sharon Regional Medical Center,740 East State Street,Sharon,PA,CAP Request,2021-12-01
+167,Sharon Regional Medical Center,740 East State Street,Sharon,PA,Closure Notice,2022-01-18
+168,Upstate University Hospital,750 E Adams St,Syracuse,NY,Warning Notice,2021-06-23
+168,Upstate University Hospital,750 E Adams St,Syracuse,NY,CAP Request,2021-12-01
+168,Upstate University Hospital,750 E Adams St,Syracuse,NY,Closure Notice,2022-03-22
+169,St. Joseph's Hospital,12886 Troxler Avenue,Highland,IL,Warning Notice,2021-06-23
+169,St. Joseph's Hospital,12886 Troxler Avenue,Highland,IL,CAP Request,2021-12-01
+169,St. Joseph's Hospital,12886 Troxler Avenue,Highland,IL,Closure Notice,2022-01-19
+170,Campbell County Memorial Hospital,501 South Burma Avenue,Gillette,WY,Warning Notice,2021-06-23
+170,Campbell County Memorial Hospital,501 South Burma Avenue,Gillette,WY,CAP Request,2021-12-01
+170,Campbell County Memorial Hospital,501 South Burma Avenue,Gillette,WY,Closure Notice,2022-02-18
+171,Good Samaritan Regional Medical Center,3600 NW Samaritan Drive,Corvallis,OR,Warning Notice,2024-02-01
+171,Good Samaritan Regional Medical Center,3600 NW Samaritan Drive,Corvallis,OR,Closure Notice,2024-05-06
+172,Sentara Leigh Hospital,830 Kempsville Road,Norfolk,VA,Warning Notice,2021-07-20
+172,Sentara Leigh Hospital,830 Kempsville Road,Norfolk,VA,CAP Request,2022-01-12
+172,Sentara Leigh Hospital,830 Kempsville Road,Norfolk,VA,Closure Notice,2022-03-09
+173,Excela Westmoreland Hospital,532 West Pittsburgh Street,Greensburg,PA,Warning Notice,2021-07-20
+173,Excela Westmoreland Hospital,532 West Pittsburgh Street,Greensburg,PA,Closure Notice,2022-01-18
+174,Cone Health Wesley Long Hospital,2400 West Friendly Avenue,Greensboro,NC,Warning Notice,2021-07-20
+174,Cone Health Wesley Long Hospital,2400 West Friendly Avenue,Greensboro,NC,Closure Notice,2022-01-07
+175,Abrazo Mesa Hospital,5750 East Baseline Road,Mesa,AZ,Warning Notice,2021-08-25
+175,Abrazo Mesa Hospital,5750 East Baseline Road,Mesa,AZ,Closure Notice,2022-02-23
+176,Abrazo Surprise Hospital,16815 West Bell Road,Surprise,AZ,Warning Notice,2021-08-25
+176,Abrazo Surprise Hospital,16815 West Bell Road,Surprise,AZ,CAP Request,2022-05-04
+176,Abrazo Surprise Hospital,16815 West Bell Road,Surprise,AZ,Closure Notice,2023-05-12
+177,Adventist Health St Helena,10 Woodland Rd.,St. Helena,CA,Warning Notice,2021-08-25
+177,Adventist Health St Helena,10 Woodland Rd.,St. Helena,CA,Closure Notice,2022-03-22
+178,Petaluma Valley Hospital,400 N McDowell Blvd,Petaluma,CA,Warning Notice,2021-08-25
+178,Petaluma Valley Hospital,400 N McDowell Blvd,Petaluma,CA,CAP Request,2022-07-27
+178,Petaluma Valley Hospital,400 N McDowell Blvd,Petaluma,CA,Closure Notice,2022-08-29
+179,The Hsc Pediatric Center,"1731 Bunker Hill Road, Ne",Washington,DC,Warning Notice,2021-08-25
+179,The Hsc Pediatric Center,"1731 Bunker Hill Road, Ne",Washington,DC,CAP Request,2022-07-27
+179,The Hsc Pediatric Center,"1731 Bunker Hill Road, Ne",Washington,DC,Closure Notice,2022-09-26
+180,Southern New Hampshire Medical Center,8 Prospect Street,Nashua,NH,Warning Notice,2021-08-25
+180,Southern New Hampshire Medical Center,8 Prospect Street,Nashua,NH,Closure Notice,2022-03-31
+181,The Memorial Hospital,3073 White Mountain Highway,North Conway,NH,Warning Notice,2021-08-25
+181,The Memorial Hospital,3073 White Mountain Highway,North Conway,NH,Closure Notice,2022-02-24
+182,Upper Connecticut Valley Hospital,181 Corliss Lane,Colebrook,NH,Warning Notice,2021-08-25
+182,Upper Connecticut Valley Hospital,181 Corliss Lane,Colebrook,NH,Closure Notice,2022-08-02
+183,Mount Ascutney Hospital & Health Center,289 County Rd,Windsor,VT,Met Requirements,2024-01-30
+184,Baptist Memorial Restorative Care Hospital,6019 Walnut Grove Road,Memphis,TN,Warning Notice,2021-08-25
+184,Baptist Memorial Restorative Care Hospital,6019 Walnut Grove Road,Memphis,TN,CAP Request,2022-07-27
+184,Baptist Memorial Restorative Care Hospital,6019 Walnut Grove Road,Memphis,TN,Closure Notice,2022-10-05
+185,Dini Townsend Hospital at Northern Nevada Adult Mental Health Services,480 Galleti Way,Sparks,NV,Warning Notice,2023-01-20
+185,Dini Townsend Hospital at Northern Nevada Adult Mental Health Services,480 Galleti Way,Sparks,NV,CAP Request,2023-05-09
+185,Dini Townsend Hospital at Northern Nevada Adult Mental Health Services,480 Galleti Way,Sparks,NV,Closure Notice,2024-01-03
+186,Shriners Hospital For Children - Boston,51 Blossom St,Boston,MA,Warning Notice,2021-08-25
+186,Shriners Hospital For Children - Boston,51 Blossom St,Boston,MA,CAP Request,2022-05-04
+186,Shriners Hospital For Children - Boston,51 Blossom St,Boston,MA,Closure Notice,2023-03-27
+187,Baycare Alliant Hospital,601 Main St,Dunedin,FL,Warning Notice,2024-02-07
+187,Baycare Alliant Hospital,601 Main St,Dunedin,FL,Closure Notice,2024-05-17
+189,Slidell Memorial Hospital,1001 Gause Blvd,Slidell,LA,Warning Notice,2021-08-25
+189,Slidell Memorial Hospital,1001 Gause Blvd,Slidell,LA,CAP Request,2022-03-09
+189,Slidell Memorial Hospital,1001 Gause Blvd,Slidell,LA,Closure Notice,2022-04-11
+190,Women's Hospital Saint Joseph East,170 North Eagle Creek Drive,Lexington,KY,Warning Notice,2021-09-29
+190,Women's Hospital Saint Joseph East,170 North Eagle Creek Drive,Lexington,KY,Closure Notice,2022-06-28
+191,Mercy Medical Center Redding,2175 Rosaline Avenue,Redding,CA,Warning Notice,2021-08-25
+191,Mercy Medical Center Redding,2175 Rosaline Avenue,Redding,CA,Closure Notice,2022-06-16
+192,St. Elizabeth Community Hospital,2550 Sister Mary Columba Drive,Red Bluff,CA,Warning Notice,2021-08-25
+192,St. Elizabeth Community Hospital,2550 Sister Mary Columba Drive,Red Bluff,CA,Closure Notice,2022-04-04
+193,Marinhealth Medical Center,250 Bon Air Road,Greenbrae,CA,Warning Notice,2021-08-25
+193,Marinhealth Medical Center,250 Bon Air Road,Greenbrae,CA,CAP Request,2022-03-09
+193,Marinhealth Medical Center,250 Bon Air Road,Greenbrae,CA,Closure Notice,2022-11-18
+194,OSF Saint Francis Hospital,3401 Ludington St,Escanaba,MI,Warning Notice,2021-09-29
+194,OSF Saint Francis Hospital,3401 Ludington St,Escanaba,MI,Closure Notice,2022-03-18
+195,Flagler Hospital,400 Health Park Blvd,Saint Augustine,FL,Warning Notice,2023-01-11
+195,Flagler Hospital,400 Health Park Blvd,Saint Augustine,FL,CAP Request,2023-04-19
+195,Flagler Hospital,400 Health Park Blvd,Saint Augustine,FL,Closure Notice,2023-06-06
+196,Plumas District Hospital,1065 Bucks Lake Road,Quincy,CA,Warning Notice,2021-12-01
+196,Plumas District Hospital,1065 Bucks Lake Road,Quincy,CA,CAP Request,2022-09-29
+196,Plumas District Hospital,1065 Bucks Lake Road,Quincy,CA,Closure Notice,2022-10-24
+197,Pulaski Memorial Hospital,616 E 13th St,Winamac,IN,Warning Notice,2021-10-27
+197,Pulaski Memorial Hospital,616 E 13th St,Winamac,IN,Closure Notice,2022-06-22
+198,Arkansas Surgical Hospital,5201 North Shore Drive,North Little Rock,AR,Warning Notice,2021-12-01
+198,Arkansas Surgical Hospital,5201 North Shore Drive,North Little Rock,AR,Closure Notice,2022-03-21
+199,Ashley County Medical Center,1015 Unity Road,Crossett,AR,Warning Notice,2021-12-01
+199,Ashley County Medical Center,1015 Unity Road,Crossett,AR,Closure Notice,2022-11-03
+200,HCA Florida St. Petersburg Hospital,6500 38th Ave N,Saint Petersburg,FL,Warning Notice,2023-06-27
+200,HCA Florida St. Petersburg Hospital,6500 38th Ave N,Saint Petersburg,FL,Closure Notice,2023-10-02
+201,Coral Gables Hospital,3100 Douglas Rd,Coral Gables,FL,Warning Notice,2021-10-27
+201,Coral Gables Hospital,3100 Douglas Rd,Coral Gables,FL,CAP Request,2022-10-14
+201,Coral Gables Hospital,3100 Douglas Rd,Coral Gables,FL,Closure Notice,2022-12-07
+202,Frye Regional Medical Center,420 North Center St,Hickory,NC,Warning Notice,2021-10-27
+202,Frye Regional Medical Center,420 North Center St,Hickory,NC,Closure Notice,2022-03-21
+203,Atlanticare Regional Medical Center - Mainland Division,65 W. Jimmie Leeds Road,Pomona,NJ,Warning Notice,2021-10-27
+203,Atlanticare Regional Medical Center - Mainland Division,65 W. Jimmie Leeds Road,Pomona,NJ,Closure Notice,2023-10-19
+204,Niagara Falls Memorial Medical Center,621 10th St,Niagara Falls,NY,Warning Notice,2021-10-27
+204,Niagara Falls Memorial Medical Center,621 10th St,Niagara Falls,NY,Closure Notice,2022-10-19
+205,Labette Health,1902 South U.S. Hwy 59,Parsons,KS,Warning Notice,2023-02-06
+205,Labette Health,1902 South U.S. Hwy 59,Parsons,KS,Closure Notice,2023-05-11
+206,Flaget Memorial Hospital,4305 New Shepherdsville Road,Bardstown,KY,Warning Notice,2021-10-27
+206,Flaget Memorial Hospital,4305 New Shepherdsville Road,Bardstown,KY,Closure Notice,2022-07-06
+207,Cookeville Regional Medical Center,1 Medical Center Boulevard,Cookeville,TN,Warning Notice,2021-10-27
+207,Cookeville Regional Medical Center,1 Medical Center Boulevard,Cookeville,TN,CAP Request,2022-07-27
+207,Cookeville Regional Medical Center,1 Medical Center Boulevard,Cookeville,TN,Closure Notice,2022-10-04
+208,Maury Regional Medical Center,1224 Trotwood Avenue,Columbia,TN,Warning Notice,2021-10-27
+208,Maury Regional Medical Center,1224 Trotwood Avenue,Columbia,TN,Closure Notice,2022-02-11
+209,Mille Lacs Health System Hospital,200 North Elm Street,Onamia,MN,Warning Notice,2023-02-10
+209,Mille Lacs Health System Hospital,200 North Elm Street,Onamia,MN,Closure Notice,2023-06-13
+210,Tristar Summit Medical Center,5655 Frist Boulevard,Hermitage,TN,Warning Notice,2021-12-01
+210,Tristar Summit Medical Center,5655 Frist Boulevard,Hermitage,TN,CAP Request,2022-10-14
+210,Tristar Summit Medical Center,5655 Frist Boulevard,Hermitage,TN,Closure Notice,2023-07-31
+211,Hendrick Medical Center Brownwood,1501 Burnet Road,Brownwood,TX,Met Requirements,2023-05-24
+212,Mon Health Medical Center,1200 Jd Anderson Dr,Morgantown,WV,Warning Notice,2021-12-01
+212,Mon Health Medical Center,1200 Jd Anderson Dr,Morgantown,WV,Closure Notice,2022-10-05
+213,Bon Secours St. Francis Hospital,2095 Henry Tecklenburg Dr,Charleston,SC,Warning Notice,2021-12-01
+213,Bon Secours St. Francis Hospital,2095 Henry Tecklenburg Dr,Charleston,SC,CAP Request,2022-11-07
+213,Bon Secours St. Francis Hospital,2095 Henry Tecklenburg Dr,Charleston,SC,Closure Notice,2023-05-03
+214,Select Specialty Hospital - Dallas Downtown,2700 Walker Way,DeSoto,TX,Warning Notice,2023-03-09
+214,Select Specialty Hospital - Dallas Downtown,2700 Walker Way,DeSoto,TX,CAP Request,2023-06-28
+214,Select Specialty Hospital - Dallas Downtown,2700 Walker Way,DeSoto,TX,Closure Notice,2024-05-03
+215,Baylor Scott & White Medical Center Trophy Club,2850 East State Highway 114,Trophy Club,TX,Warning Notice,2023-05-11
+215,Baylor Scott & White Medical Center Trophy Club,2850 East State Highway 114,Trophy Club,TX,CAP Request,2023-08-28
+215,Baylor Scott & White Medical Center Trophy Club,2850 East State Highway 114,Trophy Club,TX,Closure Notice,2023-11-30
+216,Springhill Medical Center,2001 Doctors Dr,Springhill,LA,Warning Notice,2023-06-05
+216,Springhill Medical Center,2001 Doctors Dr,Springhill,LA,Closure Notice,2023-09-22
+217,Ochsner LSU Health - St. Mary Medical Center,1 St. Mary Place,Shreveport,LA,Warning Notice,2023-05-24
+217,Ochsner LSU Health - St. Mary Medical Center,1 St. Mary Place,Shreveport,LA,CAP Request,2023-09-15
+217,Ochsner LSU Health - St. Mary Medical Center,1 St. Mary Place,Shreveport,LA,Closure Notice,2023-10-19
+218,Riverside Hospital,13 Heyman Lane,Alexandria,LA,Warning Notice,2023-02-01
+218,Riverside Hospital,13 Heyman Lane,Alexandria,LA,CAP Request,2023-05-12
+218,Riverside Hospital,13 Heyman Lane,Alexandria,LA,Closure Notice,2023-06-29
+219,St. David's South Austin Medical Center,901 West Ben White Boulevard,Austin,TX,Warning Notice,2023-07-13
+219,St. David's South Austin Medical Center,901 West Ben White Boulevard,Austin,TX,Closure Notice,2023-11-02
+220,Ridgecrest Regional Hospital,1081 North China Lake Blvd.,Ridgecrest,CA,Warning Notice,2023-06-26
+220,Ridgecrest Regional Hospital,1081 North China Lake Blvd.,Ridgecrest,CA,Closure Notice,2023-10-05
+221,Physicians Medical Center of Houma,218 Corporate Drive,Houma,LA,Warning Notice,2023-01-06
+221,Physicians Medical Center of Houma,218 Corporate Drive,Houma,LA,Closure Notice,2023-04-19
+222,Richardson Medical Center,254 Highway 3048,Rayville,LA,Warning Notice,2023-05-01
+222,Richardson Medical Center,254 Highway 3048,Rayville,LA,Closure Notice,2023-08-08
+223,St. Francis Medical Center,3630 E. Imperial Highway,Lynwood,CA,Warning Notice,2024-02-15
+223,St. Francis Medical Center,3630 E. Imperial Highway,Lynwood,CA,Closure Notice,2024-05-23
+224,Canyon Vista Medical Center,5700 East Highway 90,Sierra Vista,AZ,Warning Notice,2022-06-29
+224,Canyon Vista Medical Center,5700 East Highway 90,Sierra Vista,AZ,CAP Request,2022-10-17
+224,Canyon Vista Medical Center,5700 East Highway 90,Sierra Vista,AZ,Closure Notice,2023-02-24
+225,South Texas Health System McAllen,301 West Expressway 83,Mcallen,TX,Met Requirements,2023-03-03
+226,Boca Raton Regional Hospital,800 Meadows Rd,Boca Raton,FL,Warning Notice,2023-04-13
+226,Boca Raton Regional Hospital,800 Meadows Rd,Boca Raton,FL,CAP Request,2023-08-16
+226,Boca Raton Regional Hospital,800 Meadows Rd,Boca Raton,FL,Closure Notice,2023-10-16
+227,Regions Hospital,640 Jackson Street,St Paul,MN,Warning Notice,2023-02-01
+227,Regions Hospital,640 Jackson Street,St Paul,MN,CAP Request,2023-05-11
+227,Regions Hospital,640 Jackson Street,St Paul,MN,Closure Notice,2023-08-25
+228,Herington Hospital,100 E Helen Street,Herington,KS,Warning Notice,2023-04-06
+228,Herington Hospital,100 E Helen Street,Herington,KS,Closure Notice,2023-08-01
+229,RUSH Copley Medical Center,2000 Ogden Avenue,Aurora,IL,Warning Notice,2024-02-01
+229,RUSH Copley Medical Center,2000 Ogden Avenue,Aurora,IL,CAP Request,2024-05-09
+229,RUSH Copley Medical Center,2000 Ogden Avenue,Aurora,IL,Closure Notice,2024-06-24
+230,Brookings Hospital,300 22nd Avenue,Brookings,SD,Warning Notice,2023-03-03
+230,Brookings Hospital,300 22nd Avenue,Brookings,SD,CAP Request,2023-06-08
+230,Brookings Hospital,300 22nd Avenue,Brookings,SD,Closure Notice,2023-12-07
+231,Madera Community Hospital,1250 East Almond Avenue,Madera,CA,Met Requirements,2023-07-11
+232,AMG Specialty Hospital - Zachary,4601 McHugh Road,Zachary,LA,Warning Notice,2022-11-23
+232,AMG Specialty Hospital - Zachary,4601 McHugh Road,Zachary,LA,CAP Request,2023-03-28
+232,AMG Specialty Hospital - Zachary,4601 McHugh Road,Zachary,LA,Closure Notice,2023-05-16
+233,AMG Specialty Hospital - Oklahoma City,"4300 West Memorial Road, 2nd Fl.",Oklahoma City,OK,Warning Notice,2022-11-30
+233,AMG Specialty Hospital - Oklahoma City,"4300 West Memorial Road, 2nd Fl.",Oklahoma City,OK,CAP Request,2023-03-17
+233,AMG Specialty Hospital - Oklahoma City,"4300 West Memorial Road, 2nd Fl.",Oklahoma City,OK,Closure Notice,2023-04-26
+234,North Alabama Specialty Hospital,700 West Market St 2 South,Athens,AL,Warning Notice,2022-09-29
+234,North Alabama Specialty Hospital,700 West Market St 2 South,Athens,AL,CAP Request,2023-09-21
+234,North Alabama Specialty Hospital,700 West Market St 2 South,Athens,AL,Closure Notice,2023-11-16
+235,AMG Specialty Hospital - Houma,629 Dunn Street,Houma,LA,Warning Notice,2022-11-23
+235,AMG Specialty Hospital - Houma,629 Dunn Street,Houma,LA,CAP Request,2023-03-21
+235,AMG Specialty Hospital - Houma,629 Dunn Street,Houma,LA,Closure Notice,2023-04-26
+236,AMG Specialty Hospital - Edmond,1100 East Ninth Street,Edmond,OK,Administrative Closure,2023-04-19
+237,AMG Physical Rehabilitation Hospital - Covington,"5025 Keystone Blvd, Suite 200",Covington,LA,Warning Notice,2022-11-23
+237,AMG Physical Rehabilitation Hospital - Covington,"5025 Keystone Blvd, Suite 200",Covington,LA,CAP Request,2023-03-20
+237,AMG Physical Rehabilitation Hospital - Covington,"5025 Keystone Blvd, Suite 200",Covington,LA,Closure Notice,2023-05-04
+238,AMG Specialty Hospital Albuquerque,5400 Gibson Boulevard SE,Albuquerque,NM,Warning Notice,2022-11-29
+238,AMG Specialty Hospital Albuquerque,5400 Gibson Boulevard SE,Albuquerque,NM,CAP Request,2023-03-21
+238,AMG Specialty Hospital Albuquerque,5400 Gibson Boulevard SE,Albuquerque,NM,Closure Notice,2023-05-12
+239,AMG Specialty Hospital - Lafayette,4811 Ambassador Caffery Parkway,Lafayette,LA,Warning Notice,2022-12-20
+239,AMG Specialty Hospital - Lafayette,4811 Ambassador Caffery Parkway,Lafayette,LA,CAP Request,2023-04-03
+239,AMG Specialty Hospital - Lafayette,4811 Ambassador Caffery Parkway,Lafayette,LA,Closure Notice,2023-10-20
+240,AMG Specialty Hospital - Central Indiana Muncie Campus,2401 W University Ave ,Muncie,IN,Warning Notice,2022-11-29
+240,AMG Specialty Hospital - Central Indiana Muncie Campus,2401 W University Ave ,Muncie,IN,CAP Request,2023-04-13
+240,AMG Specialty Hospital - Central Indiana Muncie Campus,2401 W University Ave ,Muncie,IN,Closure Notice,2023-05-04
+241,Danville Hospital (Main Campus),1000 East Main Street,Danville,IN,Warning Notice,2023-04-05
+241,Danville Hospital (Main Campus),1000 East Main Street,Danville,IN,Closure Notice,2023-07-20
+242,Faith Community Hospital,215 Chisholm Trail,Jacksboro,TX,Warning Notice,2023-02-27
+242,Faith Community Hospital,215 Chisholm Trail,Jacksboro,TX,Closure Notice,2023-06-06
+243,Ascension Saint Francis in Evanston,355 Ridge Ave,Evanston,IL,Warning Notice,2022-11-21
+243,Ascension Saint Francis in Evanston,355 Ridge Ave,Evanston,IL,Closure Notice,2023-03-23
+244,Kindred Hospital Dallas Central,"8050 Meadow Road, First Floor",Dallas,TX,Warning Notice,2022-09-29
+244,Kindred Hospital Dallas Central,"8050 Meadow Road, First Floor",Dallas,TX,CAP Request,2023-03-15
+244,Kindred Hospital Dallas Central,"8050 Meadow Road, First Floor",Dallas,TX,Closure Notice,2023-08-10
+245,Phelps Hospital,701 North Broadway,Sleepy Hollow,NY,Warning Notice,2024-02-01
+245,Phelps Hospital,701 North Broadway,Sleepy Hollow,NY,Closure Notice,2024-05-08
+246,Ascension Providence Hospital - Novi Campus,47601 Grand River Ave,Novi,MI,Met Requirements,2022-11-22
+247,Greater Baltimore Medical Center,6701 N. Charles St.,Towson,MD,Warning Notice,2023-04-11
+247,Greater Baltimore Medical Center,6701 N. Charles St.,Towson,MD,CAP Request,2023-07-24
+247,Greater Baltimore Medical Center,6701 N. Charles St.,Towson,MD,Closure Notice,2023-08-11
+248,Ridgeview Institute Smyrna,3995 South Cobb Drive Se,Smyrna,GA,Warning Notice,2024-02-02
+248,Ridgeview Institute Smyrna,3995 South Cobb Drive Se,Smyrna,GA,Closure Notice,2024-05-13
+249,UPMC Carlisle,361 Alexander Spring Road,Carlisle,PA,Met Requirements,2023-05-17
+250,Boulder Community Health Foothills Hospital,4747 Arapahoe Avenue,Boulder,CO,Warning Notice,2024-02-01
+250,Boulder Community Health Foothills Hospital,4747 Arapahoe Avenue,Boulder,CO,CAP Request,2024-05-08
+250,Boulder Community Health Foothills Hospital,4747 Arapahoe Avenue,Boulder,CO,Closure Notice,2024-06-13
+251,Hunterdon Medical Center,2100 Wescott Drive,Flemington,NJ,Warning Notice,2023-01-23
+251,Hunterdon Medical Center,2100 Wescott Drive,Flemington,NJ,Closure Notice,2023-10-12
+252,San Gabriel Valley Medical Center,438 W. Las Tunas Drive,San Gabriel,CA,Warning Notice,2023-03-16
+252,San Gabriel Valley Medical Center,438 W. Las Tunas Drive,San Gabriel,CA,CAP Request,2023-06-26
+252,San Gabriel Valley Medical Center,438 W. Las Tunas Drive,San Gabriel,CA,Closure Notice,2023-11-20
+253,Valley Medical Center,400 S. 43rd Street,Renton,WA,Warning Notice,2024-02-01
+253,Valley Medical Center,400 S. 43rd Street,Renton,WA,CAP Request,2024-05-08
+253,Valley Medical Center,400 S. 43rd Street,Renton,WA,Closure Notice,2024-08-09
+254,Mount Graham Regional Medical Center,1600 S. 20th Ave,Safford,AZ,Warning Notice,2023-04-04
+254,Mount Graham Regional Medical Center,1600 S. 20th Ave,Safford,AZ,Closure Notice,2023-07-19
+255,Henry Community Health,1000 N 16th St,New Castle,IN,Met Requirements,2023-01-31
+256,Coffee Regional Medical Center,1101 Ocilla Road,Douglas,GA,CAP Request,2023-06-15
+256,Coffee Regional Medical Center,1101 Ocilla Road,Douglas,GA,Closure Notice,2023-11-17
+257,Jackson County Memorial Hospital,1200 East Pecan Street,Altus,OK,Warning Notice,2023-03-22
+257,Jackson County Memorial Hospital,1200 East Pecan Street,Altus,OK,Closure Notice,2023-07-11
+258,Liberty Hospital,2525 Glenn Hendren Drive,Liberty,MO,CAP Request,2024-02-09
+258,Liberty Hospital,2525 Glenn Hendren Drive,Liberty,MO,Closure Notice,2024-05-06
+259,Cleveland Clinic Rehabilitation Hospital Edwin Shaw,4389 Medina Road,Copley,OH,CAP Request,2023-06-23
+259,Cleveland Clinic Rehabilitation Hospital Edwin Shaw,4389 Medina Road,Copley,OH,Closure Notice,2023-12-07
+260,Hamilton Medical Center,1200 Memorial Drive,Dalton,GA,Met Requirements,2023-07-12
+261,McKay-Dee Hospital,4401 Harrison Boulevard,Ogden,UT,Met Requirements,2023-06-28
+262,Methodist Hospital,"6500 Excelsior Blvd, Po Box 650",St Louis Park,MN,Warning Notice,2023-05-09
+262,Methodist Hospital,"6500 Excelsior Blvd, Po Box 650",St Louis Park,MN,Closure Notice,2023-08-22
+263,Ascension St Joseph Hospital,200 Hemlock,Tawas City,MI,Met Requirements,2022-11-29
+264,Ascension Via Christi St. Francis,929 North St Francis Street,Wichita,KS,Met Requirements,2022-11-22
+265,Archbold Memorial,915 Gordon Avenue,Thomasville,GA,Warning Notice,2022-12-22
+265,Archbold Memorial,915 Gordon Avenue,Thomasville,GA,CAP Request,2023-04-14
+265,Archbold Memorial,915 Gordon Avenue,Thomasville,GA,Closure Notice,2023-05-11
+266,Methodist Le Bonheur Germantown Hospital,7691 Poplar Avenue,Germantown,TN,Met Requirements,2024-02-02
+267,UC Davis Medical Center,2315 Stockton Boulevard,Sacramento,CA,Warning Notice,2023-08-30
+267,UC Davis Medical Center,2315 Stockton Boulevard,Sacramento,CA,Closure Notice,2023-12-07
+268,Evanston Hospital,2650 Ridge Avenue,Evanston,IL,Warning Notice,2021-08-25
+268,Evanston Hospital,2650 Ridge Avenue,Evanston,IL,CAP Request,2022-05-04
+268,Evanston Hospital,2650 Ridge Avenue,Evanston,IL,Closure Notice,2022-10-04
+269,Providence Kodiak Island Medical Center,1915 E Rezanof Drive,Kodiak,AK,Warning Notice,2023-04-26
+269,Providence Kodiak Island Medical Center,1915 E Rezanof Drive,Kodiak,AK,CAP Request,2023-07-28
+269,Providence Kodiak Island Medical Center,1915 E Rezanof Drive,Kodiak,AK,Closure Notice,2023-08-03
+270,Providence Seward Medical And Care Center,417 1st Avenue,Seward,AK,Met Requirements,2023-04-18
+271,Providence Valdez Medical Center,911 Meals Avenue,Valdez,AK,Warning Notice,2023-04-21
+271,Providence Valdez Medical Center,911 Meals Avenue,Valdez,AK,Closure Notice,2023-08-09
+272,Flagstaff Medical Center,1200 N Beaver St,Flagstaff,AZ,Warning Notice,2023-01-30
+272,Flagstaff Medical Center,1200 N Beaver St,Flagstaff,AZ,Closure Notice,2023-05-08
+273,LDS Hospital,324 8th Avenue,Salt Lake City,UT,Met Requirements,2023-06-06
+274,Banner - University Medical Center Phoenix,1111 East Mcdowell Road,Phoenix,AZ,Warning Notice,2023-05-26
+274,Banner - University Medical Center Phoenix,1111 East Mcdowell Road,Phoenix,AZ,Closure Notice,2023-09-15
+275,San Juan Regional Medical Center,801 West Maple Street,Farmington,NM,Warning Notice,2023-01-27
+275,San Juan Regional Medical Center,801 West Maple Street,Farmington,NM,CAP Request,2023-05-11
+275,San Juan Regional Medical Center,801 West Maple Street,Farmington,NM,Closure Notice,2023-06-29
+276,Women's Memorial Hermann Memorial City Hospital,929 Gessner Road,Houston,TX,Administrative Closure,2023-09-18
+277,Cleveland Clinic,9500 Euclid Avenue,Cleveland,OH,Warning Notice,2023-03-23
+277,Cleveland Clinic,9500 Euclid Avenue,Cleveland,OH,Closure Notice,2023-07-24
+278,Summit Healthcare Regional Medical Center,2200 E Show Low Lake Road,Show Low,AZ,Warning Notice,2023-03-15
+278,Summit Healthcare Regional Medical Center,2200 E Show Low Lake Road,Show Low,AZ,CAP Request,2023-06-26
+278,Summit Healthcare Regional Medical Center,2200 E Show Low Lake Road,Show Low,AZ,Closure Notice,2023-09-19
+279,Northern Montana Hospital,30 13th St,Havre,MT,Warning Notice,2023-02-08
+279,Northern Montana Hospital,30 13th St,Havre,MT,Closure Notice,2023-09-15
+280,Carle BroMenn Medical Center,1304 Franklin Avenue,Normal,IL,Warning Notice,2024-03-08
+280,Carle BroMenn Medical Center,1304 Franklin Avenue,Normal,IL,Closure Notice,2024-06-11
+281,Baptist Health Richmond,801 Eastern Bypass,Richmond,KY,Warning Notice,2021-06-23
+281,Baptist Health Richmond,801 Eastern Bypass,Richmond,KY,Closure Notice,2021-12-01
+282,Central Peninsula General Hospital,250 Hospital Place,Soldotna,AK,Warning Notice,2022-12-27
+282,Central Peninsula General Hospital,250 Hospital Place,Soldotna,AK,Closure Notice,2023-04-19
+283,Brookwood Baptist Medical Center,2010 Brookwood Medical Center Drive,Birmingham,AL,Warning Notice,2021-12-01
+283,Brookwood Baptist Medical Center,2010 Brookwood Medical Center Drive,Birmingham,AL,Closure Notice,2022-10-04
+284,Mayo Clinic Hospital Arizona,5777 E. Mayo Blvd.,Phoenix,AZ,Met Requirements,2023-12-12
+285,Grandview Medical Center,3690 Grandview Parkway,Birmingham,AL,Met Requirements,2022-12-23
+286,Iowa Methodist Medical Center,1200 Pleasant Street,Des Moines,IA,Warning Notice,2023-05-26
+286,Iowa Methodist Medical Center,1200 Pleasant Street,Des Moines,IA,Closure Notice,2023-09-13
+287,Jackson Memorial Hospital,1611 N.W. 12th Ave,Miami,FL,CAP Request,2024-02-08
+287,Jackson Memorial Hospital,1611 N.W. 12th Ave,Miami,FL,CMP Notice,2024-07-03
+287,Jackson Memorial Hospital,1611 N.W. 12th Ave,Miami,FL,Closure Notice,2024-08-23
+288,Catholic Medical Center,100 Mcgregor Street,Manchester,NH,Met Requirements,2024-02-01
+289,Midland Memorial Hospital,400 Rosalind Redfern Grover Parkway,Midland,TX,Met Requirements,2023-04-13
+290,Monument Health Rapid City Hospital,353 Fairmont Boulevard,Rapid City,SD,Warning Notice,2023-03-28
+290,Monument Health Rapid City Hospital,353 Fairmont Boulevard,Rapid City,SD,CAP Request,2023-07-21
+290,Monument Health Rapid City Hospital,353 Fairmont Boulevard,Rapid City,SD,Closure Notice,2023-10-23
+291,Hannibal Regional Hospital,6000 Hospital Drive,Hannibal,MO,CAP Request,2023-06-27
+291,Hannibal Regional Hospital,6000 Hospital Drive,Hannibal,MO,Closure Notice,2023-08-30
+292,Barnes-Jewish Hospital,One Barnes-jewish Hospital Plaza,St. Louis,MO,Warning Notice,2021-08-25
+292,Barnes-Jewish Hospital,One Barnes-jewish Hospital Plaza,St. Louis,MO,Closure Notice,2022-03-09
+293,Elliot Hospital,One Elliot Way,Manchester,NH,Warning Notice,2021-09-29
+293,Elliot Hospital,One Elliot Way,Manchester,NH,Closure Notice,2022-07-27
+294,Arkansas Children's Hospital,1 Children's Way,Little Rock,AR,Warning Notice,2024-03-12
+294,Arkansas Children's Hospital,1 Children's Way,Little Rock,AR,Closure Notice,2024-06-14
+295,Robert Wood Johnson University Hospital Somerset,110 Rehill Ave,Somerville,NJ,Warning Notice,2023-03-17
+295,Robert Wood Johnson University Hospital Somerset,110 Rehill Ave,Somerville,NJ,Closure Notice,2023-06-29
+296,Novant Health Huntersville Medical Center,10030 Gilead Road,Huntersville,NC,Warning Notice,2021-06-23
+296,Novant Health Huntersville Medical Center,10030 Gilead Road,Huntersville,NC,Closure Notice,2022-01-07
+297,Emory University Hospital,1364 Clifton Road Ne,Druid Hills,GA,Warning Notice,2021-06-23
+297,Emory University Hospital,1364 Clifton Road Ne,Druid Hills,GA,Closure Notice,2021-12-01
+298,Prisma Health Richland,5 Richland Medical Park Dr,Columbia,SC,Warning Notice,2021-06-23
+298,Prisma Health Richland,5 Richland Medical Park Dr,Columbia,SC,Closure Notice,2021-12-01
+299,Morton Plant Hospital,300 Pinellas St,Clearwater,FL,Warning Notice,2021-08-25
+299,Morton Plant Hospital,300 Pinellas St,Clearwater,FL,CAP Request,2022-05-04
+299,Morton Plant Hospital,300 Pinellas St,Clearwater,FL,Closure Notice,2023-06-15
+300,Regional Medical Center of San Jose,225 North Jackson Avenue,San Jose,CA,Warning Notice,2023-07-12
+300,Regional Medical Center of San Jose,225 North Jackson Avenue,San Jose,CA,Closure Notice,2023-10-27
+301,Sky Ridge Medical Center,10101 Ridgegate Pkwy,Lone Tree,CO,Warning Notice,2021-09-29
+301,Sky Ridge Medical Center,10101 Ridgegate Pkwy,Lone Tree,CO,CAP Request,2022-11-02
+301,Sky Ridge Medical Center,10101 Ridgegate Pkwy,Lone Tree,CO,Closure Notice,2023-07-31
+302,Norton Women's and Children's Hospital,4001 Dutchmans Lane,Louisville,KY,Warning Notice,2021-07-20
+302,Norton Women's and Children's Hospital,4001 Dutchmans Lane,Louisville,KY,CAP Request,2022-01-12
+302,Norton Women's and Children's Hospital,4001 Dutchmans Lane,Louisville,KY,Closure Notice,2022-03-25
+303,Yukon - Kuskokwim Delta Regional Hospital,700 Chief Eddie Hoffman Highway,Bethel,AK,Warning Notice,2021-09-29
+303,Yukon - Kuskokwim Delta Regional Hospital,700 Chief Eddie Hoffman Highway,Bethel,AK,Closure Notice,2022-03-22
+304,Washington Regional Medical Center,3215 North Northhills Boulevard,Fayetteville,AR,Met Requirements,2023-06-23
+305,New Hampshire Hospital,36 Clinton Street,Concord,NH,CAP Request,2023-08-21
+305,New Hampshire Hospital,36 Clinton Street,Concord,NH,Closure Notice,2023-10-10
+306,Carson Tahoe Continuing Care Hospital,775 Fleischmann Way,Carson City,NV,Warning Notice,2022-12-22
+306,Carson Tahoe Continuing Care Hospital,775 Fleischmann Way,Carson City,NV,Closure Notice,2023-04-14
+307,Carson Tahoe Regional Medical Center,1600 Medical Pkwy,Carson City,NV,Warning Notice,2021-08-25
+307,Carson Tahoe Regional Medical Center,1600 Medical Pkwy,Carson City,NV,Closure Notice,2022-02-14
+308,Carson Tahoe Sierra Surgery Hospital,1400 Medical Pkwy,Carson City,NV,Met Requirements,2023-10-02
+309,Springfield Hospital,25 Ridgewood Rd,Springfield,VT,Warning Notice,2023-03-03
+309,Springfield Hospital,25 Ridgewood Rd,Springfield,VT,CAP Request,2023-06-15
+309,Springfield Hospital,25 Ridgewood Rd,Springfield,VT,Closure Notice,2023-10-11
+310,Cincinnati Children's Hospital Medical Center,3333 Burnet Avenue,Cincinnati,OH,Warning Notice,2021-08-25
+310,Cincinnati Children's Hospital Medical Center,3333 Burnet Avenue,Cincinnati,OH,CAP Request,2022-03-09
+310,Cincinnati Children's Hospital Medical Center,3333 Burnet Avenue,Cincinnati,OH,Closure Notice,2022-05-25
+311,Providence Portland Medical Center,4805 Ne Glisan Street,Portland,OR,Met Requirements,2023-04-26
+312,Centennial Hills Hospital Medical Center,6900 North Durango Drive,Las Vegas,NV,Met Requirements,2023-01-10
+313,Christus Mother Frances Hospital - Tyler,800 East Dawson Street,Tyler,TX,Met Requirements,2023-04-13
+314,Horizon Specialty Hospital of Henderson,8550 S Eastern Ave,Henderson,NV,Warning Notice,2023-04-25
+314,Horizon Specialty Hospital of Henderson,8550 S Eastern Ave,Henderson,NV,CAP Request,2023-09-12
+314,Horizon Specialty Hospital of Henderson,8550 S Eastern Ave,Henderson,NV,Closure Notice,2023-11-10
+315,Horizon Specialty Hospital of Las Vegas,640 Mlk Blvd,Las Vegas,NV,Warning Notice,2023-04-25
+315,Horizon Specialty Hospital of Las Vegas,640 Mlk Blvd,Las Vegas,NV,CAP Request,2024-03-25
+315,Horizon Specialty Hospital of Las Vegas,640 Mlk Blvd,Las Vegas,NV,Closure Notice,2024-04-18
+316,Kindred Hospital Las Vegas Sahara,5110 West Sahara Avenue,Las Vegas,NV,Warning Notice,2022-09-29
+316,Kindred Hospital Las Vegas Sahara,5110 West Sahara Avenue,Las Vegas,NV,CAP Request,2023-03-27
+316,Kindred Hospital Las Vegas Sahara,5110 West Sahara Avenue,Las Vegas,NV,Closure Notice,2023-08-18
+317,Kindred Hospital Las Vegas Flamingo,2250 East Flamingo Rd,Las Vegas,NV,Warning Notice,2022-09-29
+317,Kindred Hospital Las Vegas Flamingo,2250 East Flamingo Rd,Las Vegas,NV,CAP Request,2023-03-24
+317,Kindred Hospital Las Vegas Flamingo,2250 East Flamingo Rd,Las Vegas,NV,Closure Notice,2023-08-09
+318,Seven Hills Hospital,3021 W Horizon Ridge Pkwy,Henderson,NV,Warning Notice,2023-03-24
+318,Seven Hills Hospital,3021 W Horizon Ridge Pkwy,Henderson,NV,CAP Request,2023-07-10
+318,Seven Hills Hospital,3021 W Horizon Ridge Pkwy,Henderson,NV,Closure Notice,2023-11-27
+319,Dover Behavioral Health System,725 Horsepond Rd,Dover,DE,Warning Notice,2023-03-14
+319,Dover Behavioral Health System,725 Horsepond Rd,Dover,DE,CAP Request,2023-06-29
+319,Dover Behavioral Health System,725 Horsepond Rd,Dover,DE,Closure Notice,2023-10-10
+320,Rockford Center,100 Rockford Drive,Newark,DE,Warning Notice,2023-08-23
+320,Rockford Center,100 Rockford Drive,Newark,DE,Closure Notice,2023-11-28
+321,The Queen's Medical Center,1301 Punchbowl Street,Honolulu,HI,Warning Notice,2021-08-25
+321,The Queen's Medical Center,1301 Punchbowl Street,Honolulu,HI,Closure Notice,2022-02-10
+322,Select Specialty Hospital - Wilmington,"501 West 14th Street, 9th Floor",Wilmington,DE,Warning Notice,2023-03-10
+322,Select Specialty Hospital - Wilmington,"501 West 14th Street, 9th Floor",Wilmington,DE,CAP Request,2023-06-27
+322,Select Specialty Hospital - Wilmington,"501 West 14th Street, 9th Floor",Wilmington,DE,CAP Request,2024-07-09
+322,Select Specialty Hospital - Wilmington,"501 West 14th Street, 9th Floor",Wilmington,DE,Closure Notice,2024-10-10
+323,Nebraska Methodist Hospital,8303 Dodge Street,Omaha,NE,Warning Notice,2021-08-25
+323,Nebraska Methodist Hospital,8303 Dodge Street,Omaha,NE,CAP Request,2022-05-04
+323,Nebraska Methodist Hospital,8303 Dodge Street,Omaha,NE,Closure Notice,2023-01-03
+324,St Francis Medical Center,13710 St. Francis Boulevard,Midlothian,VA,Warning Notice,2021-09-29
+324,St Francis Medical Center,13710 St. Francis Boulevard,Midlothian,VA,CAP Request,2022-07-19
+324,St Francis Medical Center,13710 St. Francis Boulevard,Midlothian,VA,Closure Notice,2023-01-10
+325,EvergreenHealth Kirkland,12040 128th St Ne,Kirkland,WA,Met Requirements,2024-03-08
+326,Progress West Hospital,2 Progress Point Pkwy,O'Fallon,MO,Met Requirements,2023-06-15
+327,Belton Regional Medical Center,17065 S. 71 Highway,Belton,MO,Warning Notice,2023-06-13
+327,Belton Regional Medical Center,17065 S. 71 Highway,Belton,MO,Closure Notice,2023-10-19
+328,Baptist Neighborhood Hospital - Hausman,8230 North 1604 West,San Antonio,TX,Warning Notice,2023-03-24
+328,Baptist Neighborhood Hospital - Hausman,8230 North 1604 West,San Antonio,TX,CAP Request,2023-07-11
+328,Baptist Neighborhood Hospital - Hausman,8230 North 1604 West,San Antonio,TX,Closure Notice,2023-10-12
+329,Baptist Neighborhood Hospital - Kelly,806 Cupples Road,San Antonio,TX,Warning Notice,2023-03-24
+329,Baptist Neighborhood Hospital - Kelly,806 Cupples Road,San Antonio,TX,CAP Request,2023-08-01
+329,Baptist Neighborhood Hospital - Kelly,806 Cupples Road,San Antonio,TX,Closure Notice,2023-10-13
+330,Baptist Neighborhood Hospital - Overlook ,26515 North Us Highway 281,San Antonio,TX,Warning Notice,2023-03-24
+330,Baptist Neighborhood Hospital - Overlook ,26515 North Us Highway 281,San Antonio,TX,CAP Request,2023-07-19
+330,Baptist Neighborhood Hospital - Overlook ,26515 North Us Highway 281,San Antonio,TX,Closure Notice,2023-10-12
+331,Baptist Neighborhood Hospital Schertz,16977 I-35 North,Schertz,TX,Warning Notice,2023-04-19
+331,Baptist Neighborhood Hospital Schertz,16977 I-35 North,Schertz,TX,CAP Request,2023-08-16
+331,Baptist Neighborhood Hospital Schertz,16977 I-35 North,Schertz,TX,Closure Notice,2023-10-13
+332,Baptist Neighborhood Hospital - Westover Hills,10811 Town Center Drive,San Antonio,TX,Warning Notice,2023-03-24
+332,Baptist Neighborhood Hospital - Westover Hills,10811 Town Center Drive,San Antonio,TX,CAP Request,2023-07-18
+332,Baptist Neighborhood Hospital - Westover Hills,10811 Town Center Drive,San Antonio,TX,Closure Notice,2023-10-13
+333,Baptist Neighborhood Hospital - Thousand Oaks,16088 San Pedro Ave,San Antonio,TX,Warning Notice,2023-03-24
+333,Baptist Neighborhood Hospital - Thousand Oaks,16088 San Pedro Ave,San Antonio,TX,CAP Request,2023-07-19
+333,Baptist Neighborhood Hospital - Thousand Oaks,16088 San Pedro Ave,San Antonio,TX,Closure Notice,2023-10-13
+334,Baytown Medical Center,1626 West Baker Road,Baytown,TX,Warning Notice,2023-06-26
+334,Baytown Medical Center,1626 West Baker Road,Baytown,TX,CAP Request,2023-11-30
+334,Baytown Medical Center,1626 West Baker Road,Baytown,TX,CAP Request,2024-07-16
+334,Baytown Medical Center,1626 West Baker Road,Baytown,TX,CAP Request,2024-10-08
+334,Baytown Medical Center,1626 West Baker Road,Baytown,TX,CMP Notice,2024-12-19
+335,HCA Florida Lake Monroe Hospital,1401 W Seminole Blvd,Sanford,FL,Warning Notice,2023-07-11
+335,HCA Florida Lake Monroe Hospital,1401 W Seminole Blvd,Sanford,FL,Closure Notice,2023-11-02
+336,Northside Hospital Forsyth,1200 Northside Forsyth Drive,Cumming,GA,Warning Notice,2022-03-09
+336,Northside Hospital Forsyth,1200 Northside Forsyth Drive,Cumming,GA,Closure Notice,2022-08-01
+337,Highlands ARH Regional Medical Center,5000 Kentucky Route 321,Prestonsburg,KY,Warning Notice,2024-03-21
+337,Highlands ARH Regional Medical Center,5000 Kentucky Route 321,Prestonsburg,KY,CAP Request,2024-06-27
+337,Highlands ARH Regional Medical Center,5000 Kentucky Route 321,Prestonsburg,KY,Closure Notice,2024-08-15
+338,NYU Langone Hospital - Brooklyn,150 55th Street,Brooklyn,NY,Warning Notice,2024-02-14
+338,NYU Langone Hospital - Brooklyn,150 55th Street,Brooklyn,NY,Closure Notice,2024-05-16
+339,Texas Health Harris Methodist Hospital Alliance,10864 Texas Health Trail,Fort Worth,TX,Met Requirements,2023-02-22
+340,Northridge Hospital,18300 Roscoe Boulevard,Northridge,CA,Met Requirements,2023-01-30
+341,Kootenai Health,2003 Kootenai Health Way,Coeur d'Alene,ID,Warning Notice,2023-07-24
+341,Kootenai Health,2003 Kootenai Health Way,Coeur d'Alene,ID,Closure Notice,2023-11-02
+342,Bryan Medical Center - East Campus,1600 South 48th St,Lincoln,NE,Warning Notice,2023-06-06
+342,Bryan Medical Center - East Campus,1600 South 48th St,Lincoln,NE,CAP Request,2023-09-26
+342,Bryan Medical Center - East Campus,1600 South 48th St,Lincoln,NE,Closure Notice,2023-11-21
+343,Intermountain Layton Hospital,201 West Layton Parkway,Layton,UT,Warning Notice,2024-02-01
+343,Intermountain Layton Hospital,201 West Layton Parkway,Layton,UT,CAP Request,2024-05-06
+343,Intermountain Layton Hospital,201 West Layton Parkway,Layton,UT,Closure Notice,2024-05-31
+344,Providence Sacred Heart Children's Hospital,101 West 8th Avenue,Spokane,WA,Warning Notice,2023-04-21
+344,Providence Sacred Heart Children's Hospital,101 West 8th Avenue,Spokane,WA,Closure Notice,2023-05-08
+345,Advocate Christ Medical Center,4440 W 95th Street,Oak Lawn,IL,Warning Notice,2021-09-29
+345,Advocate Christ Medical Center,4440 W 95th Street,Oak Lawn,IL,Closure Notice,2022-07-11
+346,UChicago Medicine,5841 South Maryland,Chicago,IL,Warning Notice,2021-09-29
+346,UChicago Medicine,5841 South Maryland,Chicago,IL,CAP Request,2022-06-29
+346,UChicago Medicine,5841 South Maryland,Chicago,IL,Closure Notice,2023-03-17
+347,North Shore University Hospital,300 Community Drive,Manhasset,NY,Warning Notice,2021-09-29
+347,North Shore University Hospital,300 Community Drive,Manhasset,NY,CAP Request,2023-02-16
+347,North Shore University Hospital,300 Community Drive,Manhasset,NY,Closure Notice,2023-05-24
+348,University of Tennessee Medical Center,1924 Alcoa Highway,Knoxville,TN,Warning Notice,2021-09-29
+348,University of Tennessee Medical Center,1924 Alcoa Highway,Knoxville,TN,Closure Notice,2022-04-13
+349,Sunrise Hospital and Medical Center,3186 Maryland Parkway,Las Vegas,NV,Warning Notice,2021-09-29
+349,Sunrise Hospital and Medical Center,3186 Maryland Parkway,Las Vegas,NV,CAP Request,2022-11-02
+349,Sunrise Hospital and Medical Center,3186 Maryland Parkway,Las Vegas,NV,Closure Notice,2023-07-27
+350,Sharp Memorial Hospital,7901 Frost Street,San Diego,CA,Warning Notice,2021-06-23
+350,Sharp Memorial Hospital,7901 Frost Street,San Diego,CA,CAP Request,2021-12-01
+350,Sharp Memorial Hospital,7901 Frost Street,San Diego,CA,Closure Notice,2022-03-03
+351,Memorial Hermann Southwest Hospital,7600 Beechnut Street,Houston,TX,Warning Notice,2021-07-20
+351,Memorial Hermann Southwest Hospital,7600 Beechnut Street,Houston,TX,CAP Request,2022-01-12
+351,Memorial Hermann Southwest Hospital,7600 Beechnut Street,Houston,TX,Closure Notice,2022-11-09
+352,HCA Florida West Hospital,8383 N Davis Hwy,Pensacola,FL,Warning Notice,2023-06-22
+352,HCA Florida West Hospital,8383 N Davis Hwy,Pensacola,FL,Closure Notice,2023-10-02
+353,Adventist Health Hanford,115 Mall Drive,Hanford,CA,Warning Notice,2021-06-23
+353,Adventist Health Hanford,115 Mall Drive,Hanford,CA,CAP Request,2021-12-01
+353,Adventist Health Hanford,115 Mall Drive,Hanford,CA,Closure Notice,2022-02-03
+354,Jefferson Abington Hospital,1200 Old York Road,Abington,PA,Warning Notice,2024-02-13
+354,Jefferson Abington Hospital,1200 Old York Road,Abington,PA,Closure Notice,2024-04-02
+355,North Suburban Medical Center,9191 Grant St,Thornton,CO,Warning Notice,2023-07-11
+355,North Suburban Medical Center,9191 Grant St,Thornton,CO,Closure Notice,2023-11-01
+356,HCA Florida Twin Cities Hospital,2190 Highway 85 N,Niceville,FL,Warning Notice,2023-06-22
+356,HCA Florida Twin Cities Hospital,2190 Highway 85 N,Niceville,FL,Closure Notice,2023-10-02
+357,Wesley Medical Center,550 N Hillside St,Wichita,KS,Warning Notice,2021-06-23
+357,Wesley Medical Center,550 N Hillside St,Wichita,KS,CAP Request,2021-12-01
+357,Wesley Medical Center,550 N Hillside St,Wichita,KS,Closure Notice,2023-07-31
+358,Eden Medical Center,20103 Lake Chabot Road,Castro Valley,CA,Warning Notice,2021-07-20
+358,Eden Medical Center,20103 Lake Chabot Road,Castro Valley,CA,Closure Notice,2022-01-06
+359,Mary Greeley Medical Center,1111 Duff Ave,Ames,IA,Warning Notice,2021-06-23
+359,Mary Greeley Medical Center,1111 Duff Ave,Ames,IA,CAP Request,2021-12-01
+359,Mary Greeley Medical Center,1111 Duff Ave,Ames,IA,Closure Notice,2022-08-19
+360,CHI Mercy Health - Mercy Medical Center,2700 Nw Stewart Parkway,Roseburg,OR,Warning Notice,2021-06-23
+360,CHI Mercy Health - Mercy Medical Center,2700 Nw Stewart Parkway,Roseburg,OR,CAP Request,2021-12-01
+360,CHI Mercy Health - Mercy Medical Center,2700 Nw Stewart Parkway,Roseburg,OR,Closure Notice,2022-03-02
+361,Indiana University Health Blackford Hospital,410 Pilgrim Blvd,Hartford City,IN,Warning Notice,2021-07-20
+361,Indiana University Health Blackford Hospital,410 Pilgrim Blvd,Hartford City,IN,Closure Notice,2022-01-28
+362,North Star Behavioral Health,2530 Debarr Road,Anchorage,AK,Warning Notice,2023-07-12
+362,North Star Behavioral Health,2530 Debarr Road,Anchorage,AK,CAP Request,2023-10-30
+362,North Star Behavioral Health,2530 Debarr Road,Anchorage,AK,Closure Notice,2024-04-01
+363,Chandler Regional Medical Center,1955 West Frye Road,Chandler,AZ,Met Requirements,2022-11-29
+364,HCA Rose Medical Center,4567 E 9th Avenue,Denver,CO,Warning Notice,2021-08-25
+364,HCA Rose Medical Center,4567 E 9th Avenue,Denver,CO,CAP Request,2022-11-02
+364,HCA Rose Medical Center,4567 E 9th Avenue,Denver,CO,Closure Notice,2023-07-21
+365,Rio Grande Regional Hospital,101 East Ridge Road,McAllen,TX,Warning Notice,2023-06-28
+365,Rio Grande Regional Hospital,101 East Ridge Road,McAllen,TX,Closure Notice,2023-10-03
+366,HCA Florida Trinity Hospital,9330 Fl-54,Trinity,FL,Warning Notice,2021-08-25
+366,HCA Florida Trinity Hospital,9330 Fl-54,Trinity,FL,CAP Request,2022-10-17
+366,HCA Florida Trinity Hospital,9330 Fl-54,Trinity,FL,Closure Notice,2023-04-28
+367,Adventist Health Castle,640 Ulukahiki St,Kailua,HI,Met Requirements,2022-11-30
+368,HCA Frisbie Memorial Hospital,11 Whitehall Road,Rochester,NH,Warning Notice,2021-08-25
+368,HCA Frisbie Memorial Hospital,11 Whitehall Road,Rochester,NH,CAP Request,2022-11-02
+368,HCA Frisbie Memorial Hospital,11 Whitehall Road,Rochester,NH,CMP Notice,2023-04-19
+368,HCA Frisbie Memorial Hospital,11 Whitehall Road,Rochester,NH,Closure Notice,2023-05-11
+369,DHR Health,5501 South Mccoll,Edinburg,TX,Warning Notice,2023-05-30
+369,DHR Health,5501 South Mccoll,Edinburg,TX,Closure Notice,2023-09-19
+370,Silver Cross Hospital,1900 Silver Cross Blvd,New Lenox,IL,Warning Notice,2023-03-17
+370,Silver Cross Hospital,1900 Silver Cross Blvd,New Lenox,IL,Closure Notice,2023-05-12
+371,Spalding Rehabilitation Hospital - Aurora,900 Potomac Street,Aurora,CO,CAP Request,2023-07-11
+371,Spalding Rehabilitation Hospital - Aurora,900 Potomac Street,Aurora,CO,Closure Notice,2023-09-13
+372,MUSC Health University Medical Center ,169 Ashley Ave,Charleston,SC,Warning Notice,2024-02-27
+372,MUSC Health University Medical Center ,169 Ashley Ave,Charleston,SC,Closure Notice,2024-05-31
+373,Community Health Network Rehabilitation Hospital,7343 Clearvista Drive,Indianapolis,IN,Warning Notice,2021-07-20
+373,Community Health Network Rehabilitation Hospital,7343 Clearvista Drive,Indianapolis,IN,CAP Request,2022-01-12
+373,Community Health Network Rehabilitation Hospital,7343 Clearvista Drive,Indianapolis,IN,Closure Notice,2022-03-29
+374,Mayo Clinic Hospital Methodist Campus,201 West Center St,Rochester,MN,Warning Notice,2021-06-23
+374,Mayo Clinic Hospital Methodist Campus,201 West Center St,Rochester,MN,Closure Notice,2021-12-01
+375,Tampa General Hospital,1 Tampa General Cir,Tampa,FL,Warning Notice,2021-07-20
+375,Tampa General Hospital,1 Tampa General Cir,Tampa,FL,Closure Notice,2022-01-07
+376,Glendale Memorial Hospital & Health Center,1420 South Central Avenue,Glendale,CA,Warning Notice,2021-07-20
+376,Glendale Memorial Hospital & Health Center,1420 South Central Avenue,Glendale,CA,CAP Request,2022-01-12
+376,Glendale Memorial Hospital & Health Center,1420 South Central Avenue,Glendale,CA,Closure Notice,2022-03-21
+377,Einstein Medical Center Philadelphia,5501 Old York Road,Philadelphia,PA,Warning Notice,2021-06-23
+377,Einstein Medical Center Philadelphia,5501 Old York Road,Philadelphia,PA,Closure Notice,2021-12-01
+378,Halifax Health Medical Center of Port Orange,1041 Dunlawton Ave,Port Orange,FL,Warning Notice,2021-07-20
+378,Halifax Health Medical Center of Port Orange,1041 Dunlawton Ave,Port Orange,FL,Closure Notice,2022-01-18
+379,Hartford Hospital,80 Seymour Street,Hartford,CT,Warning Notice,2021-07-20
+379,Hartford Hospital,80 Seymour Street,Hartford,CT,Closure Notice,2022-01-07
+380,Baylor Scott & White Medical Center Temple,2401 South 31st Street,Temple,TX,Warning Notice,2021-07-20
+380,Baylor Scott & White Medical Center Temple,2401 South 31st Street,Temple,TX,Closure Notice,2022-01-06
+381,Baylor University Medical Center,3500 Gaston Avenue,Dallas,TX,Warning Notice,2021-07-20
+381,Baylor University Medical Center,3500 Gaston Avenue,Dallas,TX,Closure Notice,2022-01-06
+382,Sentara Norfolk General Hospital,600 Gresham Drive,Norfolk,VA,Warning Notice,2021-07-20
+382,Sentara Norfolk General Hospital,600 Gresham Drive,Norfolk,VA,CAP Request,2022-01-12
+382,Sentara Norfolk General Hospital,600 Gresham Drive,Norfolk,VA,Closure Notice,2022-03-23
+383,Ssm Health St. Anthony Hospital-Oklahoma City,1000 North Lee Street,Oklahoma City,OK,Warning Notice,2021-08-25
+383,Ssm Health St. Anthony Hospital-Oklahoma City,1000 North Lee Street,Oklahoma City,OK,Closure Notice,2022-02-14
+384,St. Tammany Parish Hospital,1202 S Tyler St,Covington,LA,Warning Notice,2021-08-25
+384,St. Tammany Parish Hospital,1202 S Tyler St,Covington,LA,CAP Request,2022-03-09
+384,St. Tammany Parish Hospital,1202 S Tyler St,Covington,LA,Closure Notice,2022-03-23
+385,Cleveland Clinic Akron General,1 Akron General Avenue,Akron,OH,Warning Notice,2021-06-23
+385,Cleveland Clinic Akron General,1 Akron General Avenue,Akron,OH,CAP Request,2021-12-01
+385,Cleveland Clinic Akron General,1 Akron General Avenue,Akron,OH,Closure Notice,2022-12-21
+386,CHI Saint Luke's Health-Baylor Saint Luke's Medical Center,1101 Bates Ave,Houston ,TX,Warning Notice,2021-07-20
+386,CHI Saint Luke's Health-Baylor Saint Luke's Medical Center,1101 Bates Ave,Houston ,TX,CAP Request,2022-01-12
+386,CHI Saint Luke's Health-Baylor Saint Luke's Medical Center,1101 Bates Ave,Houston ,TX,Closure Notice,2022-07-19
+387,Covenant Medical Center,3615 19th Street,Lubbock,TX,Warning Notice,2021-07-20
+387,Covenant Medical Center,3615 19th Street,Lubbock,TX,CAP Request,2022-01-12
+387,Covenant Medical Center,3615 19th Street,Lubbock,TX,Closure Notice,2023-04-27
+388,Mercy Hospital St. Louis,615 South New Ballas Road,St. Louis,MO,Warning Notice,2024-02-06
+388,Mercy Hospital St. Louis,615 South New Ballas Road,St. Louis,MO,Closure Notice,2024-05-10
+389,Hospital of the University of Pennsylvania,3400 Spruce Street,Silverstein,PA,Warning Notice,2022-07-27
+389,Hospital of the University of Pennsylvania,3400 Spruce Street,Silverstein,PA,CAP Request,2022-11-07
+389,Hospital of the University of Pennsylvania,3400 Spruce Street,Silverstein,PA,Closure Notice,2023-04-18
+390,Methodist Children's Hospital,7700 Floyd Curl Drive,San Antonio,TX,Warning Notice,2021-08-25
+390,Methodist Children's Hospital,7700 Floyd Curl Drive,San Antonio,TX,CAP Request,2022-11-02
+390,Methodist Children's Hospital,7700 Floyd Curl Drive,San Antonio,TX,Closure Notice,2023-07-31
+391,Overlook Medical Center,99 Beauvoir Avenue,Summit,NJ,Warning Notice,2021-07-20
+391,Overlook Medical Center,99 Beauvoir Avenue,Summit,NJ,CAP Request,2022-01-12
+391,Overlook Medical Center,99 Beauvoir Avenue,Summit,NJ,Closure Notice,2023-05-08
+392,Huntsville Hospital,101 Sivley Road,Huntsville,AL,Warning Notice,2021-07-20
+392,Huntsville Hospital,101 Sivley Road,Huntsville,AL,CAP Request,2022-01-12
+392,Huntsville Hospital,101 Sivley Road,Huntsville,AL,Closure Notice,2022-06-17
+393,Memorial Hermann - Texas Medical Center,6411 Fannin Street,Houston,TX,Warning Notice,2021-07-20
+393,Memorial Hermann - Texas Medical Center,6411 Fannin Street,Houston,TX,CAP Request,2022-01-12
+393,Memorial Hermann - Texas Medical Center,6411 Fannin Street,Houston,TX,Closure Notice,2022-10-27
+394,UPMC Harrisburg,111 South Front Street,Harrisburg,PA,Warning Notice,2021-07-20
+394,UPMC Harrisburg,111 South Front Street,Harrisburg,PA,CAP Request,2022-01-12
+394,UPMC Harrisburg,111 South Front Street,Harrisburg,PA,Closure Notice,2022-03-22
+395,University Health,4502 Medical Drive,San Antonio,TX,Met Requirements,2023-04-10
+396,San Jose Behavioral Health,455 Silicon Valley Boulevard,San Jose,CA,Warning Notice,2023-03-28
+396,San Jose Behavioral Health,455 Silicon Valley Boulevard,San Jose,CA,CAP Request,2023-07-18
+396,San Jose Behavioral Health,455 Silicon Valley Boulevard,San Jose,CA,Closure Notice,2023-11-10
+397,Emanate Health Queen of the Valley Hospital,1115 South Sunset Avenue,West Covina,CA,Warning Notice,2021-07-20
+397,Emanate Health Queen of the Valley Hospital,1115 South Sunset Avenue,West Covina,CA,CAP Request,2022-01-12
+397,Emanate Health Queen of the Valley Hospital,1115 South Sunset Avenue,West Covina,CA,Closure Notice,2022-04-11
+398,Mission Hospital,509 Biltmore Ave,Asheville,NC,Warning Notice,2021-07-20
+398,Mission Hospital,509 Biltmore Ave,Asheville,NC,CAP Request,2022-01-12
+398,Mission Hospital,509 Biltmore Ave,Asheville,NC,Closure Notice,2022-04-11
+399,Allegheny General Hospital,320 East North Avenue,Pittsburgh,PA,Warning Notice,2021-06-23
+399,Allegheny General Hospital,320 East North Avenue,Pittsburgh,PA,CAP Request,2021-12-01
+399,Allegheny General Hospital,320 East North Avenue,Pittsburgh,PA,Closure Notice,2022-02-02
+400,Englewood Hospital,350 Engle Street,Englewood,NJ,Warning Notice,2021-07-20
+400,Englewood Hospital,350 Engle Street,Englewood,NJ,CAP Request,2022-01-12
+400,Englewood Hospital,350 Engle Street,Englewood,NJ,Closure Notice,2023-03-02
+401,Lenox Hill Hospital,100 E 77th St,New York,NY,Warning Notice,2021-07-20
+401,Lenox Hill Hospital,100 E 77th St,New York,NY,CAP Request,2022-01-12
+401,Lenox Hill Hospital,100 E 77th St,New York,NY,Closure Notice,2023-05-23
+402,HCA Houston Healthcare North Cypress,21214 Northwest Freeway,Cypress,TX,Warning Notice,2021-07-20
+402,HCA Houston Healthcare North Cypress,21214 Northwest Freeway,Cypress,TX,CAP Request,2022-01-12
+402,HCA Houston Healthcare North Cypress,21214 Northwest Freeway,Cypress,TX,Closure Notice,2023-07-17
+403,NYU Langone Hospital - Long Island,259 First Street,Mineola,NY,Warning Notice,2021-07-20
+403,NYU Langone Hospital - Long Island,259 First Street,Mineola,NY,CAP Request,2022-01-12
+403,NYU Langone Hospital - Long Island,259 First Street,Mineola,NY,Closure Notice,2023-03-15
+404,Baptist Hospital,8900 N Kendall Dr,Miami,FL,Warning Notice,2021-06-23
+404,Baptist Hospital,8900 N Kendall Dr,Miami,FL,CAP Request,2021-12-01
+404,Baptist Hospital,8900 N Kendall Dr,Miami,FL,Closure Notice,2022-03-14
+405,Baptist Medical Center - Princeton,"701 Princeton Avenue, S.w.",Birmingham,AL,Warning Notice,2021-06-23
+405,Baptist Medical Center - Princeton,"701 Princeton Avenue, S.w.",Birmingham,AL,CAP Request,2021-12-01
+405,Baptist Medical Center - Princeton,"701 Princeton Avenue, S.w.",Birmingham,AL,Closure Notice,2022-01-26
+406,St. Joseph Medical Center,1401 St Joseph Parkway,Houston,TX,Warning Notice,2021-09-29
+406,St. Joseph Medical Center,1401 St Joseph Parkway,Houston,TX,CAP Request,2022-07-27
+406,St. Joseph Medical Center,1401 St Joseph Parkway,Houston,TX,Closure Notice,2023-01-25
+407,Bhc Streamwood Hospital Behavioral Health Center,1400 E. Irving Park Road,Streamwood,IL,Warning Notice,2021-07-20
+407,Bhc Streamwood Hospital Behavioral Health Center,1400 E. Irving Park Road,Streamwood,IL,Closure Notice,2022-01-27
+408,Jasper Memorial Hospital,898 College Street,Monticello,GA,Warning Notice,2021-08-25
+408,Jasper Memorial Hospital,898 College Street,Monticello,GA,Closure Notice,2022-04-12
