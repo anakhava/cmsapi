@@ -7,6 +7,12 @@ def download_cms_data(uuid):
     """
     Download data from CMS API using provided UUID
     """
+    # Define output directory
+    output_dir = Path("/Users/arianakhavan/Documents/reference_data")
+    
+    # Create the directory if it doesn't exist
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
     # Corrected Base API URL
     base_url = "https://data.cms.gov/data-api/v1/dataset"
     
@@ -27,8 +33,8 @@ def download_cms_data(uuid):
             print("Full response:", metadata_response.text)
             sys.exit(1)
         
-        # Create output filename based on UUID
-        output_filename = f"cms_data_{uuid}.csv"
+        # Create output filename in the specified directory
+        output_filename = output_dir / f"cms_data_{uuid}.csv"
         
         # Convert JSON data to CSV and save
         if data:
