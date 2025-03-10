@@ -3,15 +3,27 @@ Scrapes CMS dataset pages to extract API URLs and dataset metadata.
 """
 from dataclasses import dataclass
 import re
+import sys
+import traceback
 from typing import Optional, List
-from bs4 import BeautifulSoup
-import requests
 import time
 import csv
 
+# Add Selenium imports
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from webdriver_manager.chrome import ChromeDriverManager
+
+# Enable unbuffered output
+sys.stdout = open(sys.stdout.fileno(), mode='w', buffering=1)
+
 @dataclass
 class DatasetInfo:
-    """Holds information about a CMS dataset"""
+    """Stores information about a CMS dataset"""
     title: str
     description: str
     api_url: Optional[str]
@@ -20,7 +32,7 @@ class DatasetInfo:
 
 def get_dataset_urls(offset: int = 0) -> List[str]:
     """
-    Gets dataset URLs from the CMS search results page
+    Gets dataset URLs from the CMS search results page using Selenium
     
     Args:
         offset: Offset for search results (increments by 10)
@@ -29,44 +41,148 @@ def get_dataset_urls(offset: int = 0) -> List[str]:
         List of dataset URLs
     """
     print(f"\n=== Processing Search Results (offset {offset}) ===")
-    search_url = f"https://data.cms.gov/search?offset={offset}"
-    response = requests.get(search_url)
+    driver = None
     
-    # Debug: Print response status and headers
-    print(f"\nResponse Status Code: {response.status_code}")
-    print("\nResponse Headers:")
-    for key, value in response.headers.items():
-        print(f"{key}: {value}")
+    try:
+        # Set up Selenium
+        options = webdriver.ChromeOptions()
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-gpu")
+        
+        print("Starting browser...")
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=options)
+        
+        # Navigate to search page with offset
+        search_url = f"https://data.cms.gov/search?offset={offset}"
+        print(f"Navigating to: {search_url}")
+        driver.get(search_url)
+        
+        # Wait for page to load
+        print("Waiting for page to load...")
+        time.sleep(5)
+        print(f"Current page title: {driver.title}")
+        
+        # Find dataset links
+        print("Looking for dataset links...")
+        dataset_urls = []
+        
+        # Try to find elements with the target class
+        elements = driver.find_elements(By.CSS_SELECTOR, "a.DatasetResult__title-container__title-link")
+        print(f"Found {len(elements)} dataset links")
+        
+        if len(elements) == 0:
+            print("No elements found with primary selector. Trying alternative selectors...")
+            # Try alternative selectors
+            elements = driver.find_elements(By.XPATH, "//div[contains(@class, 'DatasetResult__title-container')]//a")
+            print(f"Found {len(elements)} dataset links with alternative selector")
+        
+        for element in elements:
+            href = element.get_attribute("href")
+            title = element.text.strip()
+            
+            if href:
+                dataset_urls.append(href)
+                print(f"Found dataset: {title}")
+        
+        print(f"Found {len(dataset_urls)} datasets on page {offset}")
+        return dataset_urls
+        
+    except Exception as e:
+        print(f"Error during scraping: {str(e)}")
+        print(traceback.format_exc())
+        return []
     
-    # Debug: Print raw HTML
-    print("\nRaw HTML received:")
-    print(response.text[:1000])  # First 1000 chars
-    print("...[truncated]...")
+    finally:
+        if driver:
+            print("Closing browser...")
+            driver.quit()
+
+def extract_api_url_and_uuid(driver) -> tuple:
+    """
+    Extracts API URL and UUID from a dataset page
     
-    soup = BeautifulSoup(response.text, 'html.parser')
+    Args:
+        driver: Selenium WebDriver instance
+        
+    Returns:
+        Tuple of (api_url, uuid)
+    """
+    api_url = None
+    uuid = None
     
-    # Debug: Print all link elements found
-    print("\nAll <a> tags found:")
-    all_links = soup.find_all('a')
-    for link in all_links:
-        print(f"\nLink: {link}")
-        print(f"Classes: {link.get('class', [])}")
-        print(f"Href: {link.get('href')}")
-        print(f"Text: {link.text.strip()}")
+    try:
+        # Try to find any button containing "API" text
+        print("Looking for 'Access API' button...")
+        buttons = driver.find_elements(By.XPATH, "//button")
+        print(f"Found {len(buttons)} buttons on the page")
+        
+        api_button = None
+        for btn in buttons:
+            try:
+                text = btn.text.lower()
+                if "api" in text:
+                    api_button = btn
+                    print(f"Found API button with text: '{text}'")
+                    break
+            except:
+                continue
+        
+        if api_button:
+            # Scroll the button into view
+            print("Scrolling to API button...")
+            driver.execute_script("arguments[0].scrollIntoView(true);", api_button)
+            time.sleep(1)  # Wait for scroll to complete
+            
+            # Try to ensure the button is clickable
+            print("Clicking API button...")
+            try:
+                # Try direct click first
+                api_button.click()
+            except Exception as e:
+                print(f"Direct click failed: {e}")
+                # Try JavaScript click as fallback
+                driver.execute_script("arguments[0].click();", api_button)
+                
+            print("Waiting for modal to appear...")
+            time.sleep(3)
+            
+            # Look for the input field
+            input_fields = driver.find_elements(By.TAG_NAME, "input")
+            print(f"Found {len(input_fields)} input fields")
+            
+            for inp in input_fields:
+                try:
+                    class_name = inp.get_attribute("class")
+                    value = inp.get_attribute("value")
+                    
+                    if class_name and "AccessApiModal__urlInput" in class_name:
+                        api_url = value
+                        print(f"Found API URL in modal: {api_url}")
+                        break
+                        
+                    # Fallback: look for any input with a data-api URL
+                    if value and "data-api" in value:
+                        api_url = value
+                        print(f"Found API URL in input value: {api_url}")
+                except:
+                    continue
+            
+            # Extract UUID from API URL
+            if api_url:
+                uuid_match = re.search(r'dataset/([a-f0-9-]+)/data', api_url)
+                if uuid_match:
+                    uuid = uuid_match.group(1)
+                    print(f"Extracted UUID from API URL: {uuid}")
+        else:
+            print("No API button found")
     
-    # Find all dataset links in search results
-    dataset_links = soup.find_all('a', class_='DatasetResult__title-container__title-link')
-    print(f"\nDataset links found with class 'DatasetResult__title-container__title-link': {len(dataset_links)}")
+    except Exception as e:
+        print(f"Error extracting API URL: {str(e)}")
     
-    dataset_urls = []
-    for link in dataset_links:
-        if link.get('href'):
-            full_url = f"https://data.cms.gov{link['href']}"
-            dataset_urls.append(full_url)
-            print(f"Found dataset: {link.text.strip()}")
-    
-    print(f"Found {len(dataset_urls)} datasets on page {offset}")
-    return dataset_urls
+    return api_url, uuid
 
 def extract_dataset_info(dataset_url: str) -> Optional[DatasetInfo]:
     """
@@ -78,39 +194,55 @@ def extract_dataset_info(dataset_url: str) -> Optional[DatasetInfo]:
     Returns:
         DatasetInfo object containing extracted information or None if error
     """
+    driver = None
     try:
         print(f"\nNavigating to dataset: {dataset_url}")
-        response = requests.get(dataset_url)
-        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        # Use Selenium to load the dataset page
+        options = webdriver.ChromeOptions()
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-gpu")
+        
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=options)
+        driver.get(dataset_url)
+        
+        # Wait for page to load
+        print("Waiting for page to load...")
+        time.sleep(5)
+        print(f"Current page title: {driver.title}")
         
         # Extract title
-        title = soup.find('h1').text.strip()
-        print(f"Dataset Title: {title}")
+        try:
+            title_element = driver.find_element(By.TAG_NAME, "h1")
+            title = title_element.text.strip()
+            print(f"Dataset Title: {title}")
+        except Exception as e:
+            print(f"Error extracting title: {e}")
+            title = "Unknown Title"
         
-        # Extract description 
-        desc_div = soup.find('div', class_='DatasetPage__summary-field-summary-container')
-        description = desc_div.text.strip() if desc_div else ''
+        # Extract description
+        try:
+            desc_div = driver.find_element(By.CSS_SELECTOR, "div.DatasetPage__summary-field-summary-container")
+            description = desc_div.text.strip()
+        except Exception as e:
+            print(f"Error extracting description: {e}")
+            description = ""
         
-        # Extract UUID from meta tags
-        uuid = None
-        og_url = soup.find('meta', property='og:url')
-        if og_url:
-            uuid_match = re.search(r'dataset/([^/]+)', og_url['content'])
+        # Extract API URL and UUID
+        api_url, uuid = extract_api_url_and_uuid(driver)
+        
+        # If UUID wasn't found in API URL, try to extract from dataset URL
+        if not uuid:
+            uuid_match = re.search(r'dataset/([a-f0-9-]+)', dataset_url)
             if uuid_match:
                 uuid = uuid_match.group(1)
-                print(f"UUID found: {uuid}")
+                print(f"UUID found in dataset URL: {uuid}")
             else:
-                print("No UUID found in meta tags")
-                
-        # Extract API URL from modal
-        api_url = None
-        url_input = soup.find('input', class_='AccessApiModal__urlInput')
-        if url_input:
-            api_url = url_input.get('value')
-            print("✓ Access API button found")
-        else:
-            print("✗ No Access API button found")
-                
+                print("No UUID found in URL")
+        
         return DatasetInfo(
             title=title,
             description=description,
@@ -120,51 +252,79 @@ def extract_dataset_info(dataset_url: str) -> Optional[DatasetInfo]:
         )
     except Exception as e:
         print(f"Error processing {dataset_url}: {str(e)}")
+        print(traceback.format_exc())
         return None
+    finally:
+        if driver:
+            try:
+                driver.quit()
+            except:
+                pass
 
-def save_to_csv(datasets: List[DatasetInfo], filename: str = 'cms_datasets.csv'):
-    """Saves dataset information to CSV file"""
-    with open(filename, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.writer(f)
-        writer.writerow(['Title', 'Description', 'API URL', 'UUID', 'Dataset URL'])
+def save_to_csv(datasets: List[DatasetInfo]) -> None:
+    """
+    Saves dataset information to a CSV file
+    
+    Args:
+        datasets: List of DatasetInfo objects
+    """
+    with open('cms_datasets.csv', 'w', newline='', encoding='utf-8') as csvfile:
+        fieldnames = ['title', 'description', 'api_url', 'uuid', 'dataset_url']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        
+        writer.writeheader()
         for dataset in datasets:
-            writer.writerow([
-                dataset.title,
-                dataset.description,
-                dataset.api_url,
-                dataset.uuid,
-                dataset.dataset_url
-            ])
+            writer.writerow({
+                'title': dataset.title,
+                'description': dataset.description,
+                'api_url': dataset.api_url or '',
+                'uuid': dataset.uuid or '',
+                'dataset_url': dataset.dataset_url
+            })
+    
+    print(f"Results saved to cms_datasets.csv")
 
 def main():
-    """Main entry point"""
-    all_datasets = []
-    offset = 0
+    """Main function to run the scraper"""
+    print("Starting CMS API URL scraper...")
     
-    print("Starting CMS Dataset API URL Scraper...")
+    try:
+        all_datasets = []
+        offset = 0
+        max_pages = 5  # Limit to 5 pages for testing
+        
+        for page in range(max_pages):
+            print(f"\n=== Processing page {page+1} ===")
+            dataset_urls = get_dataset_urls(offset)
+            
+            if not dataset_urls:
+                print(f"No more datasets found. Stopping at page {page+1}.")
+                break
+            
+            for url in dataset_urls:
+                dataset_info = extract_dataset_info(url)
+                if dataset_info:
+                    all_datasets.append(dataset_info)
+                    if dataset_info.api_url:
+                        print(f"✓ API URL found for {dataset_info.title}")
+                    else:
+                        print(f"✗ No API URL for {dataset_info.title}")
+            
+            offset += 10
+            
+        print(f"\n=== Summary ===")
+        print(f"Found {len(all_datasets)} datasets")
+        api_count = sum(1 for d in all_datasets if d.api_url)
+        print(f"Found {api_count} datasets with API URLs")
+        
+        if all_datasets:
+            save_to_csv(all_datasets)
+        else:
+            print("No datasets found to save.")
     
-    while True:
-        dataset_urls = get_dataset_urls(offset)
-        
-        if not dataset_urls:
-            print("\nNo more datasets found. Finished processing all pages.")
-            break
-            
-        for url in dataset_urls:
-            info = extract_dataset_info(url)
-            if info and info.api_url:  # Only keep datasets with API URLs
-                all_datasets.append(info)
-                print(f"Added to results - has API access")
-            elif info:
-                print(f"Skipped - no API access")
-            time.sleep(1)  # Be nice to the server
-            
-        offset += 10  # Increment by 10 instead of page number
-        
-    print(f"\n=== Summary ===")
-    print(f"Found {len(all_datasets)} datasets with API URLs")
-    save_to_csv(all_datasets)
-    print(f"Results saved to cms_datasets.csv")
+    except Exception as e:
+        print(f"Error in main function: {e}")
+        print(traceback.format_exc())
 
 if __name__ == "__main__":
     main() 
