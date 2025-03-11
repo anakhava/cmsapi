@@ -1,38 +1,4 @@
 title,description,api_url,uuid,dataset_url
-Order and Referring,"The Order and Referring dataset provides information on all physicians and non-physician practitioners, by their National Provider Identifier (NPI), who are of a type/specialty that is legally eligible to order and refer in the Medicare program and who have current enrollment records in Medicare. 
-  Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.",https://data.cms.gov/data-api/v1/dataset/c99b5865-1119-4436-bb80-c5af2773ea1f/data,c99b5865-1119-4436-bb80-c5af2773ea1f,https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/order-and-referring
-Medicare Monthly Enrollment,"The Medicare Monthly Enrollment data provides current monthly information on the number of Medicare beneficiaries with hospital/medical coverage and prescription drug coverage, available for several geographic areas including national, state/territory, and county. The hospital/medical coverage data can be broken down further by health care delivery (Original Medicare versus Medicare Advantage and Other Health Plans) and the prescription drug coverage data can be examined by those enrolled in stand-alone Prescription Drug Plans and those enrolled in Medicare Advantage Prescription Drug plans. The dataset provides monthly and yearly enrollee trends.",https://data.cms.gov/data-api/v1/dataset/d7fabe1e-d19b-4333-9eff-e80e0643f2fd/data,d7fabe1e-d19b-4333-9eff-e80e0643f2fd,https://data.cms.gov/summary-statistics-on-beneficiary-enrollment/medicare-and-medicaid-reports/medicare-monthly-enrollment
-Monthly Prescription Drug Plan Formulary and Pharmacy Network Information,"The Monthly Prescription Drug Plan Formulary and Pharmacy Network Information files contain formulary and pharmacy network data for Medicare Prescription Drug Plans and Medicare Advantage (MA) Prescription Drug Plans (with the exception of employer and Program of All-Inclusive Care for the Elderly plans).
-  Notice: CMS has identified an issue that resulted in a 15% coinsurance for plans with Defined Standard benefits to be listed rather than a 25% coinsurance in the Beneficiary Cost File under certain scenarios. This issue affected the October 2023 to November 2024 data. CMS will re-post the corrected data in batches between now and May 2025. The following files have already been corrected and re-posted:
-October 2023
-November 2023
-December 2023
-January 2024
-February 2024
-October 2024
-November 2024
-  These non-identifiable files are available on a monthly basis and are comprised of the following tables:
-Plan Information - Information such as plan name, contract ID, plan ID, service area, and plan type.
-Geographic Locator - MA and Prescription Drug Plans region codes and county codes.
-Basic Drugs Formulary - Formulary details for each plan including National Drug Codes (NDCs), cost share tier level, and indicators for step therapy, quantity limits, and prior authorization.
-Excluded Drugs Formulary - Enhanced alternative plans may elect to provide a supplemental benefit and cover excluded drugs. File includes formulary details for excluded drugs that are covered by the plan (for enhanced alternative plans only).
-Beneficiary Cost - Plan level cost sharing details for preferred, non-preferred, and mail order network pharmacies.
-Pharmacy Network - National Provider Identifier (NPI) numbers for each network pharmacy including preferred, retail, and mail order indicators.
-Indication Based Coverage Formulary File - Includes drugs covered based on FDA-approved indication for each plan.
-Insulin Beneficiary Cost File - Plan level cost sharing details for insulin at preferred, non-preferred and mail order network pharmacies.
-  These are large files and can take time to download. 
-  Please read the “Agreement for Use” in the Resources section below. This document contains important information regarding timeframes for obtaining data as well as data accuracy and integrity.
-  The Quarterly Prescription Drug Plan Formulary, Pharmacy Network, and Pricing Information is also available to access for the quarterly level information. 
-  Please note: The Part D benefit year information for plans become available in October of the year prior. For example, year 2024 data is available in the October, November and December 2023 monthly files. Year 2024 data continues to be available in the January through September 2024 monthly files, then beginning in October of 2024 year 2025 data becomes available.
-Estimated release dates for upcoming 2025 monthly data (files reflect data for the month in which the file is released):
-3/26/25
-4/23/25
-5/21/25
-6/18/25
-7/30/25
-8/27/25
-9/24/25
-Files older than contract year 2019 can be purchased.",,,https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/monthly-prescription-drug-plan-formulary-and-pharmacy-network-information
 Opt Out Affidavits,"ATTENTION USERS
 
 Some Providers' Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information.
@@ -457,3 +423,37 @@ Value Modifier,"The Medicare Value-Based Payment Modifier (Value Modifier) data 
 Comprehensive Care for Joint Replacement Model: Metropolitan Statistical Areas,"The Comprehensive Care for Joint Replacement Model: Metropolitan Statistical Areas (MSAs) dataset presents MSAs that are participating in the CMS Innovation Center Comprehensive Care for Joint Replacement Model, a model to support better and more efficient care for beneficiaries undergoing the most common inpatient surgery for Medicare beneficiaries: hip and knee replacements. Participation in this model is designated by geographic area, specifically MSAs. The information contained in the dataset can include MSA identification number, MSA geographic name and associated county or counties.",https://data.cms.gov/data-api/v1/dataset/62e490c0-9503-4b5f-9518-8e82fe20ccb6/data,62e490c0-9503-4b5f-9518-8e82fe20ccb6,https://data.cms.gov/cms-innovation-center-programs/alternative-payments-comprehensive-care-for-joint-replacement-model/comprehensive-care-for-joint-replacement-model-metropolitan-statistical-areas
 CPC Initiative - Participating Primary Care Practices,The CPC Initiative - Participating Primary Care Practices dataset provides a list of practices involved in a multi-payer initiative which fosters collaboration between public and private health care payers to strengthen primary care.,https://data.cms.gov/data-api/v1/dataset/24da2642-7269-4c75-9a62-0dc3a195b205/data,24da2642-7269-4c75-9a62-0dc3a195b205,https://data.cms.gov/cms-innovation-center-programs/alternative-payments-comprehensive-primary-care-initiative-participating-primary-care-practices/cpc-initiative-participating-primary-care-practices
 Agency for Healthcare Research and Quality (AHRQ) Patient Safety Indicator 11 (PSI-11) Measure Rates,The Agency for Healthcare Research and Quality (AHRQ) Patient Safety Indicator 11 (PSI-11) Measure Rates dataset provides information on provider-level measure rates regarding one preventable complication (postoperative respiratory failure) for Medicare fee-for-service discharges. The PSI-11 measure data is solely reported for providers’ information and quality improvement purposes and are not a part of the Deficit Reduction Act (DRA) Hospital-Acquired Condition (HAC) Payment Provision or HAC Reduction Program.,https://data.cms.gov/data-api/v1/dataset/7cf9662e-7c5c-4fe0-a8c6-828edf81a23c/data,7cf9662e-7c5c-4fe0-a8c6-828edf81a23c,https://data.cms.gov/quality-of-care/agency-for-healthcare-research-and-quality-ahrq-patient-safety-indicator-11-psi-11-measure-rates
+Order and Referring,"The Order and Referring dataset provides information on all physicians and non-physician practitioners, by their National Provider Identifier (NPI), who are of a type/specialty that is legally eligible to order and refer in the Medicare program and who have current enrollment records in Medicare. 
+  Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.",https://data.cms.gov/data-api/v1/dataset/c99b5865-1119-4436-bb80-c5af2773ea1f/data,c99b5865-1119-4436-bb80-c5af2773ea1f,https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/order-and-referring
+Medicare Monthly Enrollment,"The Medicare Monthly Enrollment data provides current monthly information on the number of Medicare beneficiaries with hospital/medical coverage and prescription drug coverage, available for several geographic areas including national, state/territory, and county. The hospital/medical coverage data can be broken down further by health care delivery (Original Medicare versus Medicare Advantage and Other Health Plans) and the prescription drug coverage data can be examined by those enrolled in stand-alone Prescription Drug Plans and those enrolled in Medicare Advantage Prescription Drug plans. The dataset provides monthly and yearly enrollee trends.",https://data.cms.gov/data-api/v1/dataset/d7fabe1e-d19b-4333-9eff-e80e0643f2fd/data,d7fabe1e-d19b-4333-9eff-e80e0643f2fd,https://data.cms.gov/summary-statistics-on-beneficiary-enrollment/medicare-and-medicaid-reports/medicare-monthly-enrollment
+Monthly Prescription Drug Plan Formulary and Pharmacy Network Information,"The Monthly Prescription Drug Plan Formulary and Pharmacy Network Information files contain formulary and pharmacy network data for Medicare Prescription Drug Plans and Medicare Advantage (MA) Prescription Drug Plans (with the exception of employer and Program of All-Inclusive Care for the Elderly plans).
+  Notice: CMS has identified an issue that resulted in a 15% coinsurance for plans with Defined Standard benefits to be listed rather than a 25% coinsurance in the Beneficiary Cost File under certain scenarios. This issue affected the October 2023 to November 2024 data. CMS will re-post the corrected data in batches between now and May 2025. The following files have already been corrected and re-posted:
+October 2023
+November 2023
+December 2023
+January 2024
+February 2024
+October 2024
+November 2024
+  These non-identifiable files are available on a monthly basis and are comprised of the following tables:
+Plan Information - Information such as plan name, contract ID, plan ID, service area, and plan type.
+Geographic Locator - MA and Prescription Drug Plans region codes and county codes.
+Basic Drugs Formulary - Formulary details for each plan including National Drug Codes (NDCs), cost share tier level, and indicators for step therapy, quantity limits, and prior authorization.
+Excluded Drugs Formulary - Enhanced alternative plans may elect to provide a supplemental benefit and cover excluded drugs. File includes formulary details for excluded drugs that are covered by the plan (for enhanced alternative plans only).
+Beneficiary Cost - Plan level cost sharing details for preferred, non-preferred, and mail order network pharmacies.
+Pharmacy Network - National Provider Identifier (NPI) numbers for each network pharmacy including preferred, retail, and mail order indicators.
+Indication Based Coverage Formulary File - Includes drugs covered based on FDA-approved indication for each plan.
+Insulin Beneficiary Cost File - Plan level cost sharing details for insulin at preferred, non-preferred and mail order network pharmacies.
+  These are large files and can take time to download. 
+  Please read the “Agreement for Use” in the Resources section below. This document contains important information regarding timeframes for obtaining data as well as data accuracy and integrity.
+  The Quarterly Prescription Drug Plan Formulary, Pharmacy Network, and Pricing Information is also available to access for the quarterly level information. 
+  Please note: The Part D benefit year information for plans become available in October of the year prior. For example, year 2024 data is available in the October, November and December 2023 monthly files. Year 2024 data continues to be available in the January through September 2024 monthly files, then beginning in October of 2024 year 2025 data becomes available.
+Estimated release dates for upcoming 2025 monthly data (files reflect data for the month in which the file is released):
+3/26/25
+4/23/25
+5/21/25
+6/18/25
+7/30/25
+8/27/25
+9/24/25
+Files older than contract year 2019 can be purchased.",,,https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/monthly-prescription-drug-plan-formulary-and-pharmacy-network-information

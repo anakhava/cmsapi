@@ -25,7 +25,7 @@ def create_log_entry(uuid, status_code, response_content, success, dataset_info,
 
 def download_cms_data(uuid, dataset_info, log_entries):
     """
-    Download data from CMS API using provided UUID and dataset info
+    Download data from CMS API using provided UUID and dataset info with pagination support
     """
     # Define output directory
     output_dir = Path("/Users/arianakhavan/Documents/reference_data")
@@ -37,40 +37,6 @@ def download_cms_data(uuid, dataset_info, log_entries):
     base_url = "https://data.cms.gov/data-api/v1/dataset"
     
     try:
-        # First get the dataset metadata
-        metadata_url = f"{base_url}/{uuid}/data"
-        metadata_response = requests.get(metadata_url)
-        metadata_response.raise_for_status()
-        
-        # Print response for debugging
-        print(f"Response status code: {metadata_response.status_code}")
-        print(f"Response content: {metadata_response.text[:200]}...")
-        
-        try:
-            data = metadata_response.json()
-            # Log successful API response
-            log_entries.append(create_log_entry(
-                uuid,
-                metadata_response.status_code,
-                metadata_response.text[:1000],  # First 1000 chars of response
-                True,
-                dataset_info
-            ))
-        except json.JSONDecodeError as e:
-            print(f"Failed to parse JSON response: {e}")
-            print("Full response:", metadata_response.text)
-            # Log JSON parse error
-            log_entries.append(create_log_entry(
-                uuid,
-                metadata_response.status_code,
-                metadata_response.text[:1000],
-                False,
-                dataset_info,
-                f"JSON Parse Error: {str(e)}"
-            ))
-            return False
-        
-        # Create output filename using dataset name
         # Handle NaN or empty dataset names
         dataset_name = dataset_info.get('dataset_name', '')
         if pd.isna(dataset_name) or dataset_name == '':
@@ -81,15 +47,73 @@ def download_cms_data(uuid, dataset_info, log_entries):
         safe_dataset_name = dataset_name.replace(' ', '_').replace('/', '_').replace('\\', '_')
         output_filename = output_dir / f"{safe_dataset_name}_{uuid}.csv"
         
-        # Convert JSON data to CSV and save
-        if data:
+        # Initialize variables for pagination
+        offset = 0
+        limit = 1000
+        all_data = []
+        more_data = True
+        
+        print(f"Downloading data for {dataset_name}...")
+        
+        # Loop to handle pagination
+        while more_data:
+            # Construct URL with pagination parameters
+            metadata_url = f"{base_url}/{uuid}/data?offset={offset}&limit={limit}"
+            print(f"Fetching page at offset {offset}...")
+            
+            metadata_response = requests.get(metadata_url)
+            metadata_response.raise_for_status()
+            
+            try:
+                page_data = metadata_response.json()
+                
+                if isinstance(page_data, list):
+                    page_count = len(page_data)
+                    all_data.extend(page_data)
+                    
+                    print(f"Retrieved {page_count} records (total so far: {len(all_data)})")
+                    
+                    # If we got fewer records than the limit, we've reached the end
+                    if page_count < limit:
+                        more_data = False
+                    else:
+                        # Move to the next page
+                        offset += limit
+                else:
+                    # Not a list response, just use this data
+                    all_data = page_data
+                    more_data = False
+                    
+            except json.JSONDecodeError as e:
+                print(f"Failed to parse JSON response: {e}")
+                log_entries.append(create_log_entry(
+                    uuid,
+                    metadata_response.status_code,
+                    metadata_response.text[:1000],
+                    False,
+                    dataset_info,
+                    f"JSON Parse Error: {str(e)}"
+                ))
+                return False
+        
+        # Log successful API response
+        log_entries.append(create_log_entry(
+            uuid,
+            200,
+            f"Successfully retrieved {len(all_data)} records",
+            True,
+            dataset_info
+        ))
+        
+        # Save the data
+        if all_data:
             with open(output_filename, 'w', newline='') as f:
-                if isinstance(data, list) and len(data) > 0:
+                if isinstance(all_data, list) and len(all_data) > 0:
                     import csv
-                    writer = csv.DictWriter(f, fieldnames=data[0].keys())
+                    writer = csv.DictWriter(f, fieldnames=all_data[0].keys())
                     writer.writeheader()
-                    writer.writerows(data)
-                    print(f"Successfully downloaded data to: {output_filename}")
+                    writer.writerows(all_data)
+                    print(f"Successfully downloaded {len(all_data)} records to: {output_filename}")
                     return True
                 else:
                     print("No data found in the response")
@@ -98,7 +122,6 @@ def download_cms_data(uuid, dataset_info, log_entries):
     except requests.exceptions.RequestException as e:
         print(f"Error downloading data: {e}")
         error_response = e.response if hasattr(e, 'response') else None
-        # Log request error
         log_entries.append(create_log_entry(
             uuid,
             error_response.status_code if error_response else 'N/A',
