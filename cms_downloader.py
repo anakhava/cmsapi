@@ -71,7 +71,14 @@ def download_cms_data(uuid, dataset_info, log_entries):
             return False
         
         # Create output filename using dataset name
-        safe_dataset_name = dataset_info['dataset_name'].replace(' ', '_').replace('/', '_').replace('\\', '_')
+        # Handle NaN or empty dataset names
+        dataset_name = dataset_info.get('dataset_name', '')
+        if pd.isna(dataset_name) or dataset_name == '':
+            dataset_name = f"Unknown_Dataset_{uuid[:8]}"
+        else:
+            dataset_name = str(dataset_name)
+            
+        safe_dataset_name = dataset_name.replace(' ', '_').replace('/', '_').replace('\\', '_')
         output_filename = output_dir / f"{safe_dataset_name}_{uuid}.csv"
         
         # Convert JSON data to CSV and save
@@ -102,9 +109,9 @@ def download_cms_data(uuid, dataset_info, log_entries):
         ))
         return False
 
-def process_uuid_file(csv_path):
+def process_cms_datasets_file(csv_path="cms_datasets.csv"):
     """
-    Read dataset information from a CSV file and download data for each
+    Read dataset information from cms_datasets.csv and download data for each
     """
     try:
         # Create logs directory
@@ -124,32 +131,35 @@ def process_uuid_file(csv_path):
         df = pd.read_csv(csv_path)
         
         # Check for required columns
-        required_columns = ['uuid', 'dataset_name', 'dataset_description', 'dataset_notes']
+        required_columns = ['title', 'description', 'api_url', 'uuid', 'dataset_url']
         missing_columns = [col for col in required_columns if col not in df.columns]
         if missing_columns:
             print(f"Error: CSV file must contain these columns: {', '.join(required_columns)}")
             print(f"Missing columns: {', '.join(missing_columns)}")
             sys.exit(1)
         
+        # Filter out rows with empty UUIDs
+        df = df[df['uuid'].notna() & (df['uuid'] != '')]
+        
         total_datasets = len(df)
         successful_downloads = 0
         failed_downloads = 0
         
-        print(f"Found {total_datasets} datasets to process")
+        print(f"Found {total_datasets} datasets with valid UUIDs to process")
         print(f"Logging to: {log_filename}")
         
         # Process each row
         for index, row in df.iterrows():
             print(f"\nProcessing dataset {index + 1} of {total_datasets}")
             print(f"UUID: {row['uuid']}")
-            print(f"Dataset: {row['dataset_name']}")
-            print(f"Description: {row['dataset_description'][:100]}...")  # Show first 100 chars
+            print(f"Dataset: {row['title']}")
+            print(f"Description: {row['description'][:100]}...")  # Show first 100 chars
             
             # Create dataset info dictionary
             dataset_info = {
-                'dataset_name': row['dataset_name'],
-                'dataset_description': row['dataset_description'],
-                'dataset_notes': row['dataset_notes']
+                'dataset_name': row['title'],
+                'dataset_description': row['description'],
+                'dataset_notes': row.get('dataset_url', '')  # Use dataset_url as notes
             }
             
             if download_cms_data(row['uuid'], dataset_info, log_entries):
@@ -179,12 +189,13 @@ def process_uuid_file(csv_path):
         sys.exit(1)
 
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: python cms_downloader.py <path_to_csv>")
-        sys.exit(1)
+    if len(sys.argv) > 1:
+        csv_path = sys.argv[1]
+    else:
+        csv_path = "cms_datasets.csv"  # Default to cms_datasets.csv if no argument provided
     
-    csv_path = sys.argv[1]
-    process_uuid_file(csv_path)
+    print(f"Using dataset file: {csv_path}")
+    process_cms_datasets_file(csv_path)
 
 if __name__ == "__main__":
     main() 
