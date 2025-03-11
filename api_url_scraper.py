@@ -284,6 +284,46 @@ def save_to_csv(datasets: List[DatasetInfo]) -> None:
     
     print(f"Results saved to cms_datasets.csv")
 
+def get_total_pages(driver) -> int:
+    """
+    Gets the total number of search result pages
+    
+    Args:
+        driver: Selenium WebDriver instance
+        
+    Returns:
+        Total number of pages
+    """
+    try:
+        # Look for pagination information
+        pagination_elements = driver.find_elements(By.CSS_SELECTOR, ".Pagination__page-info")
+        if pagination_elements:
+            pagination_text = pagination_elements[0].text
+            # Extract total pages from text like "Page 1 of 16"
+            match = re.search(r'Page \d+ of (\d+)', pagination_text)
+            if match:
+                total_pages = int(match.group(1))
+                print(f"Found pagination: total pages = {total_pages}")
+                return total_pages
+        
+        # Alternative method: count the number of datasets and divide by 10
+        dataset_count_elements = driver.find_elements(By.CSS_SELECTOR, ".SearchPage__results-count")
+        if dataset_count_elements:
+            count_text = dataset_count_elements[0].text
+            # Extract count from text like "Showing 1-10 of 156 results"
+            match = re.search(r'of (\d+) results', count_text)
+            if match:
+                total_results = int(match.group(1))
+                total_pages = (total_results + 9) // 10  # Ceiling division
+                print(f"Found {total_results} total results: estimated {total_pages} pages")
+                return total_pages
+        
+        print("Could not determine total pages, defaulting to 20")
+        return 20  # Default to a high number if we can't determine
+    except Exception as e:
+        print(f"Error determining total pages: {e}")
+        return 20  # Default to a high number
+
 def main():
     """Main function to run the scraper"""
     print("Starting CMS API URL scraper...")
@@ -291,14 +331,35 @@ def main():
     try:
         all_datasets = []
         offset = 0
-        max_pages = 5  # Limit to 5 pages for testing
         
-        for page in range(max_pages):
-            print(f"\n=== Processing page {page+1} ===")
+        # First, determine total pages
+        options = webdriver.ChromeOptions()
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-gpu")
+        
+        print("Starting browser to determine total pages...")
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=options)
+        
+        # Navigate to search page
+        driver.get("https://data.cms.gov/search")
+        time.sleep(5)
+        
+        # Get total pages
+        total_pages = get_total_pages(driver)
+        driver.quit()
+        
+        print(f"\n=== Found {total_pages} total pages of results ===\n")
+        
+        # Now process all pages
+        for page in range(1, total_pages + 1):
+            print(f"\n=== Processing page {page} of {total_pages} ===")
             dataset_urls = get_dataset_urls(offset)
             
             if not dataset_urls:
-                print(f"No more datasets found. Stopping at page {page+1}.")
+                print(f"No datasets found on page {page}. Stopping.")
                 break
             
             for url in dataset_urls:
