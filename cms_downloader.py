@@ -6,12 +6,54 @@ import pandas as pd
 from pathlib import Path
 from datetime import datetime
 import uuid as uuid_lib
+import atexit
+import signal
+
+# Global variables for log handling
+log_file = None
+log_entries = []
+
+def write_logs_to_file():
+    """
+    Write current log entries to the log file
+    """
+    global log_file, log_entries
+    if log_file and log_entries:
+        try:
+            # Read existing logs if file exists and has content
+            existing_logs = []
+            if log_file.exists() and log_file.stat().st_size > 0:
+                with open(log_file, 'r') as f:
+                    existing_logs = json.load(f)
+                
+            # Combine existing logs with new entries
+            all_logs = existing_logs + log_entries
+            
+            # Write all logs back to file
+            with open(log_file, 'w') as f:
+                json.dump(all_logs, f, indent=2)
+                
+            # Clear the log entries after writing
+            log_entries = []
+        except Exception as e:
+            print(f"Error writing logs to file: {e}")
+
+def signal_handler(sig, frame):
+    """
+    Handle keyboard interrupts and other signals
+    """
+    print("\nProgram interrupted! Writing logs before exit...")
+    write_logs_to_file()
+    print("Logs saved. Exiting.")
+    sys.exit(0)
 
 def create_log_entry(uuid, status_code, response_content, success, dataset_info, error_message=None):
     """
-    Create a structured log entry
+    Create a structured log entry and add it to the global log entries list
     """
-    return {
+    global log_entries
+    
+    entry = {
         "timestamp": datetime.now().isoformat(),
         "uuid": uuid,
         "dataset_name": dataset_info.get('dataset_name', ''),
@@ -22,8 +64,16 @@ def create_log_entry(uuid, status_code, response_content, success, dataset_info,
         "success": success,
         "error_message": error_message
     }
+    
+    log_entries.append(entry)
+    
+    # Write logs to file after every 5 entries or on errors
+    if len(log_entries) >= 5 or not success:
+        write_logs_to_file()
+        
+    return entry
 
-def download_cms_data(uuid, dataset_info, log_entries):
+def download_cms_data(uuid, dataset_info):
     """
     Download data from CMS API using provided UUID and dataset info with pagination support
     """
@@ -52,6 +102,7 @@ def download_cms_data(uuid, dataset_info, log_entries):
         limit = 1000
         all_data = []
         more_data = True
+        last_print_count = 0
         
         print(f"Downloading data for {dataset_name}...")
         
@@ -59,7 +110,10 @@ def download_cms_data(uuid, dataset_info, log_entries):
         while more_data:
             # Construct URL with pagination parameters
             metadata_url = f"{base_url}/{uuid}/data?offset={offset}&limit={limit}"
-            print(f"Fetching page at offset {offset}...")
+            
+            # Only print offset info for first page or every 10 pages
+            if offset == 0 or offset % 10000 == 0:
+                print(f"Fetching data at offset {offset}...")
             
             metadata_response = requests.get(metadata_url)
             metadata_response.raise_for_status()
@@ -71,7 +125,11 @@ def download_cms_data(uuid, dataset_info, log_entries):
                     page_count = len(page_data)
                     all_data.extend(page_data)
                     
-                    print(f"Retrieved {page_count} records (total so far: {len(all_data)})")
+                    # Only print progress every 10,000 rows
+                    current_count = len(all_data)
+                    if current_count - last_print_count >= 10000 or page_count < limit:
+                        print(f"Retrieved {current_count} records so far...")
+                        last_print_count = current_count
                     
                     # If we got fewer records than the limit, we've reached the end
                     if page_count < limit:
@@ -86,24 +144,24 @@ def download_cms_data(uuid, dataset_info, log_entries):
                     
             except json.JSONDecodeError as e:
                 print(f"Failed to parse JSON response: {e}")
-                log_entries.append(create_log_entry(
+                create_log_entry(
                     uuid,
                     metadata_response.status_code,
                     metadata_response.text[:1000],
                     False,
                     dataset_info,
                     f"JSON Parse Error: {str(e)}"
-                ))
+                )
                 return False
         
         # Log successful API response
-        log_entries.append(create_log_entry(
+        create_log_entry(
             uuid,
             200,
             f"Successfully retrieved {len(all_data)} records",
             True,
             dataset_info
-        ))
+        )
         
         # Save the data
         if all_data:
@@ -122,20 +180,22 @@ def download_cms_data(uuid, dataset_info, log_entries):
     except requests.exceptions.RequestException as e:
         print(f"Error downloading data: {e}")
         error_response = e.response if hasattr(e, 'response') else None
-        log_entries.append(create_log_entry(
+        create_log_entry(
             uuid,
             error_response.status_code if error_response else 'N/A',
-            error_response.text if error_response else 'N/A',
+            error_response.text[:1000] if error_response else 'N/A',
             False,
             dataset_info,
             str(e)
-        ))
+        )
         return False
 
 def process_cms_datasets_file(csv_path="cms_datasets.csv"):
     """
     Read dataset information from cms_datasets.csv and download data for each
     """
+    global log_file
+    
     try:
         # Create logs directory
         logs_dir = Path("/Users/arianakhavan/Documents/reference_data/logs")
@@ -145,10 +205,13 @@ def process_cms_datasets_file(csv_path="cms_datasets.csv"):
         run_id = str(uuid_lib.uuid4())[:8]
         current_date = datetime.now().strftime("%Y_%m_%d")
         timestamp = datetime.now().strftime("%H_%M_%S")
-        log_filename = logs_dir / f"logs_run_{run_id}_{current_date}_{timestamp}.json"
+        log_file = logs_dir / f"logs_run_{run_id}_{current_date}_{timestamp}.json"
         
-        # Initialize log entries list
-        log_entries = []
+        print(f"Logging to: {log_file}")
+        
+        # Initialize the log file with an empty array
+        with open(log_file, 'w') as f:
+            json.dump([], f)
         
         # Read the CSV file using pandas
         df = pd.read_csv(csv_path)
@@ -169,7 +232,6 @@ def process_cms_datasets_file(csv_path="cms_datasets.csv"):
         failed_downloads = 0
         
         print(f"Found {total_datasets} datasets with valid UUIDs to process")
-        print(f"Logging to: {log_filename}")
         
         # Process each row
         for index, row in df.iterrows():
@@ -185,21 +247,20 @@ def process_cms_datasets_file(csv_path="cms_datasets.csv"):
                 'dataset_notes': row.get('dataset_url', '')  # Use dataset_url as notes
             }
             
-            if download_cms_data(row['uuid'], dataset_info, log_entries):
+            if download_cms_data(row['uuid'], dataset_info):
                 successful_downloads += 1
             else:
                 failed_downloads += 1
         
-        # Save logs to file
-        with open(log_filename, 'w') as f:
-            json.dump(log_entries, f, indent=2)
+        # Ensure all remaining logs are written
+        write_logs_to_file()
         
         # Print summary
         print(f"\nDownload Summary:")
         print(f"Total datasets processed: {total_datasets}")
         print(f"Successful downloads: {successful_downloads}")
         print(f"Failed downloads: {failed_downloads}")
-        print(f"Logs saved to: {log_filename}")
+        print(f"Logs saved to: {log_file}")
         
     except FileNotFoundError:
         print(f"Error: Could not find CSV file at {csv_path}")
@@ -209,9 +270,18 @@ def process_cms_datasets_file(csv_path="cms_datasets.csv"):
         sys.exit(1)
     except Exception as e:
         print(f"Error processing CSV file: {e}")
+        # Make sure logs are written even on exception
+        write_logs_to_file()
         sys.exit(1)
 
 def main():
+    # Register signal handlers for graceful exit
+    signal.signal(signal.SIGINT, signal_handler)  # Ctrl+C
+    signal.signal(signal.SIGTERM, signal_handler)  # Termination signal
+    
+    # Register exit handler to ensure logs are written
+    atexit.register(write_logs_to_file)
+    
     if len(sys.argv) > 1:
         csv_path = sys.argv[1]
     else:
