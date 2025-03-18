@@ -8,10 +8,17 @@ from datetime import datetime
 import uuid as uuid_lib
 import atexit
 import signal
+import threading
+import queue
+import time
 
 # Global variables for log handling
 log_file = None
 log_entries = []
+
+# Global variables for user input
+input_queue = queue.Queue()
+skip_current_dataset = False
 
 def write_logs_to_file():
     """
@@ -73,10 +80,45 @@ def create_log_entry(uuid, status_code, response_content, success, dataset_info,
         
     return entry
 
+def input_listener():
+    """
+    Background thread that listens for user input to skip current dataset
+    """
+    global input_queue
+    while True:
+        user_input = input()
+        input_queue.put(user_input)
+
+def check_for_skip_command():
+    """
+    Check if user has entered a command to skip the current dataset
+    """
+    global input_queue, skip_current_dataset
+    
+    try:
+        # Check if there's any input in the queue (non-blocking)
+        while not input_queue.empty():
+            user_input = input_queue.get_nowait()
+            # If user enters 's' or 'skip', set the flag to skip current dataset
+            if user_input.lower() in ['s', 'skip']:
+                print("\n*** User requested to skip current dataset ***")
+                skip_current_dataset = True
+                return True
+    except queue.Empty:
+        pass
+    
+    return False
+
 def download_cms_data(uuid, dataset_info):
     """
     Download data from CMS API using provided UUID and dataset info with pagination support
+    Streams results directly to CSV without storing everything in memory
     """
+    global skip_current_dataset
+    
+    # Reset the skip flag at the start of each dataset
+    skip_current_dataset = False
+    
     # Define output directory
     output_dir = Path("/Users/arianakhavan/Documents/reference_data")
     
@@ -99,19 +141,36 @@ def download_cms_data(uuid, dataset_info):
         
         # Initialize variables for pagination
         offset = 0
-        limit = 1000
-        all_data = []
+        batch_size = 5000  # Increased to maximum allowed batch size of 5000
         more_data = True
-        last_print_count = 0
+        total_records = 0
+        csv_writer = None
+        csv_file = None
         
         print(f"Downloading data for {dataset_name}...")
+        print("Type 's' or 'skip' and press Enter at any time to skip this dataset")
         
         # Loop to handle pagination
         while more_data:
-            # Construct URL with pagination parameters
-            metadata_url = f"{base_url}/{uuid}/data?offset={offset}&limit={limit}"
+            # Check if user wants to skip the current dataset
+            if check_for_skip_command():
+                if csv_file:
+                    csv_file.close()
+                print(f"Skipping dataset: {dataset_name}")
+                create_log_entry(
+                    uuid,
+                    'SKIPPED',
+                    f"User manually skipped after retrieving {total_records} records.",
+                    False,
+                    dataset_info,
+                    "User manually interrupted download"
+                )
+                return False
+                
+            # Construct URL with pagination parameters using 'size' parameter instead of 'limit'
+            metadata_url = f"{base_url}/{uuid}/data?size={batch_size}&offset={offset}"
             
-            # Only print offset info for first page or every 10 pages
+            # Only print offset info for first page or every 2 pages (10,000 records)
             if offset == 0 or offset % 10000 == 0:
                 print(f"Fetching data at offset {offset}...")
             
@@ -123,23 +182,37 @@ def download_cms_data(uuid, dataset_info):
                 
                 if isinstance(page_data, list):
                     page_count = len(page_data)
-                    all_data.extend(page_data)
                     
-                    # Only print progress every 10,000 rows
-                    current_count = len(all_data)
-                    if current_count - last_print_count >= 10000 or page_count < limit:
-                        print(f"Retrieved {current_count} records so far...")
-                        last_print_count = current_count
+                    # Initialize CSV writer on first batch
+                    if csv_file is None and page_count > 0:
+                        csv_file = open(output_filename, 'w', newline='')
+                        csv_writer = csv.DictWriter(csv_file, fieldnames=page_data[0].keys())
+                        csv_writer.writeheader()
                     
-                    # If we got fewer records than the limit, we've reached the end
-                    if page_count < limit:
+                    # Stream this batch to CSV directly
+                    if csv_writer and page_count > 0:
+                        csv_writer.writerows(page_data)
+                        total_records += page_count
+                        
+                        # Update progress every 10,000 records
+                        if total_records % 10000 == 0 or page_count < batch_size:
+                            print(f"Written {total_records} records so far...")
+                    
+                    # If we got fewer records than the batch size, we've reached the end
+                    if page_count < batch_size:
                         more_data = False
                     else:
                         # Move to the next page
-                        offset += limit
+                        offset += batch_size
                 else:
-                    # Not a list response, just use this data
-                    all_data = page_data
+                    # Handle non-list response (single object)
+                    if csv_file is None:
+                        csv_file = open(output_filename, 'w', newline='')
+                        if isinstance(page_data, dict):
+                            csv_writer = csv.DictWriter(csv_file, fieldnames=page_data.keys())
+                            csv_writer.writeheader()
+                            csv_writer.writerow(page_data)
+                            total_records = 1
                     more_data = False
                     
             except json.JSONDecodeError as e:
@@ -152,30 +225,26 @@ def download_cms_data(uuid, dataset_info):
                     dataset_info,
                     f"JSON Parse Error: {str(e)}"
                 )
+                # Close file if open
+                if csv_file:
+                    csv_file.close()
                 return False
+        
+        # Close the CSV file
+        if csv_file:
+            csv_file.close()
+            print(f"Successfully downloaded {total_records} records to: {output_filename}")
         
         # Log successful API response
         create_log_entry(
             uuid,
             200,
-            f"Successfully retrieved {len(all_data)} records",
+            f"Successfully retrieved {total_records} records",
             True,
             dataset_info
         )
         
-        # Save the data
-        if all_data:
-            with open(output_filename, 'w', newline='') as f:
-                if isinstance(all_data, list) and len(all_data) > 0:
-                    import csv
-                    writer = csv.DictWriter(f, fieldnames=all_data[0].keys())
-                    writer.writeheader()
-                    writer.writerows(all_data)
-                    print(f"Successfully downloaded {len(all_data)} records to: {output_filename}")
-                    return True
-                else:
-                    print("No data found in the response")
-                    return False
+        return True if total_records > 0 else False
         
     except requests.exceptions.RequestException as e:
         print(f"Error downloading data: {e}")
@@ -188,6 +257,9 @@ def download_cms_data(uuid, dataset_info):
             dataset_info,
             str(e)
         )
+        # Close file if open
+        if 'csv_file' in locals() and csv_file:
+            csv_file.close()
         return False
 
 def process_cms_datasets_file(csv_path="cms_datasets.csv"):
@@ -230,8 +302,10 @@ def process_cms_datasets_file(csv_path="cms_datasets.csv"):
         total_datasets = len(df)
         successful_downloads = 0
         failed_downloads = 0
+        skipped_datasets = 0
         
         print(f"Found {total_datasets} datasets with valid UUIDs to process")
+        print("Type 's' or 'skip' at any time to skip the current dataset and move to the next one")
         
         # Process each row
         for index, row in df.iterrows():
@@ -251,6 +325,9 @@ def process_cms_datasets_file(csv_path="cms_datasets.csv"):
                 successful_downloads += 1
             else:
                 failed_downloads += 1
+                # Check if it was manually skipped
+                if len(log_entries) > 0 and log_entries[-1].get('status_code') == 'SKIPPED':
+                    skipped_datasets += 1
         
         # Ensure all remaining logs are written
         write_logs_to_file()
@@ -260,6 +337,7 @@ def process_cms_datasets_file(csv_path="cms_datasets.csv"):
         print(f"Total datasets processed: {total_datasets}")
         print(f"Successful downloads: {successful_downloads}")
         print(f"Failed downloads: {failed_downloads}")
+        print(f"  of which manually skipped: {skipped_datasets}")
         print(f"Logs saved to: {log_file}")
         
     except FileNotFoundError:
@@ -281,6 +359,10 @@ def main():
     
     # Register exit handler to ensure logs are written
     atexit.register(write_logs_to_file)
+    
+    # Start the input listener thread
+    input_thread = threading.Thread(target=input_listener, daemon=True)
+    input_thread.start()
     
     if len(sys.argv) > 1:
         csv_path = sys.argv[1]
