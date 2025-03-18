@@ -100,7 +100,7 @@ def download_cms_data(uuid, dataset_info):
         
         # Initialize variables for pagination
         offset = 0
-        limit = 1000
+        batch_size = 5000  # Increased to maximum allowed batch size of 5000
         more_data = True
         total_records = 0
         csv_writer = None
@@ -110,10 +110,10 @@ def download_cms_data(uuid, dataset_info):
         
         # Loop to handle pagination
         while more_data:
-            # Construct URL with pagination parameters
-            metadata_url = f"{base_url}/{uuid}/data?offset={offset}&limit={limit}"
+            # Construct URL with pagination parameters using 'size' parameter instead of 'limit'
+            metadata_url = f"{base_url}/{uuid}/data?size={batch_size}&offset={offset}"
             
-            # Only print offset info for first page or every 10 pages
+            # Only print offset info for first page or every 2 pages (10,000 records)
             if offset == 0 or offset % 10000 == 0:
                 print(f"Fetching data at offset {offset}...")
             
@@ -138,15 +138,15 @@ def download_cms_data(uuid, dataset_info):
                         total_records += page_count
                         
                         # Update progress every 10,000 records
-                        if total_records % 10000 == 0 or page_count < limit:
+                        if total_records % 10000 == 0 or page_count < batch_size:
                             print(f"Written {total_records} records so far...")
                     
-                    # If we got fewer records than the limit, we've reached the end
-                    if page_count < limit:
+                    # If we got fewer records than the batch size, we've reached the end
+                    if page_count < batch_size:
                         more_data = False
                     else:
                         # Move to the next page
-                        offset += limit
+                        offset += batch_size
                 else:
                     # Handle non-list response (single object)
                     if csv_file is None:
