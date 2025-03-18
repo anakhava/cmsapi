@@ -11,6 +11,8 @@ import signal
 import threading
 import queue
 import time
+import concurrent.futures
+from functools import partial
 
 # Global variables for log handling
 log_file = None
@@ -161,8 +163,17 @@ def download_cms_data(uuid, dataset_info):
     """
     global skip_current_dataset
     
-    # Reset the skip flag at the start of each dataset
-    skip_current_dataset = False
+    # Create thread-local log entries list if not exists
+    thread_local = threading.local()
+    if not hasattr(thread_local, 'log_entries'):
+        thread_local.log_entries = []
+    
+    # Create a thread-specific skip flag
+    thread_skip = False
+    
+    # Use a unique prefix for thread output
+    thread_id = threading.get_ident() % 10000
+    prefix = f"[T-{thread_id}]"
     
     # Define output directory
     output_dir = Path("/Users/arianakhavan/Documents/reference_data")
@@ -195,39 +206,37 @@ def download_cms_data(uuid, dataset_info):
         # Get the expected row count
         expected_rows = dataset_info.get('total_rows')
         if expected_rows is not None:
-            print(f"Downloading data for {dataset_name} ({expected_rows:,} rows)...")
+            print(f"{prefix} Downloading data for {dataset_name} ({expected_rows:,} rows)...")
         else:
-            print(f"Downloading data for {dataset_name} (row count unknown)...")
-            
-        print("Type 's' or 'skip' and press Enter at any time to skip this dataset")
+            print(f"{prefix} Downloading data for {dataset_name} (row count unknown)...")
         
         # Loop to handle pagination
-        while more_data:
-            # Check if user wants to skip the current dataset
+        while more_data and not thread_skip and not skip_current_dataset:
+            # Check if global skip flag is set (affects all threads)
             if check_for_skip_command():
                 if csv_file:
                     csv_file.close()
-                print(f"Skipping dataset: {dataset_name}")
-                create_log_entry(
+                print(f"{prefix} Skipping dataset: {dataset_name}")
+                thread_local.log_entries.append(create_log_entry_thread_safe(
                     uuid,
                     'SKIPPED',
                     f"User manually skipped after retrieving {total_records} rows.",
                     False,
                     dataset_info,
                     "User manually interrupted download"
-                )
+                ))
                 return False
                 
-            # Construct URL with pagination parameters using 'size' parameter instead of 'limit'
+            # Rest of the function remains the same, but add the thread prefix to all print statements
             metadata_url = f"{base_url}/{uuid}/data?size={batch_size}&offset={offset}"
             
             # Only print offset info for first page or every 2 pages (10,000 records)
             if offset == 0 or offset % 10000 == 0:
                 if expected_rows and expected_rows > 0:
                     progress_pct = (total_records / expected_rows) * 100
-                    print(f"Fetching data at offset {offset}... ({total_records:,}/{expected_rows:,} rows, {progress_pct:.1f}%)")
+                    print(f"{prefix} Fetching data at offset {offset}... ({total_records:,}/{expected_rows:,} rows, {progress_pct:.1f}%)")
                 else:
-                    print(f"Fetching data at offset {offset}...")
+                    print(f"{prefix} Fetching data at offset {offset}...")
             
             metadata_response = requests.get(metadata_url)
             metadata_response.raise_for_status()
@@ -253,9 +262,9 @@ def download_cms_data(uuid, dataset_info):
                         if total_records % 10000 == 0 or page_count < batch_size:
                             if expected_rows and expected_rows > 0:
                                 progress_pct = (total_records / expected_rows) * 100
-                                print(f"Written {total_records:,} of {expected_rows:,} rows so far... ({progress_pct:.1f}%)")
+                                print(f"{prefix} Written {total_records:,} of {expected_rows:,} rows so far... ({progress_pct:.1f}%)")
                             else:
-                                print(f"Written {total_records:,} rows so far...")
+                                print(f"{prefix} Written {total_records:,} rows so far...")
                     
                     # If we got fewer records than the batch size, we've reached the end
                     if page_count < batch_size:
@@ -275,15 +284,15 @@ def download_cms_data(uuid, dataset_info):
                     more_data = False
                     
             except json.JSONDecodeError as e:
-                print(f"Failed to parse JSON response: {e}")
-                create_log_entry(
+                print(f"{prefix} Failed to parse JSON response: {e}")
+                thread_local.log_entries.append(create_log_entry_thread_safe(
                     uuid,
                     metadata_response.status_code,
                     metadata_response.text[:1000],
                     False,
                     dataset_info,
                     f"JSON Parse Error: {str(e)}"
-                )
+                ))
                 # Close file if open
                 if csv_file:
                     csv_file.close()
@@ -293,40 +302,64 @@ def download_cms_data(uuid, dataset_info):
         if csv_file:
             csv_file.close()
             if expected_rows and expected_rows > 0:
-                print(f"Successfully downloaded {total_records:,} of {expected_rows:,} rows to: {output_filename}")
+                print(f"{prefix} Successfully downloaded {total_records:,} of {expected_rows:,} rows to: {output_filename}")
                 
                 # Check if we got all the rows we expected
                 if total_records < expected_rows:
-                    print(f"Warning: Downloaded fewer rows ({total_records:,}) than expected ({expected_rows:,})")
+                    print(f"{prefix} Warning: Downloaded fewer rows ({total_records:,}) than expected ({expected_rows:,})")
             else:
-                print(f"Successfully downloaded {total_records:,} rows to: {output_filename}")
+                print(f"{prefix} Successfully downloaded {total_records:,} rows to: {output_filename}")
         
         # Log successful API response
-        create_log_entry(
+        thread_local.log_entries.append(create_log_entry_thread_safe(
             uuid,
             200,
             f"Successfully retrieved {total_records:,} rows",
             True,
             dataset_info
-        )
+        ))
         
         return True if total_records > 0 else False
         
     except requests.exceptions.RequestException as e:
-        print(f"Error downloading data: {e}")
+        print(f"{prefix} Error downloading data: {e}")
         error_response = e.response if hasattr(e, 'response') else None
-        create_log_entry(
+        thread_local.log_entries.append(create_log_entry_thread_safe(
             uuid,
             error_response.status_code if error_response else 'N/A',
             error_response.text[:1000] if error_response else 'N/A',
             False,
             dataset_info,
             str(e)
-        )
+        ))
         # Close file if open
         if 'csv_file' in locals() and csv_file:
             csv_file.close()
         return False
+
+# Create a thread-safe version of the log entry function
+def create_log_entry_thread_safe(uuid, status_code, response_content, success, dataset_info, error_message=None):
+    """
+    Create a structured log entry but don't add it to the global list
+    Returns the entry for thread-local storage
+    """
+    entry = {
+        "timestamp": datetime.now().isoformat(),
+        "uuid": uuid,
+        "dataset_name": dataset_info.get('dataset_name', ''),
+        "dataset_description": dataset_info.get('dataset_description', ''),
+        "dataset_notes": dataset_info.get('dataset_notes', ''),
+        "status_code": status_code,
+        "response_content": response_content,
+        "success": success,
+        "error_message": error_message
+    }
+    
+    # Add row count to the log entry if it exists
+    if 'total_rows' in dataset_info:
+        entry['total_rows'] = dataset_info['total_rows']
+    
+    return entry
 
 def process_cms_datasets_file(csv_path="cms_datasets.csv"):
     """
@@ -373,13 +406,10 @@ def process_cms_datasets_file(csv_path="cms_datasets.csv"):
         print(f"Found {total_datasets} datasets with valid UUIDs to process")
         print("Type 's' or 'skip' at any time to skip the current dataset and move to the next one")
         
-        # Process each row
+        # Prepare datasets by getting their row count first
+        datasets_with_info = []
         for i, (index, row) in enumerate(df.iterrows()):
-            print(f"\nProcessing dataset {i + 1} of {total_datasets}")
-            print(f"UUID: {row['uuid']}")
-            print(f"Dataset: {row['title']}")
-            print(f"Description: {row['description'][:100]}...")  # Show first 100 chars
-            
+            print(f"\nChecking dataset {i + 1} of {total_datasets}: {row['title']}")
             # Get the row count for this dataset
             row_count = get_dataset_row_count(row['uuid'])
             if row_count is not None:
@@ -391,17 +421,49 @@ def process_cms_datasets_file(csv_path="cms_datasets.csv"):
             dataset_info = {
                 'dataset_name': row['title'],
                 'dataset_description': row['description'],
-                'dataset_notes': row.get('dataset_url', ''),  # Use dataset_url as notes
-                'total_rows': row_count  # Add the row count to the dataset info
+                'dataset_notes': row.get('dataset_url', ''),
+                'total_rows': row_count
             }
-            
-            if download_cms_data(row['uuid'], dataset_info):
+            datasets_with_info.append((row['uuid'], dataset_info))
+        
+        # Split datasets into large (>1M rows) and small
+        large_datasets = []
+        small_datasets = []
+        for uuid, info in datasets_with_info:
+            if info.get('total_rows', 0) and info['total_rows'] > 1000000:
+                large_datasets.append((uuid, info))
+            else:
+                small_datasets.append((uuid, info))
+        
+        print(f"\nFound {len(large_datasets)} large datasets and {len(small_datasets)} smaller datasets")
+        
+        # Process small datasets sequentially
+        for uuid, dataset_info in small_datasets:
+            print(f"\nProcessing smaller dataset: {dataset_info['dataset_name']}")
+            if download_cms_data(uuid, dataset_info):
                 successful_downloads += 1
             else:
                 failed_downloads += 1
-                # Check if it was manually skipped
                 if len(log_entries) > 0 and log_entries[-1].get('status_code') == 'SKIPPED':
                     skipped_datasets += 1
+        
+        # Process large datasets in parallel with a controlled number of workers
+        if large_datasets:
+            print(f"\nProcessing {len(large_datasets)} large datasets in parallel...")
+            max_workers = min(3, len(large_datasets))  # Limit to 3 parallel downloads
+            
+            with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+                futures = [executor.submit(download_cms_data, uuid, dataset_info) for uuid, dataset_info in large_datasets]
+                for future in concurrent.futures.as_completed(futures):
+                    try:
+                        result = future.result()
+                        if result:
+                            successful_downloads += 1
+                        else:
+                            failed_downloads += 1
+                    except Exception as e:
+                        print(f"Error in parallel download: {e}")
+                        failed_downloads += 1
         
         # Ensure all remaining logs are written
         write_logs_to_file()
