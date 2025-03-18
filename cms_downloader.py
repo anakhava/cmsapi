@@ -76,6 +76,7 @@ def create_log_entry(uuid, status_code, response_content, success, dataset_info,
 def download_cms_data(uuid, dataset_info):
     """
     Download data from CMS API using provided UUID and dataset info with pagination support
+    Streams results directly to CSV without storing everything in memory
     """
     # Define output directory
     output_dir = Path("/Users/arianakhavan/Documents/reference_data")
@@ -100,9 +101,10 @@ def download_cms_data(uuid, dataset_info):
         # Initialize variables for pagination
         offset = 0
         limit = 1000
-        all_data = []
         more_data = True
-        last_print_count = 0
+        total_records = 0
+        csv_writer = None
+        csv_file = None
         
         print(f"Downloading data for {dataset_name}...")
         
@@ -123,13 +125,21 @@ def download_cms_data(uuid, dataset_info):
                 
                 if isinstance(page_data, list):
                     page_count = len(page_data)
-                    all_data.extend(page_data)
                     
-                    # Only print progress every 10,000 rows
-                    current_count = len(all_data)
-                    if current_count - last_print_count >= 10000 or page_count < limit:
-                        print(f"Retrieved {current_count} records so far...")
-                        last_print_count = current_count
+                    # Initialize CSV writer on first batch
+                    if csv_file is None and page_count > 0:
+                        csv_file = open(output_filename, 'w', newline='')
+                        csv_writer = csv.DictWriter(csv_file, fieldnames=page_data[0].keys())
+                        csv_writer.writeheader()
+                    
+                    # Stream this batch to CSV directly
+                    if csv_writer and page_count > 0:
+                        csv_writer.writerows(page_data)
+                        total_records += page_count
+                        
+                        # Update progress every 10,000 records
+                        if total_records % 10000 == 0 or page_count < limit:
+                            print(f"Written {total_records} records so far...")
                     
                     # If we got fewer records than the limit, we've reached the end
                     if page_count < limit:
@@ -138,8 +148,14 @@ def download_cms_data(uuid, dataset_info):
                         # Move to the next page
                         offset += limit
                 else:
-                    # Not a list response, just use this data
-                    all_data = page_data
+                    # Handle non-list response (single object)
+                    if csv_file is None:
+                        csv_file = open(output_filename, 'w', newline='')
+                        if isinstance(page_data, dict):
+                            csv_writer = csv.DictWriter(csv_file, fieldnames=page_data.keys())
+                            csv_writer.writeheader()
+                            csv_writer.writerow(page_data)
+                            total_records = 1
                     more_data = False
                     
             except json.JSONDecodeError as e:
@@ -152,30 +168,26 @@ def download_cms_data(uuid, dataset_info):
                     dataset_info,
                     f"JSON Parse Error: {str(e)}"
                 )
+                # Close file if open
+                if csv_file:
+                    csv_file.close()
                 return False
+        
+        # Close the CSV file
+        if csv_file:
+            csv_file.close()
+            print(f"Successfully downloaded {total_records} records to: {output_filename}")
         
         # Log successful API response
         create_log_entry(
             uuid,
             200,
-            f"Successfully retrieved {len(all_data)} records",
+            f"Successfully retrieved {total_records} records",
             True,
             dataset_info
         )
         
-        # Save the data
-        if all_data:
-            with open(output_filename, 'w', newline='') as f:
-                if isinstance(all_data, list) and len(all_data) > 0:
-                    import csv
-                    writer = csv.DictWriter(f, fieldnames=all_data[0].keys())
-                    writer.writeheader()
-                    writer.writerows(all_data)
-                    print(f"Successfully downloaded {len(all_data)} records to: {output_filename}")
-                    return True
-                else:
-                    print("No data found in the response")
-                    return False
+        return True if total_records > 0 else False
         
     except requests.exceptions.RequestException as e:
         print(f"Error downloading data: {e}")
@@ -188,6 +200,9 @@ def download_cms_data(uuid, dataset_info):
             dataset_info,
             str(e)
         )
+        # Close file if open
+        if 'csv_file' in locals() and csv_file:
+            csv_file.close()
         return False
 
 def process_cms_datasets_file(csv_path="cms_datasets.csv"):
