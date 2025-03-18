@@ -72,6 +72,10 @@ def create_log_entry(uuid, status_code, response_content, success, dataset_info,
         "error_message": error_message
     }
     
+    # Add row count to the log entry if it exists
+    if 'total_rows' in dataset_info:
+        entry['total_rows'] = dataset_info['total_rows']
+    
     log_entries.append(entry)
     
     # Write logs to file after every 5 entries or on errors
@@ -108,6 +112,47 @@ def check_for_skip_command():
         pass
     
     return False
+
+def get_dataset_row_count(uuid):
+    """
+    Call the count endpoint to get the total number of rows in a dataset
+    
+    Args:
+        uuid: The UUID of the dataset
+        
+    Returns:
+        int: The number of rows in the dataset, or None if the request fails
+    """
+    base_url = "https://data.cms.gov/data-api/v1/dataset"
+    # Use the correct endpoint URL pattern based on the sample response
+    count_url = f"{base_url}/{uuid}/data-viewer/stats"
+    
+    try:
+        print(f"Fetching row count from: {count_url}")
+        response = requests.get(count_url, timeout=30)
+        response.raise_for_status()
+        
+        # Check if we got a valid response with content
+        if response.text.strip():
+            try:
+                count_data = response.json()
+                
+                # Check if the response has the expected structure
+                if 'data' in count_data and 'found_rows' in count_data['data']:
+                    row_count = count_data['data']['found_rows']
+                    return row_count
+                else:
+                    print(f"Warning: Unexpected response format from count endpoint: {count_data}")
+            except json.JSONDecodeError as json_err:
+                print(f"JSON parse error: {json_err}")
+                print(f"Response content: {response.text[:100]}...")
+        else:
+            print(f"Warning: Empty response received from count endpoint")
+            
+    except requests.exceptions.RequestException as e:
+        print(f"Error getting row count for dataset {uuid}: {e}")
+    
+    return None
 
 def download_cms_data(uuid, dataset_info):
     """
@@ -147,7 +192,13 @@ def download_cms_data(uuid, dataset_info):
         csv_writer = None
         csv_file = None
         
-        print(f"Downloading data for {dataset_name}...")
+        # Get the expected row count
+        expected_rows = dataset_info.get('total_rows')
+        if expected_rows is not None:
+            print(f"Downloading data for {dataset_name} ({expected_rows:,} rows)...")
+        else:
+            print(f"Downloading data for {dataset_name} (row count unknown)...")
+            
         print("Type 's' or 'skip' and press Enter at any time to skip this dataset")
         
         # Loop to handle pagination
@@ -160,7 +211,7 @@ def download_cms_data(uuid, dataset_info):
                 create_log_entry(
                     uuid,
                     'SKIPPED',
-                    f"User manually skipped after retrieving {total_records} records.",
+                    f"User manually skipped after retrieving {total_records} rows.",
                     False,
                     dataset_info,
                     "User manually interrupted download"
@@ -172,7 +223,11 @@ def download_cms_data(uuid, dataset_info):
             
             # Only print offset info for first page or every 2 pages (10,000 records)
             if offset == 0 or offset % 10000 == 0:
-                print(f"Fetching data at offset {offset}...")
+                if expected_rows and expected_rows > 0:
+                    progress_pct = (total_records / expected_rows) * 100
+                    print(f"Fetching data at offset {offset}... ({total_records:,}/{expected_rows:,} rows, {progress_pct:.1f}%)")
+                else:
+                    print(f"Fetching data at offset {offset}...")
             
             metadata_response = requests.get(metadata_url)
             metadata_response.raise_for_status()
@@ -196,7 +251,11 @@ def download_cms_data(uuid, dataset_info):
                         
                         # Update progress every 10,000 records
                         if total_records % 10000 == 0 or page_count < batch_size:
-                            print(f"Written {total_records} records so far...")
+                            if expected_rows and expected_rows > 0:
+                                progress_pct = (total_records / expected_rows) * 100
+                                print(f"Written {total_records:,} of {expected_rows:,} rows so far... ({progress_pct:.1f}%)")
+                            else:
+                                print(f"Written {total_records:,} rows so far...")
                     
                     # If we got fewer records than the batch size, we've reached the end
                     if page_count < batch_size:
@@ -233,13 +292,20 @@ def download_cms_data(uuid, dataset_info):
         # Close the CSV file
         if csv_file:
             csv_file.close()
-            print(f"Successfully downloaded {total_records} records to: {output_filename}")
+            if expected_rows and expected_rows > 0:
+                print(f"Successfully downloaded {total_records:,} of {expected_rows:,} rows to: {output_filename}")
+                
+                # Check if we got all the rows we expected
+                if total_records < expected_rows:
+                    print(f"Warning: Downloaded fewer rows ({total_records:,}) than expected ({expected_rows:,})")
+            else:
+                print(f"Successfully downloaded {total_records:,} rows to: {output_filename}")
         
         # Log successful API response
         create_log_entry(
             uuid,
             200,
-            f"Successfully retrieved {total_records} records",
+            f"Successfully retrieved {total_records:,} rows",
             True,
             dataset_info
         )
@@ -308,17 +374,25 @@ def process_cms_datasets_file(csv_path="cms_datasets.csv"):
         print("Type 's' or 'skip' at any time to skip the current dataset and move to the next one")
         
         # Process each row
-        for index, row in df.iterrows():
-            print(f"\nProcessing dataset {index + 1} of {total_datasets}")
+        for i, (index, row) in enumerate(df.iterrows()):
+            print(f"\nProcessing dataset {i + 1} of {total_datasets}")
             print(f"UUID: {row['uuid']}")
             print(f"Dataset: {row['title']}")
             print(f"Description: {row['description'][:100]}...")  # Show first 100 chars
+            
+            # Get the row count for this dataset
+            row_count = get_dataset_row_count(row['uuid'])
+            if row_count is not None:
+                print(f"Dataset contains {row_count:,} rows")
+            else:
+                print("Could not determine row count for this dataset")
             
             # Create dataset info dictionary
             dataset_info = {
                 'dataset_name': row['title'],
                 'dataset_description': row['description'],
-                'dataset_notes': row.get('dataset_url', '')  # Use dataset_url as notes
+                'dataset_notes': row.get('dataset_url', ''),  # Use dataset_url as notes
+                'total_rows': row_count  # Add the row count to the dataset info
             }
             
             if download_cms_data(row['uuid'], dataset_info):
