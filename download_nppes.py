@@ -2,6 +2,45 @@ import requests
 from bs4 import BeautifulSoup
 import os
 from datetime import datetime
+import json
+import uuid
+
+def create_log_entry(status_code, response_content, success, error_message=None):
+    """
+    Create a structured log entry
+    """
+    entry = {
+        "timestamp": datetime.now().isoformat(),
+        "uuid": str(uuid.uuid4()),
+        "dataset_name": "NPPES Data Dissemination V.2",
+        "dataset_description": "National Plan and Provider Enumeration System (NPPES) Data Dissemination File",
+        "status_code": status_code,
+        "response_content": response_content,
+        "success": success,
+        "error_message": error_message
+    }
+    return entry
+
+def write_logs_to_file(log_entries, log_file):
+    """
+    Write log entries to the log file
+    """
+    try:
+        # Read existing logs if file exists and has content
+        existing_logs = []
+        if os.path.exists(log_file) and os.path.getsize(log_file) > 0:
+            with open(log_file, 'r') as f:
+                existing_logs = json.load(f)
+        
+        # Combine existing logs with new entries
+        all_logs = existing_logs + log_entries
+        
+        # Write all logs back to file
+        with open(log_file, 'w') as f:
+            json.dump(all_logs, f, indent=2)
+            
+    except Exception as e:
+        print(f"Error writing logs to file: {e}")
 
 def download_nppes_data():
     # URL of the NPPES files page
@@ -9,6 +48,19 @@ def download_nppes_data():
     
     # Specify the target directory
     target_dir = "/Users/arianakhavan/Documents/reference_data"
+    
+    # Create logs directory
+    logs_dir = os.path.join(target_dir, "logs")
+    os.makedirs(logs_dir, exist_ok=True)
+    
+    # Generate log filename
+    run_id = str(uuid.uuid4())[:8]
+    current_date = datetime.now().strftime("%Y_%m_%d")
+    timestamp = datetime.now().strftime("%H_%M_%S")
+    log_file = os.path.join(logs_dir, f"nppes_logs_run_{run_id}_{current_date}_{timestamp}.json")
+    
+    # Initialize log entries list
+    log_entries = []
     
     try:
         # Send a GET request to the URL
@@ -22,7 +74,15 @@ def download_nppes_data():
         download_link = soup.find('a', string=lambda x: x and 'NPPES Data Dissemination V.2' in x)
         
         if not download_link:
-            raise Exception("Could not find the download link")
+            error_msg = "Could not find the download link"
+            log_entries.append(create_log_entry(
+                'NOT_FOUND',
+                response.text[:1000],
+                False,
+                error_msg
+            ))
+            write_logs_to_file(log_entries, log_file)
+            raise Exception(error_msg)
         
         # Get the href attribute and construct the full URL
         file_url = url.rsplit('/', 1)[0] + '/' + download_link['href']
@@ -46,13 +106,38 @@ def download_nppes_data():
                     f.write(chunk)
         
         print(f"Download completed! File saved to: {file_path}")
+        
+        # Log successful download
+        log_entries.append(create_log_entry(
+            200,
+            f"Successfully downloaded file to {file_path}",
+            True
+        ))
+        write_logs_to_file(log_entries, log_file)
+        
         return file_path
         
     except requests.exceptions.RequestException as e:
-        print(f"Error downloading file: {e}")
+        error_msg = f"Error downloading file: {e}"
+        print(error_msg)
+        log_entries.append(create_log_entry(
+            getattr(e.response, 'status_code', 'N/A'),
+            getattr(e.response, 'text', 'N/A')[:1000],
+            False,
+            error_msg
+        ))
+        write_logs_to_file(log_entries, log_file)
         return None
     except Exception as e:
-        print(f"An error occurred: {e}")
+        error_msg = f"An error occurred: {e}"
+        print(error_msg)
+        log_entries.append(create_log_entry(
+            'ERROR',
+            str(e),
+            False,
+            error_msg
+        ))
+        write_logs_to_file(log_entries, log_file)
         return None
 
 if __name__ == "__main__":
