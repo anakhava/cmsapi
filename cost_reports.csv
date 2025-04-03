@@ -1,0 +1,104 @@
+year,facility_type,file_name,download_url
+2022,"Facility Type
+          SNF-2010",SNF-2010 FY 2022 DATA FILES,https://downloads.cms.gov/files/hcris/snf10fy2022.zip
+2021,"Facility Type
+          SNF-2010",https://downloads.cms.gov/files/hcris/snf10fy2021.zip,https://downloads.cms.gov/files/hcris/snf10fy2021.zip
+2019,HHA,HHAFY2019.zip,https://downloads.cms.gov/Files/hcris/HHAFY2019.zip
+2019,"Facility Type
+          SNF-2010",SNF10 FY 2019 DATA FILES,https://downloads.cms.gov/files/hcris/snf10fy2019.zip
+2019,"Facility Type
+          HOSPITAL-2010",HOSP10FY2019.ZIP,https://downloads.cms.gov/Files/hcris/HOSP10FY2019.zip
+2018,HHA,HHAFY2018.zip,https://downloads.cms.gov/Files/hcris/HHAFY2018.zip
+2018,"Facility Type
+          HOSPITAL-2010",HOSP10FY2018.ZIP,https://downloads.cms.gov/Files/hcris/HOSP10FY2018.zip
+2018,"Facility Type
+          SNF-2010",SNF10 FY 2018 DATA FILES,https://downloads.cms.gov/files/hcris/snf10fy2018.zip
+2017,"Facility Type
+          HOSPITAL-2010",HOSP10FY2017.ZIP,https://downloads.cms.gov/Files/hcris/HOSP10FY2017.zip
+2017,HHA,HHA10FY2017.ZIP,https://downloads.cms.gov/Files/hcris/HHAFY2017.zip
+2017,"Facility Type
+          SNF-2010",SNF10FY2017.ZIP,https://downloads.cms.gov/Files/hcris/SNF10FY2017.zip
+2016,"Facility Type
+          SNF-2010",SNF10FY2016.ZIP,https://downloads.cms.gov/Files/hcris/SNF10FY2016.zip
+2016,"Facility Type
+          Hospital-2010",HOSP10FY2016.ZIP,https://downloads.cms.gov/Files/hcris/HOSP10FY2016.zip
+2016,HHA,HHA10FY2016.ZIP,https://downloads.cms.gov/Files/hcris/HHAFY2016.zip
+2015,HHA,HHAFY2015.ZIP,https://downloads.cms.gov/Files/hcris/HHAFY2015.zip
+2015,"Facility Type
+          Hospital-2010",HOSPITAL-2010 FY2015 DATA FILES,https://downloads.cms.gov/files/hcris/HOSP10FY2015.zip
+2015,"Facility Type
+          SNF-2010",SNF10FY2015.ZIP,https://downloads.cms.gov/Files/hcris/SNF10FY2015.zip
+2014,"Facility Type
+          SNF-2010",SNF10FY2014,https://downloads.cms.gov/Files/hcris/SNF10FY2014.zip
+2014,HHA,HHAFY2014,https://downloads.cms.gov/Files/hcris/HHAFY2014.zip
+2014,"Facility Type
+          Hospital-2010",Hospital-2010,https://downloads.cms.gov/Files/hcris/HOSP10FY2014.zip
+2013,"Facility Type
+          SNF-2010",SNF10FY2013,https://downloads.cms.gov/Files/hcris/SNF10FY2013.zip
+2013,HHA,HHAFY2013.ZIP,https://downloads.cms.gov/Files/hcris/HHAFY2013.zip
+2013,"Facility Type
+          Hospital-2010",Hospital-2010,https://downloads.cms.gov/Files/hcris/HOSP10FY2013.zip
+2012,"Facility Type
+          Hospital-2010",Hospital-2010,https://downloads.cms.gov/Files/hcris/HOSP10FY2012.zip
+2012,HHA,HHAFY2012,https://downloads.cms.gov/Files/hcris/HHAFY2012.zip
+2012,SNF,SNFFY2012.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY2012.zip
+2012,"Facility Type
+          SNF-2010",SNF10 FY 2012 DATA FILES,https://downloads.cms.gov/files/hcris/snf10fy2012.zip
+2011,SNF,SNFFY2011.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY2011.zip
+2011,"Facility Type
+          Hospital-2010",HOSPITAL10FY2011,https://downloads.cms.gov/files/hcris/HOSP10FY2011.zip
+2011,HOSPITAL,HOSPFY2011.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY2011.zip
+2011,"Facility Type
+          SNF-2010",SNF10FY2011,https://downloads.cms.gov/files/hcris/SNF10FY2011.zip
+2011,HHA,HHAFY2011,https://downloads.cms.gov/Files/hcris/HHAFY2011.zip
+2010,"Facility Type
+          Hospital-2010",HOSPITAL10FY2010,https://downloads.cms.gov/Files/hcris/HOSP10FY2010.zip
+2010,HHA,HHAFY2010,https://downloads.cms.gov/Files/hcris/HHAFY2010.zip
+2010,HOSPITAL,HOSPFY2010.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY2010.zip
+2010,SNF,SNFFY2010.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY2010.zip
+2009,HHA,HHAFY2009,http://downloads.cms.gov/Files/hcris/HHAFY2009.zip
+2009,SNF,SNFFY2009.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY2009.zip
+2009,HOSPITAL,HOSPFY2009.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY2009.zip
+2008,HOSPITAL,HOSPFY2008.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY2008.zip
+2008,SNF,SNFFY2008.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY2008.zip
+2008,HHA,HHAFY2008,https://downloads.cms.gov/Files/hcris/HHAFY2008.zip
+2007,SNF,SNFFY2007.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY2007.zip
+2007,HHA,HHAFY2007,https://downloads.cms.gov/Files/hcris/HHAFY2007.zip
+2007,HOSPITAL,HOSPFY2007.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY2007.zip
+2006,HOSPITAL,HOSPFY2006.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY2006.zip
+2006,SNF,SNFFY2006.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY2006.zip
+2006,HHA,HHAFY2006,https://downloads.cms.gov/Files/hcris/HHAFY2006.zip
+2005,HOSPITAL,HOSPFY2005.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY2005.zip
+2005,HHA,HHAFY2005,https://downloads.cms.gov/Files/hcris/HHAFY2005.zip
+2005,SNF,SNFFY2005.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY2005.zip
+2004,HHA,HHAFY2004,https://downloads.cms.gov/Files/hcris/HHAFY2004.zip
+2004,HOSPITAL,HOSPFY2004.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY2004.zip
+2004,SNF,SNFFY2004.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY2004.zip
+2003,SNF,SNFFY2003.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY2003.zip
+2003,HOSPITAL,HOSPFY2003.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY2003.zip
+2003,HHA,HHAFY2003,https://downloads.cms.gov/Files/hcris/HHAFY2003.zip
+2002,SNF,SNFFY2002.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY2002.zip
+2002,HHA,HHAFY2002,http://downloads.cms.gov/Files/hcris/HHAFY2002.zip
+2002,HOSPITAL,HOSPFY2002.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY2002.zip
+2001,HOSPITAL,HOSPFY2001.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY2001.zip
+2001,HHA,HHAFY2001,https://downloads.cms.gov/Files/hcris/HHAFY2001.zip
+2001,SNF,SNFFY2001.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY2001.zip
+2000,HHA,HHAFY2000,https://downloads.cms.gov/Files/hcris/HHAFY2000.zip
+2000,SNF,SNFFY2000.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY2000.zip
+2000,HOSPITAL,HOSPFY2000.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY2000.zip
+1999,HOSPITAL,HOSPFY1999.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY1999.zip
+1999,SNF,SNFFY1999.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY1999.zip
+1999,HHA,HHAFY1999,https://downloads.cms.gov/Files/hcris/HHAFY1999.zip
+1998,SNF,SNFFY1998.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY1998.zip
+1998,HOSPITAL,HOSPFY1998.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY1998.zip
+1998,HHA,HHAFY1998,https://downloads.cms.gov/Files/hcris/HHAFY1998.zip
+1997,HOSPITAL,HOSPFY1997.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY1997.zip
+1997,HHA,HHAFY1997,https://downloads.cms.gov/Files/hcris/HHAFY1997.zip
+1997,SNF,SNFFY1997.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY1997.zip
+1996,HOSPITAL,HOSPFY1996.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY1996.zip
+1996,SNF,SNFFY1996.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY1996.zip
+1996,HHA,HHAFY1996,http://downloads.cms.gov/Files/hcris/HHAFY1996.zip
+1995,HOSPITAL,HOSPFY1995.ZIP,https://downloads.cms.gov/Files/hcris/HOSPFY1995.zip
+1995,HHA,HHAFY1995,http://downloads.cms.gov/Files/hcris/HHAFY1995.zip
+1995,SNF,SNFFY1995.ZIP,https://downloads.cms.gov/Files/hcris/SNFFY1995.zip
+1994,HHA,HHAFY1994,http://downloads.cms.gov/Files/hcris/HHAFY1994.zip
