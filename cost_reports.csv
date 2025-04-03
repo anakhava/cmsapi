@@ -1,8 +1,29 @@
 year,facility_type,file_name,download_url
+2024,"Facility Type
+          HHA-2020",,
+2024,SNF,,
+2024,HOSPITAL,,
+2023,HHA,,
+2023,HOSPITAL,,
+2023,"Facility Type
+          SNF-10",,
 2022,"Facility Type
           SNF-2010",SNF-2010 FY 2022 DATA FILES,https://downloads.cms.gov/files/hcris/snf10fy2022.zip
+2022,HOSPITAL,,
+2022,HHA,,
+2021,"Facility Type
+          HHA",,
+2021,HHA,,
 2021,"Facility Type
           SNF-2010",https://downloads.cms.gov/files/hcris/snf10fy2021.zip,https://downloads.cms.gov/files/hcris/snf10fy2021.zip
+2021,"Facility Type
+          HOSPITAL-2010",,
+2020,"Facility Type
+          SNF-2010",,
+2020,"Facility Type
+          HOSPITAL-2010",,
+2020,HHA,,
+2020,HHA,,
 2019,HHA,HHAFY2019.zip,https://downloads.cms.gov/Files/hcris/HHAFY2019.zip
 2019,"Facility Type
           SNF-2010",SNF10 FY 2019 DATA FILES,https://downloads.cms.gov/files/hcris/snf10fy2019.zip

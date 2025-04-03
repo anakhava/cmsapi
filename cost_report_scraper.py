@@ -284,7 +284,15 @@ def scrape_cost_reports(output_file='cost_reports.csv'):
             # Get the report page content
             report_html = get_page_content(report['report_url'])
             if not report_html:
-                print(f"Failed to get content for {report['report_url']}, skipping.")
+                print(f"Failed to get content for {report['report_url']}, logging with empty download info.")
+                # Log the report with empty download info
+                writer.writerow({
+                    'year': report['year'],
+                    'facility_type': report['facility_type'],
+                    'file_name': '',
+                    'download_url': ''
+                })
+                print(f"✓ Saved to CSV with empty download info")
                 continue
                 
             # Find download links on the report page
@@ -295,10 +303,21 @@ def scrape_cost_reports(output_file='cost_reports.csv'):
                 report['facility_type']
             )
             
-            # Write download links to CSV
-            for download in downloads:
-                writer.writerow(download)
-                print(f"✓ Saved to CSV: {download['file_name']}")
+            # If no downloads found, still log the report with empty download info
+            if not downloads:
+                print(f"No download links found for {report['report_url']}, logging with empty download info.")
+                writer.writerow({
+                    'year': report['year'],
+                    'facility_type': report['facility_type'],
+                    'file_name': '',
+                    'download_url': ''
+                })
+                print(f"✓ Saved to CSV with empty download info")
+            else:
+                # Write download links to CSV
+                for download in downloads:
+                    writer.writerow(download)
+                    print(f"✓ Saved to CSV: {download['file_name']}")
                 
             # Pause between requests to avoid overloading the server
             if i < len(cost_reports):
