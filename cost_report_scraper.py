@@ -60,49 +60,45 @@ def find_cost_reports_in_main_page(html_content, base_url):
     reports = []
     soup = BeautifulSoup(html_content, 'html.parser')
     
-    # Find rows in the table that contain links
-    # Look specifically for the div structure containing the links
-    link_containers = soup.find_all('div', class_='js-form-item')
-    print(f"Found {len(link_containers)} potential link containers")
+    # Find the main table containing the cost reports
+    table = soup.find('table')
+    if not table:
+        print("No main table found, trying alternative selectors...")
+        return find_reports_alternative_method(soup, base_url)
     
-    # Process each link container
-    for container in link_containers:
+    # Process each row in the table
+    rows = table.find_all('tr')
+    print(f"Found {len(rows)} rows in the main table")
+    
+    for row in rows:
         try:
-            # Find the anchor tag
-            link = container.find('a')
-            if link:
-                link_url = link.get('href')
+            cells = row.find_all('td')
+            if len(cells) >= 2:
+                # Get the year and link from the first cell
+                year_cell = cells[0]
+                link = year_cell.find('a')
+                if not link:
+                    continue
+                    
                 year_text = link.get_text().strip()
+                link_url = link.get('href')
                 
-                # Try to determine year from link text or URL
-                if year_text.isdigit():
-                    year = year_text
-                else:
-                    # Try to extract year from URL
-                    year_match = re.search(r'(\d{4})', year_text)
-                    if year_match:
-                        year = year_match.group(1)
-                    else:
-                        # If we can't find a year, use the text as is
-                        year = year_text
+                # Extract year
+                year_match = re.search(r'(\d{4})', year_text)
+                if not year_match:
+                    continue
+                year = year_match.group(1)
                 
-                # Try to determine facility type from URL
-                facility_match = re.search(r'/(snf|hha|hosp|hospital)-', link_url, re.IGNORECASE)
-                if facility_match:
-                    facility_type = facility_match.group(1).upper()
-                    if facility_type == 'HOSP':
-                        facility_type = 'HOSPITAL'
-                else:
-                    # If we can't determine facility type, check the parent row
-                    parent_row = container.find_parent('tr')
-                    if parent_row:
-                        facility_cells = parent_row.find_all('td')
-                        if len(facility_cells) >= 2:
-                            facility_type = facility_cells[1].get_text().strip()
-                        else:
-                            facility_type = "UNKNOWN"
-                    else:
-                        facility_type = "UNKNOWN"
+                # Extract facility type from the second cell
+                facility_cell = cells[1]
+                facility_text = facility_cell.get_text().strip()
+                
+                # Clean up facility type text
+                facility_type = clean_facility_type(facility_text)
+                
+                # If we couldn't determine facility type from text, try URL
+                if facility_type == "UNKNOWN":
+                    facility_type = extract_facility_type_from_url(link_url)
                 
                 # Construct full URL
                 report_url = urljoin(base_url, link_url)
@@ -117,38 +113,85 @@ def find_cost_reports_in_main_page(html_content, base_url):
                 print(f"Found report: Year {year}, Type {facility_type}, URL: {report_url}")
                 
         except Exception as e:
-            print(f"Error processing link container: {e}")
+            print(f"Error processing row: {e}")
             continue
     
-    if not reports:
-        print("No reports found using primary method. Trying alternative selectors...")
-        # Look for plain table rows with links as a fallback
-        rows = soup.find_all('tr')
-        print(f"Found {len(rows)} table rows to process")
+    return reports
+
+def clean_facility_type(text):
+    """
+    Clean up facility type text by removing unwanted parts and standardizing format
+    """
+    # Remove "Facility Type" and any extra whitespace
+    text = re.sub(r'Facility Type\s*', '', text, flags=re.IGNORECASE)
+    text = text.strip()
+    
+    # Standardize common variations
+    text = text.upper()
+    text = re.sub(r'HOSP(ITAL)?-?\d*', 'HOSPITAL', text)
+    text = re.sub(r'SNF-?\d*', 'SNF', text)
+    text = re.sub(r'HHA-?\d*', 'HHA', text)
+    
+    # If text is empty or just contains numbers, return UNKNOWN
+    if not text or text.replace('-', '').isdigit():
+        return "UNKNOWN"
         
-        for row in rows:
-            try:
-                cells = row.find_all('td')
-                if len(cells) >= 2:
-                    link = cells[0].find('a')
-                    if link:
-                        year_text = link.get_text().strip()
-                        year_match = re.search(r'(\d{4})', year_text)
-                        if year_match:
-                            year = year_match.group(1)
-                            facility_type = cells[1].get_text().strip()
-                            report_url = urljoin(base_url, link.get('href'))
-                            
-                            report_info = {
-                                'year': year,
-                                'facility_type': facility_type,
-                                'report_url': report_url
-                            }
-                            reports.append(report_info)
-                            print(f"Found report (alt method): Year {year}, Type {facility_type}")
-            except Exception as e:
-                print(f"Error processing row with alt method: {e}")
+    return text
+
+def extract_facility_type_from_url(url):
+    """
+    Extract facility type from URL using improved pattern matching
+    """
+    patterns = [
+        (r'/(snf|hha|hosp|hospital)(?:-?\d*)?/', 'HOSPITAL', 'HOSP'),
+        (r'/(snf|hha|hosp|hospital)(?:-?\d*)?$', 'HOSPITAL', 'HOSP'),
+        (r'/(snf|hha|hosp|hospital)(?:-?\d*)?\.', 'HOSPITAL', 'HOSP')
+    ]
+    
+    for pattern, replacement, match in patterns:
+        facility_match = re.search(pattern, url, re.IGNORECASE)
+        if facility_match:
+            facility_type = facility_match.group(1).upper()
+            if facility_type == match:
+                return replacement
+            return facility_type
+            
+    return "UNKNOWN"
+
+def find_reports_alternative_method(soup, base_url):
+    """
+    Alternative method to find reports when main table is not found
+    """
+    reports = []
+    
+    # Look for any links that might contain cost report information
+    links = soup.find_all('a', href=True)
+    for link in links:
+        try:
+            href = link['href']
+            text = link.get_text().strip()
+            
+            # Look for year in the link text
+            year_match = re.search(r'(\d{4})', text)
+            if not year_match:
                 continue
+                
+            year = year_match.group(1)
+            facility_type = extract_facility_type_from_url(href)
+            
+            if facility_type != "UNKNOWN":
+                report_url = urljoin(base_url, href)
+                report_info = {
+                    'year': year,
+                    'facility_type': facility_type,
+                    'report_url': report_url
+                }
+                reports.append(report_info)
+                print(f"Found report (alt method): Year {year}, Type {facility_type}")
+                
+        except Exception as e:
+            print(f"Error processing link with alt method: {e}")
+            continue
             
     return reports
 
@@ -223,21 +266,62 @@ def find_download_links(html_content, base_url, year, facility_type):
     downloads = []
     soup = BeautifulSoup(html_content, 'html.parser')
     
-    # Look for links with zip, csv, or xlsx extensions
-    download_links = soup.find_all('a', href=lambda href: href and (
-        href.endswith('.zip') or href.endswith('.csv') or href.endswith('.xlsx')
-    ))
+    # Try multiple strategies to find download links
+    download_links = []
     
-    print(f"Found {len(download_links)} download links on the page")
+    # Strategy 1: Look in the main content area
+    main_content = soup.find('div', class_='field--name-body')
+    if main_content:
+        download_links.extend(main_content.find_all('a', href=True))
     
+    # Strategy 2: Look for list items with field__item class (common in newer pages)
+    field_items = soup.find_all('li', class_='field__item')
+    for item in field_items:
+        link = item.find('a', href=True)
+        if link:
+            download_links.append(link)
+    
+    # Strategy 3: Look for links in any div with field__item class
+    field_items_div = soup.find_all('div', class_='field__item')
+    for item in field_items_div:
+        link = item.find('a', href=True)
+        if link:
+            download_links.append(link)
+    
+    # Strategy 4: Fallback to searching the entire page
+    if not download_links:
+        download_links = soup.find_all('a', href=True)
+    
+    print(f"Found {len(download_links)} potential download links on the page")
+    
+    # Process each link
     for link in download_links:
         try:
-            file_name = link.get_text().strip()
-            if not file_name:
-                # If link text is empty, use the href
-                file_name = link['href'].split('/')[-1]
+            # Get the href, handling both single and double quotes
+            href = link.get('href', '').strip()
+            if not href:
+                continue
                 
-            download_url = urljoin(base_url, link['href'])
+            # Skip if not a download link
+            if not is_download_link(href, year, facility_type):
+                continue
+                
+            # Get file name from link text or href
+            file_name = link.get_text().strip()
+            if not file_name or file_name.startswith('http'):
+                file_name = href.split('/')[-1]
+            
+            # Clean up file name and URL
+            file_name = clean_file_name(file_name)
+            download_url = clean_url(href, base_url)
+            
+            # Skip if URL cleaning failed
+            if not download_url:
+                continue
+            
+            # Generate a better file name if needed
+            if not file_name or file_name.startswith('http'):
+                file_name = generate_file_name(facility_type, year, download_url)
             
             download_info = {
                 'year': year,
@@ -246,7 +330,7 @@ def find_download_links(html_content, base_url, year, facility_type):
                 'download_url': download_url
             }
             
-            print(f"Found download link: {file_name}")
+            print(f"Found download link: {file_name} -> {download_url}")
             downloads.append(download_info)
             
         except Exception as e:
@@ -254,6 +338,181 @@ def find_download_links(html_content, base_url, year, facility_type):
             continue
             
     return downloads
+
+def clean_url(url, base_url):
+    """
+    Clean and validate a URL
+    """
+    try:
+        # Remove leading/trailing whitespace
+        url = url.strip()
+        
+        # Handle single-quoted URLs that might have spaces
+        url = url.strip("'").strip()
+        
+        # Ensure proper URL format
+        if not url.startswith(('http://', 'https://')):
+            url = urljoin(base_url, url)
+        
+        # Force HTTPS
+        url = url.replace('http://', 'https://')
+        
+        # Normalize case for consistency
+        url = url.replace('/FILES/', '/files/').replace('/HCRIS/', '/hcris/')
+        
+        # Validate URL format
+        if not is_valid_download_url(url):
+            return None
+            
+        return url
+    except Exception as e:
+        print(f"Error cleaning URL {url}: {e}")
+        return None
+
+def is_download_link(href, year, facility_type):
+    """
+    Check if a link is likely to be a download link for the specific year and facility type
+    """
+    href = href.lower()
+    year_str = str(year)
+    facility_patterns = {
+        'HOSPITAL': ['hosp', 'hospital'],
+        'SNF': ['snf'],
+        'HHA': ['hha']
+    }
+    
+    # Check for common download file extensions
+    if not any(href.endswith(ext) for ext in ['.zip', '.csv', '.xlsx', '.xls']):
+        return False
+    
+    # Check for year in URL
+    if year_str not in href and f"fy{year_str[-2:]}" not in href:
+        return False
+    
+    # Check for facility type in URL
+    facility_matches = facility_patterns.get(facility_type, [])
+    if not any(pattern in href for pattern in facility_matches):
+        return False
+    
+    # Check for common download patterns in the URL
+    download_patterns = [
+        r'/downloads/',
+        r'/files/',
+        r'/data/',
+        r'/hcris/',
+        r'cost-report',
+        r'costreport'
+    ]
+    
+    return any(re.search(pattern, href, re.IGNORECASE) for pattern in download_patterns)
+
+def is_valid_download_url(url):
+    """
+    Verify that a download URL is valid
+    """
+    url = url.lower()
+    
+    # Must be HTTPS
+    if not url.startswith('https://'):
+        return False
+    
+    # Must be from CMS domain
+    if 'cms.gov' not in url:
+        return False
+    
+    # Must contain at least one of these patterns
+    required_patterns = [
+        ('downloads', 'files'),  # Either downloads or files
+        'hcris'                 # Must have hcris
+    ]
+    
+    # Check first group (downloads or files)
+    has_download_or_files = any(pattern in url for pattern in required_patterns[0])
+    
+    # Check second requirement (hcris)
+    has_hcris = required_patterns[1] in url
+    
+    return has_download_or_files and has_hcris
+
+def generate_file_name(facility_type, year, url):
+    """
+    Generate a standardized file name based on facility type, year, and URL
+    """
+    # Extract base name from URL
+    base_name = url.split('/')[-1]
+    
+    # Remove file extension
+    base_name = re.sub(r'\.(zip|csv|xlsx|xls)$', '', base_name, flags=re.IGNORECASE)
+    
+    # If the base name is already good, use it
+    if re.match(rf'^{facility_type}.*{year}', base_name, re.IGNORECASE):
+        return base_name
+    
+    # Otherwise generate a new name
+    return f"{facility_type}-{year} DATA FILES"
+
+def clean_file_name(file_name):
+    """
+    Clean up file name by removing unwanted characters and standardizing format
+    """
+    # Remove any HTML tags
+    file_name = re.sub(r'<[^>]+>', '', file_name)
+    
+    # Remove extra whitespace
+    file_name = ' '.join(file_name.split())
+    
+    # Remove any non-printable characters
+    file_name = ''.join(char for char in file_name if char.isprintable())
+    
+    # Remove any URLs
+    file_name = re.sub(r'https?://[^\s]+', '', file_name)
+    
+    # Remove any file extensions
+    file_name = re.sub(r'\.(zip|csv|xlsx|xls)$', '', file_name, flags=re.IGNORECASE)
+    
+    return file_name.strip()
+
+def remove_duplicates_from_csv(csv_file):
+    """
+    Remove duplicate records from the CSV file while keeping the most complete record for each unique combination
+    of year, facility type, and download URL.
+    
+    Args:
+        csv_file: Path to the CSV file to clean
+    """
+    print("\nRemoving duplicate records from CSV...")
+    
+    # Read all records
+    records = []
+    with open(csv_file, 'r', newline='', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        records = list(reader)
+    
+    # Create a dictionary to store unique records
+    unique_records = {}
+    
+    # Process each record
+    for record in records:
+        # Create a key based on year, facility type, and download URL
+        key = (record['year'], record['facility_type'], record['download_url'])
+        
+        # If this is a new unique record or has a better file name, keep it
+        if key not in unique_records or (
+            record['file_name'] and 
+            (not unique_records[key]['file_name'] or 
+             len(record['file_name']) > len(unique_records[key]['file_name']))
+        ):
+            unique_records[key] = record
+    
+    # Write back unique records
+    with open(csv_file, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=['year', 'facility_type', 'file_name', 'download_url'])
+        writer.writeheader()
+        writer.writerows(unique_records.values())
+    
+    removed_count = len(records) - len(unique_records)
+    print(f"Removed {removed_count} duplicate records")
+    print(f"Final record count: {len(unique_records)}")
 
 def scrape_cost_reports(output_file='cost_reports.csv'):
     """
@@ -322,10 +581,12 @@ def scrape_cost_reports(output_file='cost_reports.csv'):
             # Pause between requests to avoid overloading the server
             if i < len(cost_reports):
                 time.sleep(2)
+    
+    # Remove duplicates from the final CSV file
+    remove_duplicates_from_csv(output_file)
                 
     print(f"\n=== Summary ===")
     print(f"Results saved to {output_file}")
-                
 
 if __name__ == "__main__":
     print("Starting CMS Cost Report scraper...")
