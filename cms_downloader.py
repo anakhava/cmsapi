@@ -13,6 +13,8 @@ import queue
 import time
 import concurrent.futures
 from functools import partial
+import boto3
+from botocore.exceptions import ClientError
 
 # Global variables for log handling
 log_file = None
@@ -21,6 +23,53 @@ log_entries = []
 # Global variables for user input
 input_queue = queue.Queue()
 skip_current_dataset = False
+
+class S3Storage:
+    def __init__(self, bucket_name: str):
+        """
+        Initialize S3 storage handler
+        
+        Args:
+            bucket_name: Name of the S3 bucket
+        """
+        self.s3_client = boto3.client('s3')
+        self.bucket_name = bucket_name
+    
+    def exists(self, s3_key: str) -> bool:
+        """
+        Check if a file exists in S3
+        
+        Args:
+            s3_key: S3 object key
+            
+        Returns:
+            True if file exists, False otherwise
+        """
+        try:
+            self.s3_client.head_object(Bucket=self.bucket_name, Key=s3_key)
+            return True
+        except ClientError as e:
+            if e.response['Error']['Code'] == '404':
+                return False
+            raise
+    
+    def upload_file(self, local_path: Path, s3_key: str) -> bool:
+        """
+        Upload a file to S3
+        
+        Args:
+            local_path: Local path to the file
+            s3_key: S3 object key
+            
+        Returns:
+            True if upload successful, False otherwise
+        """
+        try:
+            self.s3_client.upload_file(str(local_path), self.bucket_name, s3_key)
+            return True
+        except Exception as e:
+            print(f"Error uploading to S3: {e}")
+            return False
 
 def write_logs_to_file():
     """
@@ -156,10 +205,15 @@ def get_dataset_row_count(uuid):
     
     return None
 
-def download_cms_data(uuid, dataset_info):
+def download_cms_data(uuid, dataset_info, s3_storage=None):
     """
     Download data from CMS API using provided UUID and dataset info with pagination support
     Streams results directly to CSV without storing everything in memory
+    
+    Args:
+        uuid: Dataset UUID
+        dataset_info: Dictionary containing dataset information
+        s3_storage: Optional S3Storage instance for uploading to S3
     """
     global skip_current_dataset
     
@@ -319,22 +373,24 @@ def download_cms_data(uuid, dataset_info):
             dataset_info
         ))
         
-        return True if total_records > 0 else False
+        # After download is complete, upload to S3 if s3_storage is provided
+        if s3_storage and output_filename.exists():
+            s3_key = f"cms-datasets/{safe_dataset_name}_{uuid}.csv"
+            
+            # Check if file already exists in S3
+            if s3_storage.exists(s3_key):
+                print(f"{prefix} File already exists in S3: {s3_key}")
+            else:
+                print(f"{prefix} Uploading to S3: {s3_key}")
+                if s3_storage.upload_file(output_filename, s3_key):
+                    print(f"{prefix} Upload successful")
+                else:
+                    print(f"{prefix} Upload failed")
         
-    except requests.exceptions.RequestException as e:
-        print(f"{prefix} Error downloading data: {e}")
-        error_response = e.response if hasattr(e, 'response') else None
-        thread_local.log_entries.append(create_log_entry_thread_safe(
-            uuid,
-            error_response.status_code if error_response else 'N/A',
-            error_response.text[:1000] if error_response else 'N/A',
-            False,
-            dataset_info,
-            str(e)
-        ))
-        # Close file if open
-        if 'csv_file' in locals() and csv_file:
-            csv_file.close()
+        return True
+            
+    except Exception as e:
+        print(f"{prefix} Error processing dataset {dataset_name}: {e}")
         return False
 
 # Create a thread-safe version of the log entry function
@@ -361,10 +417,17 @@ def create_log_entry_thread_safe(uuid, status_code, response_content, success, d
     
     return entry
 
-def process_cms_datasets_file(csv_path="cms_datasets.csv"):
+def process_cms_datasets_file(csv_path="cms_datasets.csv", s3_bucket=None):
     """
-    Read dataset information from cms_datasets.csv and download data for each
+    Process the CMS datasets CSV file and download each dataset
+    
+    Args:
+        csv_path: Path to the CSV file containing dataset information
+        s3_bucket: Optional S3 bucket name for uploading datasets
     """
+    # Initialize S3 storage if bucket is provided
+    s3_storage = S3Storage(s3_bucket) if s3_bucket else None
+    
     global log_file
     
     try:
@@ -440,7 +503,7 @@ def process_cms_datasets_file(csv_path="cms_datasets.csv"):
         # Process small datasets sequentially
         for uuid, dataset_info in small_datasets:
             print(f"\nProcessing smaller dataset: {dataset_info['dataset_name']}")
-            if download_cms_data(uuid, dataset_info):
+            if download_cms_data(uuid, dataset_info, s3_storage):
                 successful_downloads += 1
             else:
                 failed_downloads += 1
@@ -453,7 +516,7 @@ def process_cms_datasets_file(csv_path="cms_datasets.csv"):
             max_workers = min(3, len(large_datasets))  # Limit to 3 parallel downloads
             
             with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-                futures = [executor.submit(download_cms_data, uuid, dataset_info) for uuid, dataset_info in large_datasets]
+                futures = [executor.submit(download_cms_data, uuid, dataset_info, s3_storage) for uuid, dataset_info in large_datasets]
                 for future in concurrent.futures.as_completed(futures):
                     try:
                         result = future.result()
@@ -489,24 +552,21 @@ def process_cms_datasets_file(csv_path="cms_datasets.csv"):
         sys.exit(1)
 
 def main():
+    """Main function to run the downloader"""
+    # Configuration
+    CSV_PATH = 'cms_datasets.csv'
+    S3_BUCKET = 'downloaded-data'  # Set your S3 bucket name here
+    
     # Register signal handlers for graceful exit
-    signal.signal(signal.SIGINT, signal_handler)  # Ctrl+C
-    signal.signal(signal.SIGTERM, signal_handler)  # Termination signal
+    signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
     
-    # Register exit handler to ensure logs are written
-    atexit.register(write_logs_to_file)
-    
-    # Start the input listener thread
+    # Start input listener thread
     input_thread = threading.Thread(target=input_listener, daemon=True)
     input_thread.start()
     
-    if len(sys.argv) > 1:
-        csv_path = sys.argv[1]
-    else:
-        csv_path = "cms_datasets.csv"  # Default to cms_datasets.csv if no argument provided
-    
-    print(f"Using dataset file: {csv_path}")
-    process_cms_datasets_file(csv_path)
+    # Process datasets
+    process_cms_datasets_file(CSV_PATH, S3_BUCKET)
 
 if __name__ == "__main__":
-    main() 
+    main()
