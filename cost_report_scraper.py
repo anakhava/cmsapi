@@ -175,8 +175,8 @@ def find_reports_alternative_method(soup, base_url):
             year_match = re.search(r'(\d{4})', text)
             if not year_match:
                 continue
-                
             year = year_match.group(1)
+            
             facility_type = extract_facility_type_from_url(href)
             
             if facility_type != "UNKNOWN":
@@ -310,7 +310,7 @@ def find_download_links(html_content, base_url, year, facility_type):
             file_name = link.get_text().strip()
             if not file_name or file_name.startswith('http'):
                 file_name = href.split('/')[-1]
-            
+                
             # Clean up file name and URL
             file_name = clean_file_name(file_name)
             download_url = clean_url(href, base_url)
