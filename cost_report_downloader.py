@@ -1,25 +1,75 @@
 """
-Download cost report files from URLs listed in cost_reports.csv.
+Download cost report files from URLs listed in cost_reports.csv and upload to S3.
 """
 import csv
 import time
 from pathlib import Path
 from typing import Dict, List, Optional
 import pandas as pd
+import boto3
+from botocore.exceptions import ClientError
 from utils import setup_logging, download_file, clean_url, get_file_extension
 
+class S3Storage:
+    def __init__(self, bucket_name: str):
+        """
+        Initialize S3 storage handler
+        
+        Args:
+            bucket_name: Name of the S3 bucket
+        """
+        self.s3_client = boto3.client('s3')
+        self.bucket_name = bucket_name
+        self.logger = setup_logging('s3_storage')
+    
+    def exists(self, s3_key: str) -> bool:
+        """
+        Check if a file exists in S3
+        
+        Args:
+            s3_key: S3 object key
+            
+        Returns:
+            True if file exists, False otherwise
+        """
+        try:
+            self.s3_client.head_object(Bucket=self.bucket_name, Key=s3_key)
+            return True
+        except ClientError as e:
+            if e.response['Error']['Code'] == '404':
+                return False
+            raise
+    
+    def upload_file(self, local_path: Path, s3_key: str) -> bool:
+        """
+        Upload a file to S3
+        
+        Args:
+            local_path: Local path to the file
+            s3_key: S3 object key
+            
+        Returns:
+            True if upload successful, False otherwise
+        """
+        try:
+            self.s3_client.upload_file(str(local_path), self.bucket_name, s3_key)
+            return True
+        except Exception as e:
+            self.logger.error(f"Error uploading to S3: {e}")
+            return False
+
 class CostReportDownloader:
-    def __init__(self, csv_path: str, output_dir: str):
+    def __init__(self, csv_path: str, s3_bucket: str):
         """
         Initialize the downloader
         
         Args:
             csv_path: Path to the cost_reports.csv file
-            output_dir: Base directory for downloaded files
+            s3_bucket: Name of the S3 bucket
         """
         self.logger = setup_logging('cost_report_downloader')
         self.csv_path = Path(csv_path)
-        self.output_dir = Path(output_dir)
+        self.s3_storage = S3Storage(s3_bucket)
         self.stats = {
             'total': 0,
             'successful': 0,
@@ -42,19 +92,19 @@ class CostReportDownloader:
             self.logger.error(f"Error loading CSV file: {e}")
             return []
     
-    def get_output_path(self, report: Dict) -> Path:
+    def get_s3_key(self, report: Dict) -> str:
         """
-        Generate output path for a report
+        Generate S3 key for a report
         
         Args:
             report: Dictionary containing report information
             
         Returns:
-            Path object for the output file
+            S3 object key
         """
-        # Create directory structure: output_dir/facility_type/year/
-        facility_dir = self.output_dir / report['facility_type']
-        year_dir = facility_dir / str(report['year'])
+        # Create S3 key structure: cost-reports/facility_type/year/filename
+        facility_type = report['facility_type']
+        year = str(report['year'])
         
         # Get file extension from URL or default to .zip
         ext = get_file_extension(report['download_url'])
@@ -65,11 +115,11 @@ class CostReportDownloader:
         else:
             filename = f"{report['facility_type']}_{report['year']}{ext}"
         
-        return year_dir / filename
+        return f"cost-reports/{facility_type}/{year}/{filename}"
     
     def download_reports(self, reports: List[Dict], delay: float = 1.0) -> None:
         """
-        Download cost report files
+        Download cost report files and upload to S3
         
         Args:
             reports: List of report dictionaries
@@ -91,23 +141,39 @@ class CostReportDownloader:
             # Clean URL
             url = clean_url(report['download_url'])
             
-            # Get output path
-            output_path = self.get_output_path(report)
+            # Get S3 key
+            s3_key = self.get_s3_key(report)
             
-            # Skip if file already exists
-            if output_path.exists():
-                self.logger.info(f"  File already exists: {output_path}")
+            # Skip if file already exists in S3
+            if self.s3_storage.exists(s3_key):
+                self.logger.info(f"  File already exists in S3: {s3_key}")
                 self.stats['skipped'] += 1
                 continue
             
-            # Download file
-            self.logger.info(f"  Downloading to: {output_path}")
-            if download_file(url, output_path, logger=self.logger):
-                self.logger.info("  Download successful")
-                self.stats['successful'] += 1
-            else:
-                self.logger.error("  Download failed")
-                self.stats['failed'] += 1
+            # Create temporary local file
+            temp_path = Path(f"temp_{report['facility_type']}_{report['year']}{get_file_extension(url)}")
+            
+            try:
+                # Download file
+                self.logger.info(f"  Downloading to temporary file: {temp_path}")
+                if not download_file(url, temp_path, logger=self.logger):
+                    self.logger.error("  Download failed")
+                    self.stats['failed'] += 1
+                    continue
+                
+                # Upload to S3
+                self.logger.info(f"  Uploading to S3: {s3_key}")
+                if self.s3_storage.upload_file(temp_path, s3_key):
+                    self.logger.info("  Upload successful")
+                    self.stats['successful'] += 1
+                else:
+                    self.logger.error("  Upload failed")
+                    self.stats['failed'] += 1
+                
+            finally:
+                # Clean up temporary file
+                if temp_path.exists():
+                    temp_path.unlink()
             
             # Add delay between downloads
             if i < len(reports):
@@ -125,11 +191,11 @@ def main():
     """Main function to run the downloader"""
     # Configuration
     CSV_PATH = 'cost_reports.csv'
-    OUTPUT_DIR = '/Users/arianakhavan/Documents/reference_data'
+    S3_BUCKET = 'downloaded-data'
     DOWNLOAD_DELAY = 1.0  # seconds between downloads
     
     # Create downloader instance
-    downloader = CostReportDownloader(CSV_PATH, OUTPUT_DIR)
+    downloader = CostReportDownloader(CSV_PATH, S3_BUCKET)
     
     # Load reports
     reports = downloader.load_reports()
